@@ -1,0 +1,72 @@
+{
+  "_comment": "---------- Modifiers - Invalid ----------"
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "command"
+  },
+  "to": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 1
+      },
+      "key_code": "command"
+    }
+  ],
+  "to_after_key_up": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 0
+      }
+    }
+  ]
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "control"
+  },
+  "to": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 1
+      },
+      "key_code": "control"
+    }
+  ],
+  "to_after_key_up": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 0
+      }
+    }
+  ]
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "option"
+  },
+  "to": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 1
+      },
+      "key_code": "option"
+    }
+  ],
+  "to_after_key_up": [
+    {
+      "set_variable": {
+        "name": "invalid",
+        "value": 0
+      }
+    }
+  ]
+}

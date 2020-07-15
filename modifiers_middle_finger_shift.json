@@ -1,0 +1,174 @@
+{
+  "_comment": "---------- 中指シフトキー（シフト面） ----------"
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "d",
+    "modifiers": {
+      "optional": ["any"]
+    }
+  },
+  "to": [
+    {
+      "key_code": "n",
+      "repeat": false
+    },
+    {
+      "key_code": "i",
+      "repeat": false
+    }
+  ],
+  "conditions": [
+    {
+      "type": "input_source_if",
+      "input_sources": [
+        {
+          "language": "ja"
+        }
+      ]
+    },
+    {
+      "type": "variable_unless",
+      "name": "invalid",
+      "value": 1
+    },
+    {
+      "type": "variable_if",
+      "name": "shifted",
+      "value": 1
+    }
+  ]
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "k",
+    "modifiers": {
+      "optional": ["any"]
+    }
+  },
+  "to": [
+    {
+      "key_code": "m",
+      "repeat": false
+    },
+    {
+      "key_code": "o",
+      "repeat": false
+    }
+  ],
+  "conditions": [
+    {
+      "type": "input_source_if",
+      "input_sources": [
+        {
+          "language": "ja"
+        }
+      ]
+    },
+    {
+      "type": "variable_unless",
+      "name": "invalid",
+      "value": 1
+    },
+    {
+      "type": "variable_if",
+      "name": "shifted",
+      "value": 1
+    }
+  ]
+},
+{
+  "_comment": "---------- 中指シフト ----------"
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "d",
+    "modifiers": {
+      "optional": ["any"]
+    }
+  },
+  "to": [
+    {
+      "set_variable": {
+        "name": "shifted",
+        "value": 1
+      }
+    }
+  ],
+  "to_if_alone": [
+    {
+      "key_code": "d"
+    }
+  ],
+  "to_after_key_up": [
+    {
+      "set_variable": {
+        "name": "shifted",
+        "value": 0
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "type": "input_source_if",
+      "input_sources": [
+        {
+          "language": "ja"
+        }
+      ]
+    },
+    {
+      "type": "variable_unless",
+      "name": "invalid",
+      "value": 1
+    }
+  ]
+},
+{
+  "type": "basic",
+  "from": {
+    "key_code": "k",
+    "modifiers": {
+      "optional": ["any"]
+    }
+  },
+  "to": [
+    {
+      "set_variable": {
+        "name": "shifted",
+        "value": 1
+      }
+    }
+  ],
+  "to_if_alone": [
+    {
+      "key_code": "k"
+    }
+  ],
+  "to_after_key_up": [
+    {
+      "set_variable": {
+        "name": "shifted",
+        "value": 0
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "type": "input_source_if",
+      "input_sources": [
+        {
+          "language": "ja"
+        }
+      ]
+    },
+    {
+      "type": "variable_unless",
+      "name": "invalid",
+      "value": 1
+    }
+  ]
+}

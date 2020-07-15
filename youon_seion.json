@@ -1,11 +1,10 @@
 {
-  "_comment": "---------- 外来音 ----------"
+  "_comment": "---------- 拗音（清音） ----------"
 },
 {
   "type": "basic",
   "from": {
     "simultaneous": {
-      "key_code": "from_key",
       "key_code": "from_key",
       "key_code": "from_key"
     },

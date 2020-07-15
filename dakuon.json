@@ -1,11 +1,10 @@
 {
-  "_comment": "---------- 外来音 ----------"
+  "_comment": "---------- 濁音 ----------"
 },
 {
   "type": "basic",
   "from": {
     "simultaneous": {
-      "key_code": "from_key",
       "key_code": "from_key",
       "key_code": "from_key"
     },
@@ -14,10 +13,6 @@
     }
   },
   "to": [
-    {
-      "key_code": "to_key",
-      "repeat": false
-    },
     {
       "key_code": "to_key",
       "repeat": false

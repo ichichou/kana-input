@@ -1,23 +1,15 @@
 {
-  "_comment": "---------- 外来音 ----------"
+  "_comment": "---------- 清音（単押し） ----------"
 },
 {
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "key_code": "from_key",
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
-    {
-      "key_code": "to_key",
-      "repeat": false
-    },
     {
       "key_code": "to_key",
       "repeat": false

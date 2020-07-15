@@ -1,30 +1,33 @@
 {
-  "_comment": "---------- 外来音 ----------"
+  "_comment": "---------- センターシフト ----------"
 },
 {
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "key_code": "return_or_enter",
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
-      "repeat": false
-    },
+      "set_variable": {
+        "name": "shifted",
+        "value": 1
+      }
+    }
+  ],
+  "to_if_alone": [
     {
-      "key_code": "to_key",
-      "repeat": false
-    },
+      "key_code": "return_or_enter"
+    }
+  ],
+  "to_after_key_up": [
     {
-      "key_code": "to_key",
-      "repeat": false
+      "set_variable": {
+        "name": "shifted",
+        "value": 0
+      }
     }
   ],
   "conditions": [

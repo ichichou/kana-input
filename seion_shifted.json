@@ -1,23 +1,18 @@
 {
-  "_comment": "---------- 外来音 ----------"
+  "_comment": "---------- 清音（シフト） ----------"
+},
+{
+  "_comment": "「に」「も」は必要ない"
 },
 {
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "key_code": "from_key",
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
-    {
-      "key_code": "to_key",
-      "repeat": false
-    },
     {
       "key_code": "to_key",
       "repeat": false
@@ -39,6 +34,11 @@
     {
       "type": "variable_unless",
       "name": "invalid",
+      "value": 1
+    },
+    {
+      "type": "variable_if",
+      "name": "shifted",
       "value": 1
     }
   ]
