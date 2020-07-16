@@ -2,28 +2,31 @@
   "_comment": "---------- 拗音（半濁音） ----------"
 },
 {
+{
+  "_comment": "----- ぴょ -----"
+},
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "simultaneous": [
+      { "key_code": "m" },
+      { "key_code": "s" },
+      { "key_code": "i" }
+    ],
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
+      "key_code": "p",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "y",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "o",
       "repeat": false
     }
   ],
@@ -31,9 +34,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {

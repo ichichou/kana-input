@@ -2,6 +2,9 @@
   "_comment": "---------- 中指シフトキー（シフト面） ----------"
 },
 {
+  "_comment": "----- に -----"
+},
+{
   "type": "basic",
   "from": {
     "key_code": "d",
@@ -23,9 +26,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {
@@ -39,6 +40,9 @@
       "value": 1
     }
   ]
+},
+{
+  "_comment": "----- も -----"
 },
 {
   "type": "basic",
@@ -62,9 +66,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {
@@ -81,6 +83,9 @@
 },
 {
   "_comment": "---------- 中指シフト ----------"
+},
+{
+  "_comment": "----- と -----"
 },
 {
   "type": "basic",
@@ -100,7 +105,12 @@
   ],
   "to_if_alone": [
     {
-      "key_code": "d"
+      "key_code": "t",
+      "repeat": false
+    },
+    {
+      "key_code": "o",
+      "repeat": false
     }
   ],
   "to_after_key_up": [
@@ -115,9 +125,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {
@@ -126,6 +134,9 @@
       "value": 1
     }
   ]
+},
+{
+  "_comment": "----- い -----"
 },
 {
   "type": "basic",
@@ -145,7 +156,8 @@
   ],
   "to_if_alone": [
     {
-      "key_code": "k"
+      "key_code": "i",
+      "repeat": false
     }
   ],
   "to_after_key_up": [
@@ -160,9 +172,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {

@@ -2,27 +2,30 @@
   "_comment": "---------- 拗音（清音） ----------"
 },
 {
+  "_comment": "----- しょ -----"
+},
+{
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "simultaneous": [
+      { "key_code": "r" },
+      { "key_code": "i" }
+    ],
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
+      "key_code": "s",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "y",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "o",
       "repeat": false
     }
   ],
@@ -30,9 +33,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {

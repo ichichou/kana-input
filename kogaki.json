@@ -2,23 +2,26 @@
   "_comment": "---------- 小書き ----------"
 },
 {
+  "_comment": "----- ぁ -----"
+},
+{
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "q",
-      "key_code": "from_key"
-    },
+    "simultaneous": [
+      { "key_code": "q" },
+      { "key_code": "j" }
+    ],
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
+      "key_code": "l",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "a",
       "repeat": false
     }
   ],
@@ -26,9 +29,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {

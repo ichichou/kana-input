@@ -1,24 +1,25 @@
 {
-  "_comment": "---------- 清音（シフト） ----------"
+  "_comment": "---------- 清音（シフト） ----------",
+  "_comment": "「に」「も」は必要ない"
 },
 {
-  "_comment": "「に」「も」は必要ない"
+  "_comment": "----- の -----"
 },
 {
   "type": "basic",
   "from": {
-    "key_code": "from_key",
+    "key_code": "j",
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
+      "key_code": "n",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "o",
       "repeat": false
     }
   ],
@@ -26,9 +27,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {

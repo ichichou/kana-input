@@ -2,28 +2,31 @@
   "_comment": "---------- 外来音 ----------"
 },
 {
+  "_comment": "----- てぃ -----"
+},
+{
   "type": "basic",
   "from": {
-    "simultaneous": {
-      "key_code": "from_key",
-      "key_code": "from_key",
-      "key_code": "from_key"
-    },
+    "simultaneous": [
+      { "key_code": "m" },
+      { "key_code": "e" },
+      { "key_code": "k" }
+    ],
     "modifiers": {
       "optional": ["any"]
     }
   },
   "to": [
     {
-      "key_code": "to_key",
+      "key_code": "t",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "h",
       "repeat": false
     },
     {
-      "key_code": "to_key",
+      "key_code": "i",
       "repeat": false
     }
   ],
@@ -31,9 +34,7 @@
     {
       "type": "input_source_if",
       "input_sources": [
-        {
-          "language": "ja"
-        }
+        { "language": "ja" }
       ]
     },
     {
