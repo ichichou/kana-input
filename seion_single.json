@@ -32,6 +32,11 @@
       "type": "variable_unless",
       "name": "invalid",
       "value": 1
+    },
+    {
+      "type": "variable_unless",
+      "name": "shifted",
+      "value": 1
     }
   ]
 }
