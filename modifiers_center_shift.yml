@@ -1,48 +1,16 @@
-{
-  "_comment": "---------- センターシフト ----------"
-},
-{
-  "type": "basic",
-  "from": {
-    "key_code": "return_or_enter",
-    "modifiers": {
-      "optional": ["any"]
-    }
-  },
-  "to": [
-    {
-      "set_variable": {
-        "name": "shifted",
-        "value": 1
-      }
-    }
-  ],
-  "to_if_alone": [
-    {
-      "key_code": "return_or_enter"
-    }
-  ],
-  "to_after_key_up": [
-    {
-      "set_variable": {
-        "name": "shifted",
-        "value": 0
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "type": "input_source_if",
-      "input_sources": [
-        {
-          "language": "ja"
-        }
-      ]
-    },
-    {
-      "type": "variable_unless",
-      "name": "invalid",
-      "value": 1
-    }
-  ]
-}
+# センターシフト
+- type: basic
+  from:
+    key_code: return_or_enter
+    modifiers: *any
+  to:
+    - set_variable:
+        name: shifted
+        value: 1
+  to_if_alone:
+    - key_code: return_or_enter
+  to_after_key_up:
+    - set_variable:
+        name: shifted
+        value: 0
+  conditions: *conditions_any
