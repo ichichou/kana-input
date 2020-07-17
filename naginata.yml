@@ -1,17 +1,26 @@
 # ---------- Variables ----------
 
-# to
-- var: &set_shifted
-  - set_variable:
-      name: shifted
-      value: 1
-
 # modifiers
 - var: &any
     optional:
       - any
 
-- var: &set_unshifted
+# to
+- var: &set_invalid
+    name: invalid
+    value: 1
+
+- var: &unset_invalid
+  - set_variable:
+      name: invalid
+      value: 0
+
+- var: &set_shifted
+  - set_variable:
+      name: shifted
+      value: 1
+
+- var: &unset_shifted
   - set_variable:
       name: shifted
       value: 0
@@ -35,6 +44,51 @@
     - type: variable_if
       name: shifted
       value: 1
+
+# ---------- 修飾キーを押している間は無効化 ----------
+
+# Command
+- type: basic
+  from:
+    key_code: command
+  to:
+    - set_variable: *set_invalid
+    - key_code: command
+  to_after_key_up: *unset_invalid
+  conditions: *common_state
+
+# Control
+- type: basic
+  from:
+    key_code: control
+  to:
+    - set_variable: *set_invalid
+    - key_code: control
+  to_after_key_up: *unset_invalid
+  conditions: *common_state
+
+# Option
+- type: basic
+  from:
+    key_code: option
+  to:
+    - set_variable: *set_invalid
+    - key_code: option
+  to_after_key_up: *unset_invalid
+  conditions: *common_state
+
+# ---------- センターシフト ----------
+
+- type: basic
+  from:
+    key_code: return_or_enter
+    modifiers: *any
+  to: *set_shifted
+  to_if_alone:
+    - key_code: return_or_enter
+      repeat: false
+  to_after_key_up: *unset_shifted
+  conditions: *common_state
 
 # ---------- 中指シフトキー (shifted) ----------
 
@@ -75,7 +129,7 @@
       repeat: false
     - key_code: o
       repeat: false
-  to_after_key_up: *set_unshifted
+  to_after_key_up: *unset_shifted
   conditions: *common_state
 
 # い
@@ -87,7 +141,26 @@
   to_if_alone:
     - key_code: i
       repeat: false
-  to_after_key_up: *set_unshifted
+  to_after_key_up: *unset_shifted
+  conditions: *common_state
+
+# ---------- 外来音 ----------
+
+# てぃ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: m
+      - key_code: e
+      - key_code: k
+    modifiers: *any
+  to:
+    - key_code: t
+      repeat: false
+    - key_code: h
+      repeat: false
+    - key_code: i
+      repeat: false
   conditions: *common_state
 
 # ---------- 拗音（濁音） ----------
@@ -108,3 +181,118 @@
     - key_code: o
       repeat: false
   conditions: *common_state
+
+# ---------- 拗音（半濁音） ----------
+
+# ぴょ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: m
+      - key_code: s
+      - key_code: i
+    modifiers: *any
+  to:
+    - key_code: p
+      repeat: false
+    - key_code: y
+      repeat: false
+    - key_code: o
+      repeat: false
+  conditions: *common_state
+
+# ---------- 拗音（清音） ----------
+
+# しょ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: r
+      - key_code: i
+    modifiers: *any
+  to:
+    - key_code: s
+      repeat: false
+    - key_code: y
+      repeat: false
+    - key_code: o
+      repeat: false
+  conditions: *common_state
+
+# ---------- 濁音 ----------
+
+# が
+- type: basic
+  from:
+    simultaneous:
+      - key_code: j
+      - key_code: f
+    modifiers: *any
+  to:
+    - key_code: g
+      repeat: false
+    - key_code: a
+      repeat: false
+  conditions: *common_state
+
+# ---------- 半濁音 ----------
+
+# ぴょ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: m
+      - key_code: s
+    modifiers: *any
+  to:
+    - key_code: p
+      repeat: false
+    - key_code: i
+      repeat: false
+  conditions: *common_state
+
+# ---------- 小書き ----------
+
+# ぁ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: q
+      - key_code: j
+    modifiers: *any
+  to:
+    - key_code: l
+      repeat: false
+    - key_code: a
+      repeat: false
+  conditions: *common_state
+
+# ---------- 清音（シフト） ----------
+# 「に」「も」はコメントアウト
+
+# の
+- type: basic
+  from:
+    key_code: j
+    modifiers: *any
+  to:
+    - key_code: n
+      repeat: false
+    - key_code: o
+      repeat: false
+  conditions: *shifted_state
+
+# ---------- 清音（単押し） ----------
+# 「と」「い」はコメントアウト
+
+# か
+- type: basic
+  from:
+    key_code: f
+    modifiers: *any
+  to:
+    - key_code: k
+      repeat: false
+    - key_code: a
+      repeat: false
+  conditions: *shifted_state
