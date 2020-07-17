@@ -1,0 +1,25 @@
+# 拗音（濁音）
+# じょ
+type: basic
+from:
+  simultaneous:
+    - key_code: j
+    - key_code: r
+    - key_code: i
+  modifiers:
+    optional:
+      - any
+to:
+  - key_code: z
+    repeat: false
+  - key_code: y
+    repeat: false
+  - key_code: o
+    repeat: false
+conditions:
+  - type: input_source_if
+    input_sources:
+      - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
