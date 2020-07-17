@@ -1,0 +1,110 @@
+# ---------- Variables ----------
+
+# to
+- var: &set_shifted
+  - set_variable:
+      name: shifted
+      value: 1
+
+# modifiers
+- var: &any
+    optional:
+      - any
+
+- var: &set_unshifted
+  - set_variable:
+      name: shifted
+      value: 0
+
+# conditions
+- var: &common_state
+  - type: input_source_if
+    input_sources:
+      - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+
+- var: &shifted_state
+    - type: input_source_if
+      input_sources:
+        - language: ja
+    - type: variable_unless
+      name: invalid
+      value: 1
+    - type: variable_if
+      name: shifted
+      value: 1
+
+# ---------- 中指シフトキー (shifted) ----------
+
+# に
+- type: basic
+  from:
+    key_code: d
+    modifiers: *any
+  to:
+    - key_code: n
+      repeat: false
+    - key_code: i
+      repeat: false
+  conditions: *shifted_state
+
+# も
+- type: basic
+  from:
+    key_code: k
+    modifiers: *any
+  to:
+    - key_code: m
+      repeat: false
+    - key_code: o
+      repeat: false
+  conditions: *shifted_state
+
+# ---------- 中指シフトキー (unshifted) ----------
+
+# と
+- type: basic
+  from:
+    key_code: d
+    modifiers: *any
+  to: *set_shifted
+  to_if_alone:
+    - key_code: t
+      repeat: false
+    - key_code: o
+      repeat: false
+  to_after_key_up: *set_unshifted
+  conditions: *common_state
+
+# い
+- type: basic
+  from:
+    key_code: k
+    modifiers: *any
+  to: *set_shifted
+  to_if_alone:
+    - key_code: i
+      repeat: false
+  to_after_key_up: *set_unshifted
+  conditions: *common_state
+
+# ---------- 拗音（濁音） ----------
+
+# じょ
+- type: basic
+  from:
+    simultaneous:
+      - key_code: j
+      - key_code: r
+      - key_code: i
+    modifiers: *any
+  to:
+    - key_code: z
+      repeat: false
+    - key_code: y
+      repeat: false
+    - key_code: o
+      repeat: false
+  conditions: *common_state
