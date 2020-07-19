@@ -45,7 +45,7 @@
       name: shifted
       value: 1
 
-# ---------- 修飾キーを押している間は無効化 ----------
+# ---------- 修飾キー押下時は無効化 ----------
 
 # Command
 - type: basic
@@ -79,20 +79,20 @@
 
 # ---------- センターシフト ----------
 
-- type: basic
-  from:
-    key_code: return_or_enter
-    modifiers: *any
-  to: *set_shifted
-  to_if_alone:
-    - key_code: return_or_enter
-      repeat: false
-  to_after_key_up: *unset_shifted
-  conditions: *common_state
+# - type: basic
+#   from:
+#     key_code: return_or_enter
+#     modifiers: *any
+#   to: *set_shifted
+#   to_if_alone:
+#     - key_code: return_or_enter
+#       repeat: false
+#   to_after_key_up: *unset_shifted
+#   conditions: *common_state
 
-# ---------- 中指シフトキー (shifted) ----------
+# ---------- 中指シフト ----------
 
-# に
+# に（シフト）
 - type: basic
   from:
     key_code: d
@@ -104,7 +104,7 @@
       repeat: false
   conditions: *shifted_state
 
-# も
+# も（シフト）
 - type: basic
   from:
     key_code: k
@@ -116,9 +116,7 @@
       repeat: false
   conditions: *shifted_state
 
-# ---------- 中指シフトキー (unshifted) ----------
-
-# と
+# と（単打）
 - type: basic
   from:
     key_code: d
@@ -132,7 +130,7 @@
   to_after_key_up: *unset_shifted
   conditions: *common_state
 
-# い
+# い（単打）
 - type: basic
   from:
     key_code: k
@@ -237,7 +235,7 @@
 
 # ---------- 半濁音 ----------
 
-# ぴょ
+# ぴ
 - type: basic
   from:
     simultaneous:
@@ -268,7 +266,7 @@
   conditions: *common_state
 
 # ---------- 清音（シフト） ----------
-# 「に」「も」はコメントアウト
+# 「に・も」はコメントアウト
 
 # の
 - type: basic
@@ -282,8 +280,8 @@
       repeat: false
   conditions: *shifted_state
 
-# ---------- 清音（単押し） ----------
-# 「と」「い」はコメントアウト
+# ---------- 清音（単打） ----------
+# 「と・い」はコメントアウト
 
 # か
 - type: basic
