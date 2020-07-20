@@ -1,6 +1,17 @@
 # ---------- Variables ----------
 
-# modifiers
+# from - key_code
+- var: &dakuon_right j
+
+- var: &dakuon_left f
+
+- var: &handakuon_right m
+
+- var: &handakuon_left v
+
+- var: &kogaki q
+
+# from - modifiers
 - var: &any
     optional:
       - any
@@ -10,15 +21,16 @@
     name: invalid
     value: 1
 
-- var: &unset_invalid
-  - set_variable:
-      name: invalid
-      value: 0
-
 - var: &set_shifted
   - set_variable:
       name: shifted
       value: 1
+
+# to_after_key_up
+- var: &unset_invalid
+  - set_variable:
+      name: invalid
+      value: 0
 
 - var: &unset_shifted
   - set_variable:
@@ -142,30 +154,13 @@
   to_after_key_up: *unset_shifted
   conditions: *common_state
 
-# ---------- 外来音 ----------
-
-# てぃ
-- type: basic
-  from:
-    simultaneous:
-      - key_code: m
-      - key_code: e
-      - key_code: k
-    modifiers: *any
-  to:
-    - key_code: t
-      repeat: false
-    - key_code: h
-      repeat: false
-    - key_code: i
-      repeat: false
-  conditions: *common_state
+# ---------- 外来音（濁音） ----------
 
 # kana
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
+      - key_code: *dakuon_right
       - key_code: from_key
       - key_code: from_key
     modifiers: *any
@@ -178,30 +173,13 @@
       repeat: false
   conditions: *common_state
 
-# ---------- 拗音（濁音） ----------
-
-# じょ
-- type: basic
-  from:
-    simultaneous:
-      - key_code: j
-      - key_code: r
-      - key_code: i
-    modifiers: *any
-  to:
-    - key_code: z
-      repeat: false
-    - key_code: y
-      repeat: false
-    - key_code: o
-      repeat: false
-  conditions: *common_state
+# ---------- 外来音（清音） ----------
 
 # kana
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
+      - key_code: *handakuon_right
       - key_code: from_key
       - key_code: from_key
     modifiers: *any
@@ -216,20 +194,20 @@
 
 # ---------- 拗音（半濁音） ----------
 
-# ぴょ
+# kana
 - type: basic
   from:
     simultaneous:
-      - key_code: m
-      - key_code: s
-      - key_code: i
+      - key_code: *handakuon_right
+      - key_code: from_key
+      - key_code: from_key
     modifiers: *any
   to:
-    - key_code: p
+    - key_code: to_key
       repeat: false
-    - key_code: y
+    - key_code: to_key
       repeat: false
-    - key_code: o
+    - key_code: to_key
       repeat: false
   conditions: *common_state
 
@@ -237,7 +215,43 @@
 - type: basic
   from:
     simultaneous:
+      - key_code: *handakuon_left
       - key_code: from_key
+      - key_code: from_key
+    modifiers: *any
+  to:
+    - key_code: to_key
+      repeat: false
+    - key_code: to_key
+      repeat: false
+    - key_code: to_key
+      repeat: false
+  conditions: *common_state
+
+# ---------- 拗音（濁音） ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+      - key_code: *dakuon_right
+      - key_code: from_key
+      - key_code: from_key
+    modifiers: *any
+  to:
+    - key_code: to_key
+      repeat: false
+    - key_code: to_key
+      repeat: false
+    - key_code: to_key
+      repeat: false
+  conditions: *common_state
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+      - key_code: *dakuon_left
       - key_code: from_key
       - key_code: from_key
     modifiers: *any
@@ -252,22 +266,6 @@
 
 # ---------- 拗音（清音） ----------
 
-# しょ
-- type: basic
-  from:
-    simultaneous:
-      - key_code: r
-      - key_code: i
-    modifiers: *any
-  to:
-    - key_code: s
-      repeat: false
-    - key_code: y
-      repeat: false
-    - key_code: o
-      repeat: false
-  conditions: *common_state
-
 # kana
 - type: basic
   from:
@@ -284,27 +282,13 @@
       repeat: false
   conditions: *common_state
 
-# ---------- 濁音 ----------
-
-# が
-- type: basic
-  from:
-    simultaneous:
-      - key_code: j
-      - key_code: f
-    modifiers: *any
-  to:
-    - key_code: g
-      repeat: false
-    - key_code: a
-      repeat: false
-  conditions: *common_state
+# ---------- 小書き ----------
 
 # kana
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
+      - key_code: *kogaki
       - key_code: from_key
     modifiers: *any
   to:
@@ -316,25 +300,11 @@
 
 # ---------- 半濁音 ----------
 
-# ぴ
-- type: basic
-  from:
-    simultaneous:
-      - key_code: m
-      - key_code: s
-    modifiers: *any
-  to:
-    - key_code: p
-      repeat: false
-    - key_code: i
-      repeat: false
-  conditions: *common_state
-
 # kana
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
+      - key_code: *handakuon_right
       - key_code: from_key
     modifiers: *any
   to:
@@ -344,19 +314,33 @@
       repeat: false
   conditions: *common_state
 
-# ---------- 小書き ----------
-
-# ぁ
+# kana
 - type: basic
   from:
     simultaneous:
-      - key_code: q
-      - key_code: j
+      - key_code: *handakuon_left
+      - key_code: from_key
     modifiers: *any
   to:
-    - key_code: l
+    - key_code: to_key
       repeat: false
-    - key_code: a
+    - key_code: to_key
+      repeat: false
+  conditions: *common_state
+
+# ---------- 濁音 ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+      - key_code: *dakuon_right
+      - key_code: from_key
+    modifiers: *any
+  to:
+    - key_code: to_key
+      repeat: false
+    - key_code: to_key
       repeat: false
   conditions: *common_state
 
@@ -364,7 +348,7 @@
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
+      - key_code: *dakuon_left
       - key_code: from_key
     modifiers: *any
   to:
@@ -375,19 +359,7 @@
   conditions: *common_state
 
 # ---------- 清音（シフト） ----------
-# 「に・も」はコメントアウト
-
-# の
-- type: basic
-  from:
-    key_code: j
-    modifiers: *any
-  to:
-    - key_code: n
-      repeat: false
-    - key_code: o
-      repeat: false
-  conditions: *shifted_state
+# 中指シフトの場合、「に・も」はコメントアウトする
 
 # kana
 - type: basic
@@ -402,19 +374,7 @@
   conditions: *shifted_state
 
 # ---------- 清音（単打） ----------
-# 「と・い」はコメントアウト
-
-# か
-- type: basic
-  from:
-    key_code: f
-    modifiers: *any
-  to:
-    - key_code: k
-      repeat: false
-    - key_code: a
-      repeat: false
-  conditions: *shifted_state
+# 中指シフトの場合、「と・い」はコメントアウトする
 
 # kana
 - type: basic
@@ -426,4 +386,4 @@
       repeat: false
     - key_code: to_key
       repeat: false
-  conditions: *shifted_state
+  conditions: *common_state
