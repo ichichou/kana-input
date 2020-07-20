@@ -14,16 +14,26 @@
 # from - modifiers
 - var: &any
     optional:
-      - any
+    - any
 
 # to
 - var: &set_invalid
     name: invalid
     value: 1
 
+- var: &set_naginata
+  - set_variable:
+      name: naginata
+      value: 1
+
 - var: &set_shifted
   - set_variable:
       name: shifted
+      value: 1
+
+- var: &set_system_mode
+  - set_variable:
+      name: system_mode
       value: 1
 
 # to_after_key_up
@@ -32,30 +42,67 @@
       name: invalid
       value: 0
 
+- var: &unset_naginata
+  - set_variable:
+      name: naginata
+      value: 0
+
 - var: &unset_shifted
   - set_variable:
       name: shifted
       value: 0
 
+- var: &unset_system_mode
+  - set_variable:
+      name: system_mode
+      value: 0
+
 # conditions
-- var: &common_state
+
+- var: &ja_input_state
   - type: input_source_if
     input_sources:
-      - language: ja
+    - language: ja
+
+- var: &naginata_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_if
+    name: naginata
+    value: 1
   - type: variable_unless
     name: invalid
     value: 1
 
 - var: &shifted_state
-    - type: input_source_if
-      input_sources:
-        - language: ja
-    - type: variable_unless
-      name: invalid
-      value: 1
-    - type: variable_if
-      name: shifted
-      value: 1
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_if
+    name: naginata
+    value: 1
+  - type: variable_unless
+    name: invalid
+    value: 1
+  - type: variable_if
+    name: shifted
+    value: 1
+
+- var: &system_mode
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+  - type: variable_if
+    name: system_mode
+    value: 1
+
+# parameters
+- var: &held_down_time
+    basic.to_if_held_down_threshold_milliseconds: 50
 
 # ---------- 修飾キー押下時は無効化 ----------
 
@@ -64,43 +111,122 @@
   from:
     key_code: command
   to:
-    - set_variable: *set_invalid
-    - key_code: command
+  - set_variable: *set_invalid
+  - key_code: command
   to_after_key_up: *unset_invalid
-  conditions: *common_state
+  conditions: *ja_input_state
 
 # Control
 - type: basic
   from:
     key_code: control
   to:
-    - set_variable: *set_invalid
-    - key_code: control
+  - set_variable: *set_invalid
+  - key_code: control
   to_after_key_up: *unset_invalid
-  conditions: *common_state
+  conditions: *ja_input_state
 
 # Option
 - type: basic
   from:
     key_code: option
   to:
-    - set_variable: *set_invalid
-    - key_code: option
+  - set_variable: *set_invalid
+  - key_code: option
   to_after_key_up: *unset_invalid
-  conditions: *common_state
+  conditions: *ja_input_state
+
+# ---------- システム操作 ----------
+
+# 英数入力
+- type: basic
+  from:
+    simultaneous:
+    - key_code: f
+      repeat: false
+    - key_code: g
+      repeat: false
+  to:
+  - key_code: japanese_eisuu
+    repeat: false
+
+# かな入力
+- type: basic
+  from:
+    simultaneous:
+    - key_code: j
+      repeat: false
+    - key_code: h
+      repeat: false
+  to:
+  - key_code: japanese_kana
+    repeat: false
+
+# Return
+- type: basic
+  from:
+    simultaneous:
+    - key_code: v
+      repeat: false
+    - key_code: m
+      repeat: false
+  to:
+  - key_code: return_or_enter
+    repeat: false
+
+# システムモード
+- type: basic
+  from:
+    key_code: q
+  to_if_alone:
+  - key_code: null
+    repeat: false
+  to_if_held_down: *set_system_mode
+  to_after_key_up: *unset_system_mode
+  conditions: *ja_input_state
+  parameters: *held_down_time
+
+# 薙刀式中断
+- type: basic
+  from:
+    key_code: o
+  to: *unset_naginata
+  conditions: *system_mode
+
+# 薙刀式再開
+- type: basic
+  from:
+    key_code: i
+  to: *set_naginata
+  conditions: *system_mode
 
 # ---------- センターシフト ----------
 
+# # Space
+# - type: basic
+#   from:
+#     key_code: spacebar
+#     modifiers: *any
+#   to_if_alone:
+#   - key_code: spacebar
+#     repeat: false
+#   to_if_held_down: *set_shifted
+#   to_after_key_up: *unset_shifted
+#   conditions: *naginata_state
+#   parameters: *held_down_time
+
+# # Return
 # - type: basic
 #   from:
 #     key_code: return_or_enter
 #     modifiers: *any
-#   to: *set_shifted
 #   to_if_alone:
-#     - key_code: return_or_enter
-#       repeat: false
+#   - key_code: return_or_enter
+#     repeat: false
+#   to_if_held_down: *set_shifted
 #   to_after_key_up: *unset_shifted
-#   conditions: *common_state
+#   conditions: *naginata_state
+#   parameters: *held_down_time
 
 # ---------- 中指シフト ----------
 
@@ -110,10 +236,10 @@
     key_code: d
     modifiers: *any
   to:
-    - key_code: n
-      repeat: false
-    - key_code: i
-      repeat: false
+  - key_code: "n"
+    repeat: false
+  - key_code: i
+    repeat: false
   conditions: *shifted_state
 
 # も（シフト）
@@ -122,244 +248,1789 @@
     key_code: k
     modifiers: *any
   to:
-    - key_code: m
-      repeat: false
-    - key_code: o
-      repeat: false
+  - key_code: m
+    repeat: false
+  - key_code: o
+    repeat: false
   conditions: *shifted_state
 
-# と（単打）
+# と（ベース）
 - type: basic
   from:
     key_code: d
     modifiers: *any
-  to: *set_shifted
   to_if_alone:
-    - key_code: t
-      repeat: false
-    - key_code: o
-      repeat: false
+  - key_code: t
+    repeat: false
+  - key_code: o
+    repeat: false
+  to_if_held_down: *set_shifted
   to_after_key_up: *unset_shifted
-  conditions: *common_state
+  conditions: *naginata_state
+  parameters: *held_down_time
 
-# い（単打）
+# い（ベース）
 - type: basic
   from:
     key_code: k
     modifiers: *any
-  to: *set_shifted
   to_if_alone:
-    - key_code: i
-      repeat: false
+  - key_code: i
+    repeat: false
+  to_if_held_down: *set_shifted
   to_after_key_up: *unset_shifted
-  conditions: *common_state
+  conditions: *naginata_state
+  parameters: *held_down_time
 
 # ---------- 外来音（濁音） ----------
 
-# kana
+# でぃ
 - type: basic
   from:
     simultaneous:
-      - key_code: *dakuon_right
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *dakuon_right
+    - key_code: e
+    - key_code: k
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: d
+    repeat: false
+  - key_code: h
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# でゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: e
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: h
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# どぅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: d
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# じぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: r
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぢぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: g
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ヴぁ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    - key_code: j
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ヴぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ヴぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ヴぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ヴゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぐぁ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    - key_code: j
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ぐぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ぐぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぐぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ぐゎ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: u
+    repeat: false
+  - key_code: l
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 外来音（清音） ----------
 
-# kana
+# てぃ
 - type: basic
   from:
     simultaneous:
-      - key_code: *handakuon_right
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *handakuon_right
+    - key_code: e
+    - key_code: k
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: t
+    repeat: false
+  - key_code: h
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# てゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: e
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: h
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# とぅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: d
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# しぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: r
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ちぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: g
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# うぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: l
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: w
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# うぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: l
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: w
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# うぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: l
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: w
+    repeat: false
+  - key_code: h
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ふぁ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: period
+    - key_code: j
+    modifiers: *any
+  to:
+  - key_code: f
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ふぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: period
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: f
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ふぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: peirod
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: f
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ふぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: period
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: f
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ふゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: period
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: f
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# つぁ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: semicolon
+    - key_code: j
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: s
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# つぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: semicolon
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: s
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# つぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: semicolon
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: s
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# つぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: semicolon
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: s
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# くぁ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: h
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# くぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: h
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# くぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: h
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# くぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: h
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# くゎ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: h
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: u
+    repeat: false
+  - key_code: l
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 拗音（半濁音） ----------
 
-# kana
+# ぴゃ
 - type: basic
   from:
     simultaneous:
-      - key_code: *handakuon_right
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *handakuon_right
+    - key_code: s
+    - key_code: h
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: p
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
-# kana
+# ぴゅ
 - type: basic
   from:
     simultaneous:
-      - key_code: *handakuon_left
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *handakuon_right
+    - key_code: s
+    - key_code: p
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: p
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぴょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: s
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: p
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 拗音（濁音） ----------
 
-# kana
+# じゃ
 - type: basic
   from:
     simultaneous:
-      - key_code: *dakuon_right
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *dakuon_right
+    - key_code: r
+    - key_code: h
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: j
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
-# kana
+# じゅ
 - type: basic
   from:
     simultaneous:
-      - key_code: *dakuon_left
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: *dakuon_right
+    - key_code: r
+    - key_code: p
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: j
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# じゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: r
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: j
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ぎゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: w
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ぎゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: w
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぎょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: w
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ぢゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: g
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ぢゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: g
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぢょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: g
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# びゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: s
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# びゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: s
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# びょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: s
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 拗音（清音） ----------
 
-# kana
+# しゃ
 - type: basic
   from:
     simultaneous:
-      - key_code: from_key
-      - key_code: from_key
+    - key_code: r
+    - key_code: h
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: s
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# しゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: r
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# しょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: r
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# きゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: w
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# きゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: w
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# きょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: w
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ちゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: g
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ちゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: g
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ちょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: g
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# にゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: d
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# にゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: d
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# にょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: d
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ひゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: s
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ひゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: s
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ひょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: s
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# みゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: b
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# みゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: b
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# みょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: b
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# りゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: e
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# りゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: e
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# りょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: e
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 小書き ----------
 
-# kana
+# ぁ
 - type: basic
   from:
     simultaneous:
-      - key_code: *kogaki
-      - key_code: from_key
+    - key_code: *kogaki
+    - key_code: j
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: l
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ぃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: k
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ぅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぇ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぉ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ゃ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ゅ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ょ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: i
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ヵ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: f
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: k
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ヶ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: x
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: k
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ゎ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *kogaki
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *shifted_state
 
 # ---------- 半濁音 ----------
 
-# kana
+# ぱ
 - type: basic
   from:
     simultaneous:
-      - key_code: *handakuon_right
-      - key_code: from_key
+    - key_code: *handakuon_right
+    - key_code: c
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: p
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
-# kana
+# ぴ
 - type: basic
   from:
     simultaneous:
-      - key_code: *handakuon_left
-      - key_code: from_key
+    - key_code: *handakuon_right
+    - key_code: s
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: p
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ぷ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: period
+    modifiers: *any
+  to:
+  - key_code: p
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぺ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_left
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: p
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぽ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *handakuon_right
+    - key_code: z
+    modifiers: *any
+  to:
+  - key_code: p
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 濁音 ----------
 
-# kana
+# が
 - type: basic
   from:
     simultaneous:
-      - key_code: *dakuon_right
-      - key_code: from_key
+    - key_code: *dakuon_right
+    - key_code: f
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: g
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
 
-# kana
+# ぎ
 - type: basic
   from:
     simultaneous:
-      - key_code: *dakuon_left
-      - key_code: from_key
+    - key_code: *dakuon_right
+    - key_code: w
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: g
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ぐ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: h
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# げ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: x
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ご
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: v
+    modifiers: *any
+  to:
+  - key_code: g
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ざ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: u
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# じ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: r
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ず
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: o
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# ぜ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: a
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぞ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: b
+    modifiers: *any
+  to:
+  - key_code: z
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# だ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# ぢ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: g
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# づ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: semicolon
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# で
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: e
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ど
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: d
+    modifiers: *any
+  to:
+  - key_code: d
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ば
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: c
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *naginata_state
+
+# び
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: s
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *naginata_state
+
+# ぶ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: period
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
+
+# べ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: p
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *naginata_state
+
+# ぼ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_right
+    - key_code: z
+    modifiers: *any
+  to:
+  - key_code: b
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *naginata_state
+
+# ヴ
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *dakuon_left
+    - key_code: l
+    modifiers: *any
+  to:
+  - key_code: v
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *naginata_state
 
 # ---------- 清音（シフト） ----------
-# 中指シフトの場合、「に・も」はコメントアウトする
 
 # kana
 - type: basic
@@ -367,14 +2038,36 @@
     key_code: from_key
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
   conditions: *shifted_state
 
-# ---------- 清音（単打） ----------
-# 中指シフトの場合、「と・い」はコメントアウトする
+# 読点
+- type: basic
+  from:
+    key_code: v
+    modifiers: *any
+  to:
+  - key_code: comma
+    repeat: false
+  conditions: *shifted_state
+
+# 句点 & Return
+- type: basic
+  from:
+    key_code: m
+    modifiers: *any
+  to:
+  - key_code: period
+    repeat: false
+  - key_code: return_or_enter
+    repeat: false
+  conditions: *shifted_state
+
+# ---------- 清音（ベース） ----------
+# 中指シフトの場合、「と・い」はコメントアウトする？
 
 # kana
 - type: basic
@@ -382,8 +2075,58 @@
     key_code: from_key
     modifiers: *any
   to:
-    - key_code: to_key
-      repeat: false
-    - key_code: to_key
-      repeat: false
-  conditions: *common_state
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *naginata_state
+
+# 長音符
+- type: basic
+  from:
+    key_code: semicolon
+    modifiers: *any
+  to:
+  - key_code: hyphen
+    repeat: false
+  conditions: *naginata_state
+
+# Delete
+- type: basic
+  from:
+    key_code: u
+    modifiers: *any
+  to:
+  - key_code: delete_or_backspace
+    repeat: false
+  conditions: *naginata_state
+
+# ←
+- type: basic
+  from:
+    key_code: t
+    modifiers: *any
+  to:
+  - key_code: left_arrow
+    repeat: false
+  conditions: *naginata_state
+
+# →
+- type: basic
+  from:
+    key_code: "y"
+    modifiers: *any
+  to:
+  - key_code: right_arrow
+    repeat: false
+  conditions: *naginata_state
+
+# 小書きキー
+- type: basic
+  from:
+    key_code: q
+    modifiers: *any
+  to:
+  - key_code: null
+    repeat: false
+  conditions: *naginata_state
