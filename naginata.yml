@@ -22,18 +22,21 @@
     value: 1
 
 - var: &set_naginata
+    name: naginata
+    value: 1
+
+- var: &unset_naginata
+    name: naginata
+    value: 0
+
+- var: &set_system_mode
   - set_variable:
-      name: naginata
+      name: system_mode
       value: 1
 
 - var: &set_shifted
   - set_variable:
       name: shifted
-      value: 1
-
-- var: &set_system_mode
-  - set_variable:
-      name: system_mode
       value: 1
 
 # to_after_key_up
@@ -42,9 +45,9 @@
       name: invalid
       value: 0
 
-- var: &unset_naginata
+- var: &unset_system_mode
   - set_variable:
-      name: naginata
+      name: system_mode
       value: 0
 
 - var: &unset_shifted
@@ -52,19 +55,14 @@
       name: shifted
       value: 0
 
-- var: &unset_system_mode
-  - set_variable:
-      name: system_mode
-      value: 0
-
 # conditions
 
-- var: &ja_input_state
+- var: &ja_input
   - type: input_source_if
     input_sources:
     - language: ja
 
-- var: &naginata_state
+- var: &naginata_base
   - type: input_source_if
     input_sources:
     - language: ja
@@ -75,7 +73,7 @@
     name: invalid
     value: 1
 
-- var: &shifted_state
+- var: &naginata_shifted
   - type: input_source_if
     input_sources:
     - language: ja
@@ -114,7 +112,7 @@
   - set_variable: *set_invalid
   - key_code: command
   to_after_key_up: *unset_invalid
-  conditions: *ja_input_state
+  conditions: *ja_input
 
 # Control
 - type: basic
@@ -124,7 +122,7 @@
   - set_variable: *set_invalid
   - key_code: control
   to_after_key_up: *unset_invalid
-  conditions: *ja_input_state
+  conditions: *ja_input
 
 # Option
 - type: basic
@@ -134,7 +132,7 @@
   - set_variable: *set_invalid
   - key_code: option
   to_after_key_up: *unset_invalid
-  conditions: *ja_input_state
+  conditions: *ja_input
 
 # ---------- システム操作 ----------
 
@@ -147,6 +145,7 @@
     - key_code: g
       repeat: false
   to:
+  - set_variable: *unset_naginata
   - key_code: japanese_eisuu
     repeat: false
 
@@ -159,6 +158,7 @@
     - key_code: h
       repeat: false
   to:
+  - set_variable: *set_naginata
   - key_code: japanese_kana
     repeat: false
 
@@ -183,21 +183,23 @@
     repeat: false
   to_if_held_down: *set_system_mode
   to_after_key_up: *unset_system_mode
-  conditions: *ja_input_state
+  conditions: *ja_input
   parameters: *held_down_time
 
-# 薙刀式中断
+# 薙刀式を中断
 - type: basic
   from:
     key_code: o
-  to: *unset_naginata
+  to:
+  - set_variable: *unset_naginata
   conditions: *system_mode
 
-# 薙刀式再開
+# 薙刀式を再開
 - type: basic
   from:
     key_code: i
-  to: *set_naginata
+  to:
+  - set_variable: *set_naginata
   conditions: *system_mode
 
 # ---------- センターシフト ----------
@@ -212,7 +214,7 @@
 #     repeat: false
 #   to_if_held_down: *set_shifted
 #   to_after_key_up: *unset_shifted
-#   conditions: *naginata_state
+#   conditions: *naginata_base
 #   parameters: *held_down_time
 
 # # Return
@@ -225,7 +227,7 @@
 #     repeat: false
 #   to_if_held_down: *set_shifted
 #   to_after_key_up: *unset_shifted
-#   conditions: *naginata_state
+#   conditions: *naginata_base
 #   parameters: *held_down_time
 
 # ---------- 中指シフト ----------
@@ -240,7 +242,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # も（シフト）
 - type: basic
@@ -252,7 +254,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # と（ベース）
 - type: basic
@@ -266,7 +268,7 @@
     repeat: false
   to_if_held_down: *set_shifted
   to_after_key_up: *unset_shifted
-  conditions: *naginata_state
+  conditions: *naginata_base
   parameters: *held_down_time
 
 # い（ベース）
@@ -279,7 +281,7 @@
     repeat: false
   to_if_held_down: *set_shifted
   to_after_key_up: *unset_shifted
-  conditions: *naginata_state
+  conditions: *naginata_base
   parameters: *held_down_time
 
 # ---------- 外来音（濁音） ----------
@@ -299,7 +301,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # でゅ
 - type: basic
@@ -316,7 +318,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # どぅ
 - type: basic
@@ -333,7 +335,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # じぇ
 - type: basic
@@ -350,7 +352,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぢぇ
 - type: basic
@@ -367,7 +369,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴぁ
 - type: basic
@@ -382,7 +384,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴぃ
 - type: basic
@@ -397,7 +399,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴぇ
 - type: basic
@@ -412,7 +414,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴぉ
 - type: basic
@@ -427,7 +429,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴゅ
 - type: basic
@@ -444,7 +446,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐぁ
 - type: basic
@@ -461,7 +463,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐぃ
 - type: basic
@@ -478,7 +480,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐぇ
 - type: basic
@@ -495,7 +497,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐぉ
 - type: basic
@@ -512,7 +514,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐゎ
 - type: basic
@@ -533,7 +535,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 外来音（清音） ----------
 
@@ -552,7 +554,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # てゅ
 - type: basic
@@ -569,7 +571,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # とぅ
 - type: basic
@@ -586,7 +588,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # しぇ
 - type: basic
@@ -603,7 +605,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ちぇ
 - type: basic
@@ -620,7 +622,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # うぃ
 - type: basic
@@ -635,7 +637,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # うぇ
 - type: basic
@@ -650,7 +652,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # うぉ
 - type: basic
@@ -667,7 +669,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ふぁ
 - type: basic
@@ -682,7 +684,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ふぃ
 - type: basic
@@ -697,7 +699,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ふぇ
 - type: basic
@@ -712,7 +714,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ふぉ
 - type: basic
@@ -727,7 +729,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ふゅ
 - type: basic
@@ -744,7 +746,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # つぁ
 - type: basic
@@ -761,7 +763,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # つぃ
 - type: basic
@@ -778,7 +780,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # つぇ
 - type: basic
@@ -795,7 +797,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # つぉ
 - type: basic
@@ -812,7 +814,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # くぁ
 - type: basic
@@ -829,7 +831,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # くぃ
 - type: basic
@@ -846,7 +848,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # くぇ
 - type: basic
@@ -863,7 +865,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # くぉ
 - type: basic
@@ -880,7 +882,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # くゎ
 - type: basic
@@ -901,7 +903,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 拗音（半濁音） ----------
 
@@ -920,7 +922,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぴゅ
 - type: basic
@@ -937,7 +939,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぴょ
 - type: basic
@@ -954,7 +956,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 拗音（濁音） ----------
 
@@ -971,7 +973,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # じゅ
 - type: basic
@@ -986,7 +988,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # じゅ
 - type: basic
@@ -1001,7 +1003,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぎゃ
 - type: basic
@@ -1018,7 +1020,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぎゅ
 - type: basic
@@ -1035,7 +1037,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぎょ
 - type: basic
@@ -1052,7 +1054,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぢゃ
 - type: basic
@@ -1069,7 +1071,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぢゅ
 - type: basic
@@ -1086,7 +1088,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぢょ
 - type: basic
@@ -1103,7 +1105,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # びゃ
 - type: basic
@@ -1120,7 +1122,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # びゅ
 - type: basic
@@ -1137,7 +1139,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # びょ
 - type: basic
@@ -1154,7 +1156,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 拗音（清音） ----------
 
@@ -1172,7 +1174,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # しゅ
 - type: basic
@@ -1188,7 +1190,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # しょ
 - type: basic
@@ -1204,7 +1206,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # きゃ
 - type: basic
@@ -1220,7 +1222,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # きゅ
 - type: basic
@@ -1236,7 +1238,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # きょ
 - type: basic
@@ -1252,7 +1254,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ちゃ
 - type: basic
@@ -1268,7 +1270,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ちゅ
 - type: basic
@@ -1284,7 +1286,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ちょ
 - type: basic
@@ -1300,7 +1302,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # にゃ
 - type: basic
@@ -1316,7 +1318,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # にゅ
 - type: basic
@@ -1332,7 +1334,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # にょ
 - type: basic
@@ -1348,7 +1350,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ひゃ
 - type: basic
@@ -1364,7 +1366,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ひゅ
 - type: basic
@@ -1380,7 +1382,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ひょ
 - type: basic
@@ -1396,7 +1398,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # みゃ
 - type: basic
@@ -1412,7 +1414,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # みゅ
 - type: basic
@@ -1428,7 +1430,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # みょ
 - type: basic
@@ -1444,7 +1446,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # りゃ
 - type: basic
@@ -1460,7 +1462,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # りゅ
 - type: basic
@@ -1476,7 +1478,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # りょ
 - type: basic
@@ -1492,7 +1494,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 小書き ----------
 
@@ -1508,7 +1510,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぃ
 - type: basic
@@ -1522,7 +1524,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぅ
 - type: basic
@@ -1536,7 +1538,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぇ
 - type: basic
@@ -1550,7 +1552,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぉ
 - type: basic
@@ -1564,7 +1566,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ゃ
 - type: basic
@@ -1580,7 +1582,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ゅ
 - type: basic
@@ -1596,7 +1598,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ょ
 - type: basic
@@ -1612,7 +1614,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヵ
 - type: basic
@@ -1628,7 +1630,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヶ
 - type: basic
@@ -1644,7 +1646,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ゎ
 - type: basic
@@ -1660,7 +1662,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # ---------- 半濁音 ----------
 
@@ -1676,7 +1678,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぴ
 - type: basic
@@ -1690,7 +1692,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぷ
 - type: basic
@@ -1704,7 +1706,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぺ
 - type: basic
@@ -1718,7 +1720,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぽ
 - type: basic
@@ -1732,7 +1734,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 濁音 ----------
 
@@ -1748,7 +1750,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぎ
 - type: basic
@@ -1762,7 +1764,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぐ
 - type: basic
@@ -1776,7 +1778,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # げ
 - type: basic
@@ -1790,7 +1792,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ご
 - type: basic
@@ -1804,7 +1806,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ざ
 - type: basic
@@ -1818,7 +1820,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # じ
 - type: basic
@@ -1832,7 +1834,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ず
 - type: basic
@@ -1846,7 +1848,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぜ
 - type: basic
@@ -1860,7 +1862,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぞ
 - type: basic
@@ -1874,7 +1876,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # だ
 - type: basic
@@ -1888,7 +1890,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぢ
 - type: basic
@@ -1902,7 +1904,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # づ
 - type: basic
@@ -1916,7 +1918,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # で
 - type: basic
@@ -1930,7 +1932,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ど
 - type: basic
@@ -1944,7 +1946,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ば
 - type: basic
@@ -1958,7 +1960,7 @@
     repeat: false
   - key_code: a
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # び
 - type: basic
@@ -1972,7 +1974,7 @@
     repeat: false
   - key_code: i
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぶ
 - type: basic
@@ -1986,7 +1988,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # べ
 - type: basic
@@ -2000,7 +2002,7 @@
     repeat: false
   - key_code: e
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ぼ
 - type: basic
@@ -2014,7 +2016,7 @@
     repeat: false
   - key_code: o
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ヴ
 - type: basic
@@ -2028,7 +2030,7 @@
     repeat: false
   - key_code: u
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # ---------- 清音（シフト） ----------
 
@@ -2042,7 +2044,7 @@
     repeat: false
   - key_code: to_key
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # 読点
 - type: basic
@@ -2052,7 +2054,7 @@
   to:
   - key_code: comma
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # 句点 & Return
 - type: basic
@@ -2064,7 +2066,7 @@
     repeat: false
   - key_code: return_or_enter
     repeat: false
-  conditions: *shifted_state
+  conditions: *naginata_shifted
 
 # ---------- 清音（ベース） ----------
 # 中指シフトの場合、「と・い」はコメントアウトする？
@@ -2079,7 +2081,7 @@
     repeat: false
   - key_code: to_key
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # 長音符
 - type: basic
@@ -2089,7 +2091,7 @@
   to:
   - key_code: hyphen
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
 # Delete
 - type: basic
@@ -2099,9 +2101,9 @@
   to:
   - key_code: delete_or_backspace
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
-# ←
+# Left Arrow
 - type: basic
   from:
     key_code: t
@@ -2109,9 +2111,9 @@
   to:
   - key_code: left_arrow
     repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
 
-# →
+# Right Arrow
 - type: basic
   from:
     key_code: "y"
@@ -2119,14 +2121,4 @@
   to:
   - key_code: right_arrow
     repeat: false
-  conditions: *naginata_state
-
-# 小書きキー
-- type: basic
-  from:
-    key_code: q
-    modifiers: *any
-  to:
-  - key_code: null
-    repeat: false
-  conditions: *naginata_state
+  conditions: *naginata_base
