@@ -1,0 +1,356 @@
+# ---------- Variables ----------
+
+# from - key_code
+- var: &middle_shift_right k
+
+- var: &middle_shift_left d
+
+- var: &ring_shift_right l
+
+- var: &ring_shift_left s
+
+- var: &middle_upper_shift i
+
+- var: &ring_upper_shift o
+
+# from - modifiers
+- var: &any
+    optional:
+    - any
+
+# to
+- var: &shift_key
+    mandatory:
+    - shift
+
+- var: &set_invalid
+    name: invalid
+    value: 1
+
+# to_after_key_up
+- var: &unset_invalid
+  - set_variable:
+      name: invalid
+      value: 0
+
+# conditions
+- var: &ja_input_mode
+  - type: input_source_if
+    input_sources:
+    - language: ja
+
+- var: &common_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+
+# ---------- 修飾キー押下時は無効化 ----------
+
+# Command
+- type: basic
+  from:
+    key_code: command
+  to:
+  - set_variable: *set_invalid
+  - key_code: command
+  to_after_key_up: *unset_invalid
+  conditions: *ja_input_mode
+
+# Control
+- type: basic
+  from:
+    key_code: control
+  to:
+  - set_variable: *set_invalid
+  - key_code: control
+  to_after_key_up: *unset_invalid
+  conditions: *ja_input_mode
+
+# Option
+- type: basic
+  from:
+    key_code: option
+  to:
+  - set_variable: *set_invalid
+  - key_code: option
+  to_after_key_up: *unset_invalid
+  conditions: *ja_input_mode
+
+# ---------- 機能・記号 ----------
+
+# Return
+- type: basic
+  from:
+    simultaneous:
+    - key_code: v
+      repeat: false
+    - key_code: m
+      repeat: false
+  to:
+  - key_code: return_or_enter
+    repeat: false
+
+# 中黒（RF）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: r
+      repeat: false
+    - key_code: f
+      repeat: false
+  to:
+  - key_code: slash
+    repeat: false
+  conditions: *common_state
+
+# 中黒（RG）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: r
+      repeat: false
+    - key_code: g
+      repeat: false
+  to:
+  - key_code: slash
+    repeat: false
+  conditions: *common_state
+
+# 感嘆符（FV）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: f
+      repeat: false
+    - key_code: v
+      repeat: false
+  to:
+  - key_code: "1"
+    modifiers: *shift_key
+    repeat: false
+  conditions: *common_state
+
+# 感嘆符（FB）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: f
+      repeat: false
+    - key_code: b
+      repeat: false
+  to:
+  - key_code: "1"
+    modifiers: *shift_key
+    repeat: false
+  conditions: *common_state
+
+# スラッシュ（UJ）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: u
+      repeat: false
+    - key_code: j
+      repeat: false
+  to:
+  - key_code: slash
+    repeat: false
+  conditions: *common_state
+
+# スラッシュ（UH）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: u
+      repeat: false
+    - key_code: h
+      repeat: false
+  to:
+  - key_code: slash
+    repeat: false
+  conditions: *common_state
+
+# 疑問符（JM）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: j
+      repeat: false
+    - key_code: m
+      repeat: false
+  to:
+  - key_code: slash
+    modifiers: *shift_key
+    repeat: false
+  conditions: *common_state
+
+# 疑問符（JN）
+- type: basic
+  from:
+    simultaneous:
+    - key_code: j
+      repeat: false
+    - key_code: "n"
+      repeat: false
+  to:
+  - key_code: slash
+    modifiers: *shift_key
+    repeat: false
+  conditions: *common_state
+
+# 鉤括弧
+- type: basic
+  from:
+    simultaneous:
+    - key_code: f
+      repeat: false
+    - key_code: g
+      repeat: false
+  to:
+  - key_code: open_bracket
+    repeat: false
+  - key_code: close_bracket
+    repeat: false
+  - key_code: return_or_enter
+    repeat: false
+  - key_code: left_arrow
+    repeat: false
+  conditions: *common_state
+
+# 丸括弧
+- type: basic
+  from:
+    simultaneous:
+    - key_code: j
+      repeat: false
+    - key_code: h
+      repeat: false
+  to:
+  - key_code: "9"
+    modifiers: *shift_key
+    repeat: false
+  - key_code: "0"
+    modifiers: *shift_key
+    repeat: false
+  - key_code: return_or_enter
+    repeat: false
+  - key_code: left_arrow
+    repeat: false
+  conditions: *common_state
+
+# ---------- 中指シフト（右） ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *middle_shift_right
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- 中指シフト（左） ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *middle_shift_left
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- 薬指シフト（右） ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *ring_shift_right
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- 薬指シフト（左） ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *ring_shift_left
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- 中指上段シフト ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *middle_upper_shift
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- 薬指上段シフト ----------
+
+# kana
+- type: basic
+  from:
+    simultaneous:
+    - key_code: *ring_upper_shift
+    - key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
+
+# ---------- ベース ----------
+
+# kana
+- type: basic
+  from:
+    key_code: from_key
+    modifiers: *any
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *common_state
