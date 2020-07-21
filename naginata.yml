@@ -1,2719 +1,2724 @@
-# ---------- Variables ----------
+title: 薙刀式 v12
+rules:
+- description: 薙刀式 v12
+  manipulators:
 
-# from - key_code
-- var: &dakuon_right j
+  # ---------- Variables ----------
 
-- var: &dakuon_left f
+  # from - key_code
+  - var: &dakuon_right j
 
-- var: &handakuon_right m
+  - var: &dakuon_left f
 
-- var: &handakuon_left v
+  - var: &handakuon_right m
 
-- var: &kogaki q
+  - var: &handakuon_left v
 
-# from - modifiers
-- var: &any
-    optional:
-    - any
+  - var: &kogaki q
 
-# to
-- var: &shift_key
-    mandatory:
-    - shift
+  # from - modifiers
+  - var: &any
+      optional:
+      - any
 
-- var: &set_invalid
-    name: invalid
-    value: 1
+  # to
+  - var: &shift_key
+      mandatory:
+      - shift
 
-- var: &set_shifted
-  - set_variable:
+  - var: &set_invalid
+      name: invalid
+      value: 1
+
+  - var: &set_shifted
+    - set_variable:
+        name: shifted
+        value: 1
+
+  # to_after_key_up
+  - var: &unset_invalid
+    - set_variable:
+        name: invalid
+        value: 0
+
+  - var: &unset_shifted
+    - set_variable:
+        name: shifted
+        value: 0
+
+  # conditions
+
+  - var: &ja_input_mode
+    - type: input_source_if
+      input_sources:
+      - language: ja
+
+  - var: &base_state
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: invalid
+      value: 1
+
+  - var: &shifted_state
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: invalid
+      value: 1
+    - type: variable_if
       name: shifted
       value: 1
 
-# to_after_key_up
-- var: &unset_invalid
-  - set_variable:
-      name: invalid
-      value: 0
+  # parameters
+  - var: &held_down_time
+      basic.to_if_held_down_threshold_milliseconds: 50
 
-- var: &unset_shifted
-  - set_variable:
-      name: shifted
-      value: 0
+  # ---------- 修飾キー押下時は無効化 ----------
 
-# conditions
+  # Command
+  - type: basic
+    from:
+      key_code: command
+    to:
+    - set_variable: *set_invalid
+    - key_code: command
+    to_after_key_up: *unset_invalid
+    conditions: *ja_input_mode
 
-- var: &ja_input_mode
-  - type: input_source_if
-    input_sources:
-    - language: ja
+  # Control
+  - type: basic
+    from:
+      key_code: control
+    to:
+    - set_variable: *set_invalid
+    - key_code: control
+    to_after_key_up: *unset_invalid
+    conditions: *ja_input_mode
 
-- var: &base_state
-  - type: input_source_if
-    input_sources:
-    - language: ja
-  - type: variable_unless
-    name: invalid
-    value: 1
+  # Option
+  - type: basic
+    from:
+      key_code: option
+    to:
+    - set_variable: *set_invalid
+    - key_code: option
+    to_after_key_up: *unset_invalid
+    conditions: *ja_input_mode
 
-- var: &shifted_state
-  - type: input_source_if
-    input_sources:
-    - language: ja
-  - type: variable_unless
-    name: invalid
-    value: 1
-  - type: variable_if
-    name: shifted
-    value: 1
+  # ---------- 機能・記号 ----------
 
-# parameters
-- var: &held_down_time
-    basic.to_if_held_down_threshold_milliseconds: 50
-
-# ---------- 修飾キー押下時は無効化 ----------
-
-# Command
-- type: basic
-  from:
-    key_code: command
-  to:
-  - set_variable: *set_invalid
-  - key_code: command
-  to_after_key_up: *unset_invalid
-  conditions: *ja_input_mode
-
-# Control
-- type: basic
-  from:
-    key_code: control
-  to:
-  - set_variable: *set_invalid
-  - key_code: control
-  to_after_key_up: *unset_invalid
-  conditions: *ja_input_mode
-
-# Option
-- type: basic
-  from:
-    key_code: option
-  to:
-  - set_variable: *set_invalid
-  - key_code: option
-  to_after_key_up: *unset_invalid
-  conditions: *ja_input_mode
-
-# ---------- 機能・記号 ----------
-
-# Return
-- type: basic
-  from:
-    simultaneous:
-    - key_code: v
+  # Return
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: v
+        repeat: false
+      - key_code: m
+        repeat: false
+    to:
+    - key_code: return_or_enter
       repeat: false
+
+  # 中黒（RF）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+        repeat: false
+      - key_code: f
+        repeat: false
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # 中黒（RG）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+        repeat: false
+      - key_code: g
+        repeat: false
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # 感嘆符（FV）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+        repeat: false
+      - key_code: v
+        repeat: false
+    to:
+    - key_code: "1"
+      modifiers: *shift_key
+      repeat: false
+    conditions: *base_state
+
+  # 感嘆符（FB）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+        repeat: false
+      - key_code: b
+        repeat: false
+    to:
+    - key_code: "1"
+      modifiers: *shift_key
+      repeat: false
+    conditions: *base_state
+
+  # スラッシュ（UJ）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+        repeat: false
+      - key_code: j
+        repeat: false
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # スラッシュ（UH）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+        repeat: false
+      - key_code: h
+        repeat: false
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # 疑問符（JM）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+        repeat: false
+      - key_code: m
+        repeat: false
+    to:
+    - key_code: slash
+      modifiers: *shift_key
+      repeat: false
+    conditions: *base_state
+
+  # 疑問符（JN）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+        repeat: false
+      - key_code: "n"
+        repeat: false
+    to:
+    - key_code: slash
+      modifiers: *shift_key
+      repeat: false
+    conditions: *base_state
+
+  # 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+        repeat: false
+      - key_code: g
+        repeat: false
+    to:
+    - key_code: open_bracket
+      repeat: false
+    - key_code: close_bracket
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
+
+  # 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+        repeat: false
+      - key_code: h
+        repeat: false
+    to:
+    - key_code: "9"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: "0"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
+
+  # ---------- センターシフト ----------
+
+  # # Space
+  # - type: basic
+  #   from:
+  #     key_code: spacebar
+  #     modifiers: *any
+  #   to_if_alone:
+  #   - key_code: spacebar
+  #     repeat: false
+  #   to_if_held_down: *set_shifted
+  #   to_after_key_up: *unset_shifted
+  #   conditions: *base_state
+  #   parameters: *held_down_time
+
+  # # Return
+  # - type: basic
+  #   from:
+  #     key_code: return_or_enter
+  #     modifiers: *any
+  #   to_if_alone:
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   to_if_held_down: *set_shifted
+  #   to_after_key_up: *unset_shifted
+  #   conditions: *base_state
+  #   parameters: *held_down_time
+
+  # ---------- 中指シフト ----------
+
+  # に（シフト）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *shifted_state
+
+  # も（シフト）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *any
+    to:
     - key_code: m
       repeat: false
-  to:
-  - key_code: return_or_enter
-    repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *shifted_state
 
-# 中黒（RF）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: r
+  # と（ベース）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *any
+    to_if_alone:
+    - key_code: t
       repeat: false
-    - key_code: f
+    - key_code: o
       repeat: false
-  to:
-  - key_code: slash
-    repeat: false
-  conditions: *base_state
+    to_if_held_down: *set_shifted
+    to_after_key_up: *unset_shifted
+    conditions: *base_state
+    parameters: *held_down_time
 
-# 中黒（RG）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: r
+  # い（ベース）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *any
+    to_if_alone:
+    - key_code: i
       repeat: false
-    - key_code: g
-      repeat: false
-  to:
-  - key_code: slash
-    repeat: false
-  conditions: *base_state
+    to_if_held_down: *set_shifted
+    to_after_key_up: *unset_shifted
+    conditions: *base_state
+    parameters: *held_down_time
 
-# 感嘆符（FV）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: f
-      repeat: false
-    - key_code: v
-      repeat: false
-  to:
-  - key_code: "1"
-    modifiers: *shift_key
-    repeat: false
-  conditions: *base_state
+  # ---------- 外来音（濁音） ----------
 
-# 感嘆符（FB）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: f
+  # でぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: e
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: d
       repeat: false
-    - key_code: b
+    - key_code: h
       repeat: false
-  to:
-  - key_code: "1"
-    modifiers: *shift_key
-    repeat: false
-  conditions: *base_state
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# スラッシュ（UJ）
-- type: basic
-  from:
-    simultaneous:
+  # でゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: e
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: h
+      repeat: false
     - key_code: u
       repeat: false
-    - key_code: j
-      repeat: false
-  to:
-  - key_code: slash
-    repeat: false
-  conditions: *base_state
+    conditions: *base_state
 
-# スラッシュ（UH）
-- type: basic
-  from:
-    simultaneous:
+  # どぅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: d
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: w
+      repeat: false
     - key_code: u
       repeat: false
-    - key_code: h
-      repeat: false
-  to:
-  - key_code: slash
-    repeat: false
-  conditions: *base_state
-
-# 疑問符（JM）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: j
-      repeat: false
-    - key_code: m
-      repeat: false
-  to:
-  - key_code: slash
-    modifiers: *shift_key
-    repeat: false
-  conditions: *base_state
-
-# 疑問符（JN）
-- type: basic
-  from:
-    simultaneous:
-    - key_code: j
-      repeat: false
-    - key_code: "n"
-      repeat: false
-  to:
-  - key_code: slash
-    modifiers: *shift_key
-    repeat: false
-  conditions: *base_state
-
-# 鉤括弧
-- type: basic
-  from:
-    simultaneous:
-    - key_code: f
-      repeat: false
-    - key_code: g
-      repeat: false
-  to:
-  - key_code: open_bracket
-    repeat: false
-  - key_code: close_bracket
-    repeat: false
-  - key_code: return_or_enter
-    repeat: false
-  - key_code: left_arrow
-    repeat: false
-  conditions: *base_state
-
-# 丸括弧
-- type: basic
-  from:
-    simultaneous:
-    - key_code: j
-      repeat: false
-    - key_code: h
-      repeat: false
-  to:
-  - key_code: "9"
-    modifiers: *shift_key
-    repeat: false
-  - key_code: "0"
-    modifiers: *shift_key
-    repeat: false
-  - key_code: return_or_enter
-    repeat: false
-  - key_code: left_arrow
-    repeat: false
-  conditions: *base_state
-
-# ---------- センターシフト ----------
-
-# # Space
-# - type: basic
-#   from:
-#     key_code: spacebar
-#     modifiers: *any
-#   to_if_alone:
-#   - key_code: spacebar
-#     repeat: false
-#   to_if_held_down: *set_shifted
-#   to_after_key_up: *unset_shifted
-#   conditions: *base_state
-#   parameters: *held_down_time
-
-# # Return
-# - type: basic
-#   from:
-#     key_code: return_or_enter
-#     modifiers: *any
-#   to_if_alone:
-#   - key_code: return_or_enter
-#     repeat: false
-#   to_if_held_down: *set_shifted
-#   to_after_key_up: *unset_shifted
-#   conditions: *base_state
-#   parameters: *held_down_time
-
-# ---------- 中指シフト ----------
-
-# に（シフト）
-- type: basic
-  from:
-    key_code: d
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *shifted_state
-
-# も（シフト）
-- type: basic
-  from:
-    key_code: k
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *shifted_state
-
-# と（ベース）
-- type: basic
-  from:
-    key_code: d
-    modifiers: *any
-  to_if_alone:
-  - key_code: t
-    repeat: false
-  - key_code: o
-    repeat: false
-  to_if_held_down: *set_shifted
-  to_after_key_up: *unset_shifted
-  conditions: *base_state
-  parameters: *held_down_time
-
-# い（ベース）
-- type: basic
-  from:
-    key_code: k
-    modifiers: *any
-  to_if_alone:
-  - key_code: i
-    repeat: false
-  to_if_held_down: *set_shifted
-  to_after_key_up: *unset_shifted
-  conditions: *base_state
-  parameters: *held_down_time
-
-# ---------- 外来音（濁音） ----------
-
-# でぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: e
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: h
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# でゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: e
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: h
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# どぅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: d
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# じぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: r
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ぢぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: g
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ヴぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: l
-    - key_code: j
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ヴぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: l
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ヴぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: l
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ヴぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: l
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ヴゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: l
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぐぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    - key_code: j
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぐぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ぐぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ぐぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ぐゎ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: u
-    repeat: false
-  - key_code: l
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ---------- 外来音（清音） ----------
-
-# てぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: e
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: h
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# てゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: e
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: h
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# とぅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: d
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# しぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: r
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ちぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: g
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# うぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: l
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: w
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# うぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: l
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: w
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# うぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: l
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: w
-    repeat: false
-  - key_code: h
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ふぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: period
-    - key_code: j
-    modifiers: *any
-  to:
-  - key_code: f
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ふぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: period
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: f
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ふぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: peirod
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: f
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ふぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: period
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: f
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ふゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: period
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: f
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# つぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: semicolon
-    - key_code: j
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: s
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# つぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: semicolon
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: s
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# つぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: semicolon
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: s
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# つぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: semicolon
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: s
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# くぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: h
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# くぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: h
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# くぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: h
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# くぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: h
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# くゎ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: h
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: u
-    repeat: false
-  - key_code: l
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ---------- 拗音（半濁音） ----------
-
-# ぴゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: s
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぴゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: s
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぴょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: s
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ---------- 拗音（濁音） ----------
-
-# じゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: r
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: j
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# じゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: r
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: j
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# じゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: r
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: j
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ぎゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: w
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぎゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: w
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぎょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: w
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ぢゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: g
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぢゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: g
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぢょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: g
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# びゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: s
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# びゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: s
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# びょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: s
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ---------- 拗音（清音） ----------
-
-# しゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: r
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# しゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: r
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# しょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: r
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# きゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: w
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# きゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: w
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# きょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: w
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ちゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: g
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ちゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: g
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ちょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: g
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# にゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: d
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# にゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: d
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# にょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: d
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ひゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: s
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ひゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: s
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ひょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: s
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# みゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: b
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# みゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: b
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# みょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: b
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# りゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: e
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# りゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: e
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# りょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: e
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ---------- 小書き ----------
-
-# ぁ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: j
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: k
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ぅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぇ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ぉ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ゃ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ゅ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ょ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: i
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ヵ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: f
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: k
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ヶ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: x
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: k
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ゎ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *kogaki
-    - key_code: l
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *shifted_state
-
-# ---------- 半濁音 ----------
-
-# ぱ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: c
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぴ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
-    - key_code: s
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ぷ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: period
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぺ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_left
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ぽ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *handakuon_right
+    conditions: *base_state
+
+  # じぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: r
+      - key_code: o
+      modifiers: *any
+    to:
     - key_code: z
-    modifiers: *any
-  to:
-  - key_code: p
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# ---------- 濁音 ----------
+  # ぢぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: g
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# が
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: f
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぎ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: w
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ぐ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: h
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# げ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: x
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
-
-# ご
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
+  # ヴぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      - key_code: j
+      modifiers: *any
+    to:
     - key_code: v
-    modifiers: *any
-  to:
-  - key_code: g
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
-
-# ざ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: u
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# じ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: r
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# ず
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: o
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# ぜ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
+      repeat: false
     - key_code: a
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+      repeat: false
+    conditions: *base_state
 
-# ぞ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: b
-    modifiers: *any
-  to:
-  - key_code: z
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ヴぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: v
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# だ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
-
-# ぢ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: g
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
-
-# づ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: semicolon
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
-
-# で
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
+  # ヴぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: v
+      repeat: false
     - key_code: e
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+      repeat: false
+    conditions: *base_state
 
-# ど
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: d
-    modifiers: *any
-  to:
-  - key_code: d
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ヴぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: v
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# ば
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: c
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # ヴゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: v
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# び
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: s
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
+  # ぐぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      - key_code: j
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# ぶ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: period
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # ぐぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# べ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
-    - key_code: p
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+  # ぐぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# ぼ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_right
-    - key_code: z
-    modifiers: *any
-  to:
-  - key_code: b
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ぐぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# ヴ
-- type: basic
-  from:
-    simultaneous:
-    - key_code: *dakuon_left
+  # ぐゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: u
+      repeat: false
     - key_code: l
-    modifiers: *any
-  to:
-  - key_code: v
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# ---------- 清音（シフト） ----------
+  # ---------- 外来音（清音） ----------
 
-# え
-- type: basic
-  from:
-    key_code: o
-    modifiers: *any
-  to:
-  - key_code: e
-    repeat: false
-  conditions: *shifted_state
+  # てぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: e
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: h
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# お
-- type: basic
-  from:
-    key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: o
-    repeat: false
-  conditions: *shifted_state
+  # てゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: e
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: h
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# さ
-- type: basic
-  from:
-    key_code: u
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *shifted_state
+  # とぅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: d
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# せ
-- type: basic
-  from:
-    key_code: a
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *shifted_state
+  # しぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: r
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# ち
-- type: basic
-  from:
-    key_code: g
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *shifted_state
+  # ちぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: g
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# つ
-- type: basic
-  from:
-    key_code: semicolon
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *shifted_state
+  # うぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: l
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: w
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# # に
-# - type: basic
-#   from:
-#     key_code: d
-#     modifiers: *any
-#   to:
-#   - key_code: "n"
-#     repeat: false
-#   - key_code: i
-#     repeat: false
-#   conditions: *shifted_state
+  # うぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: l
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: w
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# ぬ
-- type: basic
-  from:
-    key_code: s
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *shifted_state
+  # うぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: l
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: w
+      repeat: false
+    - key_code: h
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# ね
-- type: basic
-  from:
-    key_code: w
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *shifted_state
+  # ふぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: period
+      - key_code: j
+      modifiers: *any
+    to:
+    - key_code: f
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# の
-- type: basic
-  from:
-    key_code: j
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *shifted_state
+  # ふぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: period
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: f
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# ふ
-- type: basic
-  from:
-    key_code: period
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *shifted_state
+  # ふぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: peirod
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: f
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# ま
-- type: basic
-  from:
-    key_code: f
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *shifted_state
+  # ふぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: period
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: f
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# み
-- type: basic
-  from:
-    key_code: b
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *shifted_state
+  # ふゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: period
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: f
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# む
-- type: basic
-  from:
-    key_code: comma
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *shifted_state
+  # つぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: semicolon
+      - key_code: j
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: s
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# め
-- type: basic
-  from:
-    key_code: r
-    modifiers: *any
-  to:
-  - key_code: m
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *shifted_state
+  # つぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: semicolon
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: s
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# # も
-# - type: basic
-#   from:
-#     key_code: k
-#     modifiers: *any
-#   to:
-#   - key_code: m
-#     repeat: false
-#   - key_code: o
-#     repeat: false
-#   conditions: *shifted_state
+  # つぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: semicolon
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: s
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# や
-- type: basic
-  from:
-    key_code: h
-    modifiers: *any
-  to:
-  - key_code: "y"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *shifted_state
+  # つぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: semicolon
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: s
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# ゆ
-- type: basic
-  from:
-    key_code: p
-    modifiers: *any
-  to:
-  - key_code: "y"
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *shifted_state
+  # くぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: h
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# よ
-- type: basic
-  from:
-    key_code: i
-    modifiers: *any
-  to:
-  - key_code: "y"
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *shifted_state
+  # くぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: h
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
-# り
-- type: basic
-  from:
-    key_code: e
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *shifted_state
+  # くぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: h
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
-# わ
-- type: basic
-  from:
-    key_code: l
-    modifiers: *any
-  to:
-  - key_code: w
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *shifted_state
+  # くぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: h
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# を
-- type: basic
-  from:
-    key_code: c
-    modifiers: *any
-  to:
-  - key_code: w
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *shifted_state
+  # くゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: h
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: u
+      repeat: false
+    - key_code: l
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# 読点
-- type: basic
-  from:
-    key_code: v
-    modifiers: *any
-  to:
-  - key_code: comma
-    repeat: false
-  conditions: *shifted_state
+  # ---------- 拗音（半濁音） ----------
 
-# 句点 & Return
-- type: basic
-  from:
-    key_code: m
-    modifiers: *any
-  to:
-  - key_code: period
-    repeat: false
-  - key_code: return_or_enter
-    repeat: false
-  conditions: *shifted_state
+  # ぴゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: s
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# ---------- 清音（ベース） ----------
-# 中指シフトの場合、「と・い」はコメントアウトする？
+  # ぴゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: s
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# あ
-- type: basic
-  from:
-    key_code: j
-    modifiers: *any
-  to:
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # ぴょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: s
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# # い
-# - type: basic
-#   from:
-#     key_code: k
-#     modifiers: *any
-#   to:
-#   - key_code: i
-#     repeat: false
-#   conditions: *base_state
+  # ---------- 拗音（濁音） ----------
 
-# う
-- type: basic
-  from:
-    key_code: l
-    modifiers: *any
-  to:
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # じゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: r
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: j
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# か
-- type: basic
-  from:
-    key_code: f
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # じゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: r
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: j
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# き
-- type: basic
-  from:
-    key_code: w
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
+  # じゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: r
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: j
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# く
-- type: basic
-  from:
-    key_code: h
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # ぎゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: w
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# け
-- type: basic
-  from:
-    key_code: x
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+  # ぎゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: w
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# こ
-- type: basic
-  from:
-    key_code: v
-    modifiers: *any
-  to:
-  - key_code: k
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ぎょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: w
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# し
-- type: basic
-  from:
-    key_code: r
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
+  # ぢゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: g
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# す
-- type: basic
-  from:
-    key_code: o
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # ぢゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: g
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# そ
-- type: basic
-  from:
-    key_code: b
-    modifiers: *any
-  to:
-  - key_code: s
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ぢょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: g
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# た
-- type: basic
-  from:
-    key_code: "n"
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # びゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: s
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# っ
-- type: basic
-  from:
-    key_code: semicolon
-    modifiers: *any
-  to:
-  - key_code: l
-    repeat: false
-  - key_code: t
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # びゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: s
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# て
-- type: basic
-  from:
-    key_code: e
-    modifiers: *any
-  to:
-  - key_code: t
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+  # びょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: s
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# # と
-# - type: basic
-#   from:
-#     key_code: d
-#     modifiers: *any
-#   to:
-#   - key_code: t
-#     repeat: false
-#   - key_code: o
-#     repeat: false
-#   conditions: *base_state
+  # ---------- 拗音（清音） ----------
 
-# な
-- type: basic
-  from:
-    key_code: m
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # しゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# は
-- type: basic
-  from:
-    key_code: c
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # しゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# ひ
-- type: basic
-  from:
-    key_code: s
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: i
-    repeat: false
-  conditions: *base_state
+  # しょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# へ
-- type: basic
-  from:
-    key_code: p
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+  # きゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: w
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# ほ
-- type: basic
-  from:
-    key_code: z
-    modifiers: *any
-  to:
-  - key_code: h
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # きゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: w
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# ら
-- type: basic
-  from:
-    key_code: period
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: a
-    repeat: false
-  conditions: *base_state
+  # きょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: w
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# る
-- type: basic
-  from:
-    key_code: i
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: u
-    repeat: false
-  conditions: *base_state
+  # ちゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: g
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# れ
-- type: basic
-  from:
-    key_code: slash
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: e
-    repeat: false
-  conditions: *base_state
+  # ちゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: g
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# ろ
-- type: basic
-  from:
-    key_code: a
-    modifiers: *any
-  to:
-  - key_code: r
-    repeat: false
-  - key_code: o
-    repeat: false
-  conditions: *base_state
+  # ちょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: g
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# ん
-- type: basic
-  from:
-    key_code: comma
-    modifiers: *any
-  to:
-  - key_code: "n"
-    repeat: false
-  - key_code: "n"
-    repeat: false
-  conditions: *base_state
+  # にゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: d
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# 長音符
-- type: basic
-  from:
-    key_code: semicolon
-    modifiers: *any
-  to:
-  - key_code: hyphen
-    repeat: false
-  conditions: *base_state
+  # にゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: d
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
 
-# Delete
-- type: basic
-  from:
-    key_code: u
-    modifiers: *any
-  to:
-  - key_code: delete_or_backspace
-    repeat: false
-  conditions: *base_state
+  # にょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: d
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
-# Left Arrow
-- type: basic
-  from:
-    key_code: t
-    modifiers: *any
-  to:
-  - key_code: left_arrow
-    repeat: false
-  conditions: *base_state
+  # ひゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: s
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
 
-# Right Arrow
-- type: basic
-  from:
-    key_code: "y"
-    modifiers: *any
-  to:
-  - key_code: right_arrow
-    repeat: false
-  conditions: *base_state
+  # ひゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: s
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ひょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: s
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # みゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: b
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # みゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: b
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # みょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: b
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # りゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: e
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # りゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: e
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # りょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: e
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ---------- 小書き ----------
+
+  # ぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: j
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: k
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ぅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: i
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ヵ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: f
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: k
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ヶ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: x
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: k
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *shifted_state
+
+  # ---------- 半濁音 ----------
+
+  # ぱ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: c
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぴ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: s
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ぷ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: period
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ぺ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_left
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ぽ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *handakuon_right
+      - key_code: z
+      modifiers: *any
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ---------- 濁音 ----------
+
+  # が
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: f
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: w
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ぐ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: h
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # げ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: x
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ご
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: v
+      modifiers: *any
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ざ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: u
+      modifiers: *any
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # じ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: r
+      modifiers: *any
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ず
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: o
+      modifiers: *any
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ぜ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: a
+      modifiers: *any
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ぞ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: b
+      modifiers: *any
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # だ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぢ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: g
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # づ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: semicolon
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # で
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: e
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ど
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: d
+      modifiers: *any
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ば
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: c
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # び
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: s
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ぶ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: period
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # べ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: p
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ぼ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_right
+      - key_code: z
+      modifiers: *any
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ヴ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *dakuon_left
+      - key_code: l
+      modifiers: *any
+    to:
+    - key_code: v
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ---------- 清音（シフト） ----------
+
+  # え
+  - type: basic
+    from:
+      key_code: o
+      modifiers: *any
+    to:
+    - key_code: e
+      repeat: false
+    conditions: *shifted_state
+
+  # お
+  - type: basic
+    from:
+      key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: o
+      repeat: false
+    conditions: *shifted_state
+
+  # さ
+  - type: basic
+    from:
+      key_code: u
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *shifted_state
+
+  # せ
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *shifted_state
+
+  # ち
+  - type: basic
+    from:
+      key_code: g
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *shifted_state
+
+  # つ
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *shifted_state
+
+  # # に
+  # - type: basic
+  #   from:
+  #     key_code: d
+  #     modifiers: *any
+  #   to:
+  #   - key_code: "n"
+  #     repeat: false
+  #   - key_code: i
+  #     repeat: false
+  #   conditions: *shifted_state
+
+  # ぬ
+  - type: basic
+    from:
+      key_code: s
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *shifted_state
+
+  # ね
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *shifted_state
+
+  # の
+  - type: basic
+    from:
+      key_code: j
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *shifted_state
+
+  # ふ
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *shifted_state
+
+  # ま
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *shifted_state
+
+  # み
+  - type: basic
+    from:
+      key_code: b
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *shifted_state
+
+  # む
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *shifted_state
+
+  # め
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *any
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *shifted_state
+
+  # # も
+  # - type: basic
+  #   from:
+  #     key_code: k
+  #     modifiers: *any
+  #   to:
+  #   - key_code: m
+  #     repeat: false
+  #   - key_code: o
+  #     repeat: false
+  #   conditions: *shifted_state
+
+  # や
+  - type: basic
+    from:
+      key_code: h
+      modifiers: *any
+    to:
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *shifted_state
+
+  # ゆ
+  - type: basic
+    from:
+      key_code: p
+      modifiers: *any
+    to:
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *shifted_state
+
+  # よ
+  - type: basic
+    from:
+      key_code: i
+      modifiers: *any
+    to:
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *shifted_state
+
+  # り
+  - type: basic
+    from:
+      key_code: e
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *shifted_state
+
+  # わ
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *any
+    to:
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *shifted_state
+
+  # を
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *any
+    to:
+    - key_code: w
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *shifted_state
+
+  # 読点
+  - type: basic
+    from:
+      key_code: v
+      modifiers: *any
+    to:
+    - key_code: comma
+      repeat: false
+    conditions: *shifted_state
+
+  # 句点 & Return
+  - type: basic
+    from:
+      key_code: m
+      modifiers: *any
+    to:
+    - key_code: period
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    conditions: *shifted_state
+
+  # ---------- 清音（ベース） ----------
+  # 中指シフトの場合、「と・い」はコメントアウトする？
+
+  # あ
+  - type: basic
+    from:
+      key_code: j
+      modifiers: *any
+    to:
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # # い
+  # - type: basic
+  #   from:
+  #     key_code: k
+  #     modifiers: *any
+  #   to:
+  #   - key_code: i
+  #     repeat: false
+  #   conditions: *base_state
+
+  # う
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *any
+    to:
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # か
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # き
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # く
+  - type: basic
+    from:
+      key_code: h
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # け
+  - type: basic
+    from:
+      key_code: x
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # こ
+  - type: basic
+    from:
+      key_code: v
+      modifiers: *any
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # し
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # す
+  - type: basic
+    from:
+      key_code: o
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # そ
+  - type: basic
+    from:
+      key_code: b
+      modifiers: *any
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # た
+  - type: basic
+    from:
+      key_code: "n"
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # っ
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *any
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: t
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # て
+  - type: basic
+    from:
+      key_code: e
+      modifiers: *any
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # # と
+  # - type: basic
+  #   from:
+  #     key_code: d
+  #     modifiers: *any
+  #   to:
+  #   - key_code: t
+  #     repeat: false
+  #   - key_code: o
+  #     repeat: false
+  #   conditions: *base_state
+
+  # な
+  - type: basic
+    from:
+      key_code: m
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # は
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ひ
+  - type: basic
+    from:
+      key_code: s
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # へ
+  - type: basic
+    from:
+      key_code: p
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ほ
+  - type: basic
+    from:
+      key_code: z
+      modifiers: *any
+    to:
+    - key_code: h
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ら
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # る
+  - type: basic
+    from:
+      key_code: i
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # れ
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ろ
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *any
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ん
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *any
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: "n"
+      repeat: false
+    conditions: *base_state
+
+  # 長音符
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *any
+    to:
+    - key_code: hyphen
+      repeat: false
+    conditions: *base_state
+
+  # Delete
+  - type: basic
+    from:
+      key_code: u
+      modifiers: *any
+    to:
+    - key_code: delete_or_backspace
+      repeat: false
+    conditions: *base_state
+
+  # Left Arrow
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *any
+    to:
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
+
+  # Right Arrow
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *any
+    to:
+    - key_code: right_arrow
+      repeat: false
+    conditions: *base_state
