@@ -2097,15 +2097,263 @@
 
 # ---------- 清音（シフト） ----------
 
-# kana
+# え
 - type: basic
   from:
-    key_code: from_key
+    key_code: o
     modifiers: *any
   to:
-  - key_code: to_key
+  - key_code: e
     repeat: false
-  - key_code: to_key
+  conditions: *shifted_state
+
+# お
+- type: basic
+  from:
+    key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: o
+    repeat: false
+  conditions: *shifted_state
+
+# さ
+- type: basic
+  from:
+    key_code: u
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *shifted_state
+
+# せ
+- type: basic
+  from:
+    key_code: a
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *shifted_state
+
+# ち
+- type: basic
+  from:
+    key_code: g
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *shifted_state
+
+# つ
+- type: basic
+  from:
+    key_code: semicolon
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *shifted_state
+
+# # に
+# - type: basic
+#   from:
+#     key_code: d
+#     modifiers: *any
+#   to:
+#   - key_code: "n"
+#     repeat: false
+#   - key_code: i
+#     repeat: false
+#   conditions: *shifted_state
+
+# ぬ
+- type: basic
+  from:
+    key_code: s
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *shifted_state
+
+# ね
+- type: basic
+  from:
+    key_code: w
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *shifted_state
+
+# の
+- type: basic
+  from:
+    key_code: j
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *shifted_state
+
+# ふ
+- type: basic
+  from:
+    key_code: period
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *shifted_state
+
+# ま
+- type: basic
+  from:
+    key_code: f
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *shifted_state
+
+# み
+- type: basic
+  from:
+    key_code: b
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *shifted_state
+
+# む
+- type: basic
+  from:
+    key_code: comma
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *shifted_state
+
+# め
+- type: basic
+  from:
+    key_code: r
+    modifiers: *any
+  to:
+  - key_code: m
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *shifted_state
+
+# # も
+# - type: basic
+#   from:
+#     key_code: k
+#     modifiers: *any
+#   to:
+#   - key_code: m
+#     repeat: false
+#   - key_code: o
+#     repeat: false
+#   conditions: *shifted_state
+
+# や
+- type: basic
+  from:
+    key_code: h
+    modifiers: *any
+  to:
+  - key_code: "y"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *shifted_state
+
+# ゆ
+- type: basic
+  from:
+    key_code: p
+    modifiers: *any
+  to:
+  - key_code: "y"
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *shifted_state
+
+# よ
+- type: basic
+  from:
+    key_code: i
+    modifiers: *any
+  to:
+  - key_code: "y"
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *shifted_state
+
+# り
+- type: basic
+  from:
+    key_code: e
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *shifted_state
+
+# わ
+- type: basic
+  from:
+    key_code: l
+    modifiers: *any
+  to:
+  - key_code: w
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *shifted_state
+
+# を
+- type: basic
+  from:
+    key_code: c
+    modifiers: *any
+  to:
+  - key_code: w
+    repeat: false
+  - key_code: o
     repeat: false
   conditions: *shifted_state
 
@@ -2134,15 +2382,299 @@
 # ---------- 清音（ベース） ----------
 # 中指シフトの場合、「と・い」はコメントアウトする？
 
-# kana
+# あ
 - type: basic
   from:
-    key_code: from_key
+    key_code: j
     modifiers: *any
   to:
-  - key_code: to_key
+  - key_code: a
     repeat: false
-  - key_code: to_key
+  conditions: *base_state
+
+# # い
+# - type: basic
+#   from:
+#     key_code: k
+#     modifiers: *any
+#   to:
+#   - key_code: i
+#     repeat: false
+#   conditions: *base_state
+
+# う
+- type: basic
+  from:
+    key_code: l
+    modifiers: *any
+  to:
+  - key_code: u
+    repeat: false
+  conditions: *base_state
+
+# か
+- type: basic
+  from:
+    key_code: f
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *base_state
+
+# き
+- type: basic
+  from:
+    key_code: w
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *base_state
+
+# く
+- type: basic
+  from:
+    key_code: h
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *base_state
+
+# け
+- type: basic
+  from:
+    key_code: x
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *base_state
+
+# こ
+- type: basic
+  from:
+    key_code: v
+    modifiers: *any
+  to:
+  - key_code: k
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *base_state
+
+# し
+- type: basic
+  from:
+    key_code: r
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *base_state
+
+# す
+- type: basic
+  from:
+    key_code: o
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *base_state
+
+# そ
+- type: basic
+  from:
+    key_code: b
+    modifiers: *any
+  to:
+  - key_code: s
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *base_state
+
+# た
+- type: basic
+  from:
+    key_code: "n"
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *base_state
+
+# っ
+- type: basic
+  from:
+    key_code: semicolon
+    modifiers: *any
+  to:
+  - key_code: l
+    repeat: false
+  - key_code: t
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *base_state
+
+# て
+- type: basic
+  from:
+    key_code: e
+    modifiers: *any
+  to:
+  - key_code: t
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *base_state
+
+# # と
+# - type: basic
+#   from:
+#     key_code: d
+#     modifiers: *any
+#   to:
+#   - key_code: t
+#     repeat: false
+#   - key_code: o
+#     repeat: false
+#   conditions: *base_state
+
+# な
+- type: basic
+  from:
+    key_code: m
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *base_state
+
+# は
+- type: basic
+  from:
+    key_code: c
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *base_state
+
+# ひ
+- type: basic
+  from:
+    key_code: s
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: i
+    repeat: false
+  conditions: *base_state
+
+# へ
+- type: basic
+  from:
+    key_code: p
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *base_state
+
+# ほ
+- type: basic
+  from:
+    key_code: z
+    modifiers: *any
+  to:
+  - key_code: h
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *base_state
+
+# ら
+- type: basic
+  from:
+    key_code: period
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: a
+    repeat: false
+  conditions: *base_state
+
+# る
+- type: basic
+  from:
+    key_code: i
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: u
+    repeat: false
+  conditions: *base_state
+
+# れ
+- type: basic
+  from:
+    key_code: slash
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: e
+    repeat: false
+  conditions: *base_state
+
+# ろ
+- type: basic
+  from:
+    key_code: a
+    modifiers: *any
+  to:
+  - key_code: r
+    repeat: false
+  - key_code: o
+    repeat: false
+  conditions: *base_state
+
+# ん
+- type: basic
+  from:
+    key_code: comma
+    modifiers: *any
+  to:
+  - key_code: "n"
+    repeat: false
+  - key_code: "n"
     repeat: false
   conditions: *base_state
 
