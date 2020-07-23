@@ -6,54 +6,54 @@ rules:
   # ---------- Variables ----------
 
   # from - key_code
-  - var: &dakuon_right j
+  - from/key_code: &dakuon_right j
 
-  - var: &dakuon_left f
+  - from/key_code: &dakuon_left f
 
-  - var: &handakuon_right m
+  - from/key_code: &handakuon_right m
 
-  - var: &handakuon_left v
+  - from/key_code: &handakuon_left v
 
-  - var: &kogaki q
+  - from/key_code: &kogaki q
 
   # from - modifiers
-  - var: &any
+  - from/modifiers: &any
       optional:
       - any
 
   # to
-  - var: &shift_key
+  - to/modifiers: &shift_key
       mandatory:
       - shift
 
-  - var: &set_invalid
+  - to/set_variable: &set_invalid
       name: invalid
       value: 1
 
-  - var: &set_shifted
+  # to_if_held_down
+  - to_if_held_down: &set_shifted
     - set_variable:
         name: shifted
         value: 1
 
   # to_after_key_up
-  - var: &unset_invalid
+  - to_after_key_up: &unset_invalid
     - set_variable:
         name: invalid
         value: 0
 
-  - var: &unset_shifted
+  - to_after_key_up: &unset_shifted
     - set_variable:
         name: shifted
         value: 0
 
   # conditions
-
-  - var: &ja_input_mode
+  - conditions: &ja_input_mode
     - type: input_source_if
       input_sources:
       - language: ja
 
-  - var: &base_state
+  - conditions: &base_state
     - type: input_source_if
       input_sources:
       - language: ja
@@ -61,7 +61,7 @@ rules:
       name: invalid
       value: 1
 
-  - var: &shifted_state
+  - conditions: &shifted_state
     - type: input_source_if
       input_sources:
       - language: ja
@@ -73,7 +73,7 @@ rules:
       value: 1
 
   # parameters
-  - var: &held_down_time
+  - parameters: &held_down_time
       basic.to_if_held_down_threshold_milliseconds: 50
 
   # ---------- 修飾キー押下時は無効化 ----------
