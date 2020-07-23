@@ -6,45 +6,45 @@ rules:
   # ---------- Variables ----------
 
   # from - key_code
-  - from/key_code: &middle_shift_right k
+  - var/from/key_code: &middle_shift_right k
 
-  - from/key_code: &middle_shift_left d
+  - var/from/key_code: &middle_shift_left d
 
-  - from/key_code: &ring_shift_right l
+  - var/from/key_code: &ring_shift_right l
 
-  - from/key_code: &ring_shift_left s
+  - var/from/key_code: &ring_shift_left s
 
-  - from/key_code: &middle_upper_shift i
+  - var/from/key_code: &middle_upper_shift i
 
-  - from/key_code: &ring_upper_shift o
+  - var/from/key_code: &ring_upper_shift o
 
   # from - modifiers
-  - from/modifiers: &any
+  - var/from/modifiers: &any
       optional:
       - any
 
   # to
-  - to/modifiers: &shift_key
+  - var/to/modifiers: &shift_key
       mandatory:
       - shift
 
-  - to/set_variable: &set_invalid
+  - var/to/set_variable: &set_invalid
       name: invalid
       value: 1
 
   # to_after_key_up
-  - to_after_key_up: &unset_invalid
+  - var/to_after_key_up: &unset_invalid
     - set_variable:
         name: invalid
         value: 0
 
   # conditions
-  - conditions: &ja_input_mode
+  - var/conditions: &ja_input_mode
     - type: input_source_if
       input_sources:
       - language: ja
 
-  - conditions: &common_state
+  - var/conditions: &common_state
     - type: input_source_if
       input_sources:
       - language: ja

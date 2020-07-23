@@ -6,54 +6,54 @@ rules:
   # ---------- Variables ----------
 
   # from - key_code
-  - from/key_code: &dakuon_right j
+  - var/from/key_code: &dakuon_right j
 
-  - from/key_code: &dakuon_left f
+  - var/from/key_code: &dakuon_left f
 
-  - from/key_code: &handakuon_right m
+  - var/from/key_code: &handakuon_right m
 
-  - from/key_code: &handakuon_left v
+  - var/from/key_code: &handakuon_left v
 
-  - from/key_code: &kogaki q
+  - var/from/key_code: &kogaki q
 
   # from - modifiers
-  - from/modifiers: &any
+  - var/from/modifiers: &any
       optional:
       - any
 
   # to
-  - to/modifiers: &shift_key
+  - var/to/modifiers: &shift_key
       mandatory:
       - shift
 
-  - to/set_variable: &set_invalid
+  - var/to/set_variable: &set_invalid
       name: invalid
       value: 1
 
   # to_if_held_down
-  - to_if_held_down: &set_shifted
+  - var/to_if_held_down: &set_shifted
     - set_variable:
         name: shifted
         value: 1
 
   # to_after_key_up
-  - to_after_key_up: &unset_invalid
+  - var/to_after_key_up: &unset_invalid
     - set_variable:
         name: invalid
         value: 0
 
-  - to_after_key_up: &unset_shifted
+  - var/to_after_key_up: &unset_shifted
     - set_variable:
         name: shifted
         value: 0
 
   # conditions
-  - conditions: &ja_input_mode
+  - var/conditions: &ja_input_mode
     - type: input_source_if
       input_sources:
       - language: ja
 
-  - conditions: &base_state
+  - var/conditions: &base_state
     - type: input_source_if
       input_sources:
       - language: ja
@@ -61,7 +61,7 @@ rules:
       name: invalid
       value: 1
 
-  - conditions: &shifted_state
+  - var/conditions: &shifted_state
     - type: input_source_if
       input_sources:
       - language: ja
@@ -73,7 +73,7 @@ rules:
       value: 1
 
   # parameters
-  - parameters: &held_down_time
+  - var/parameters: &held_down_time
       basic.to_if_held_down_threshold_milliseconds: 50
 
   # ---------- 修飾キー押下時は無効化 ----------
