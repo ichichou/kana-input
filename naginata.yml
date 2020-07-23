@@ -23,18 +23,17 @@ rules:
 
   # to
   - var/to: &set_invalid
-    - set_invalid:
+    - set_variable:
         name: invalid
         value: 1
 
   - var/to: &unset_invalid
-    - set_invalid:
+    - set_variable:
         name: invalid
         value: 0
 
-  - var/to/modifiers: &mand_shift_key
-      mandatory:
-      - shift
+  - var/to/modifiers: &shift_key
+    - shift
 
   # to_if_held_down
   - var/to_if_held_down: &set_system_mode
@@ -163,7 +162,7 @@ rules:
       - key_code: v
     to:
     - key_code: "1"
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     conditions: *base_state
 
@@ -175,7 +174,7 @@ rules:
       - key_code: b
     to:
     - key_code: "1"
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     conditions: *base_state
 
@@ -209,7 +208,7 @@ rules:
       - key_code: m
     to:
     - key_code: slash
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     conditions: *base_state
 
@@ -221,7 +220,7 @@ rules:
       - key_code: "n"
     to:
     - key_code: slash
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     conditions: *base_state
 
@@ -250,10 +249,10 @@ rules:
       - key_code: h
     to:
     - key_code: "9"
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     - key_code: "0"
-      modifiers: *mand_shift_key
+      modifiers: *shift_key
       repeat: false
     - key_code: return_or_enter
       repeat: false
