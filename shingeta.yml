@@ -98,14 +98,14 @@ rules:
   - type: basic
     from:
       key_code: o
-    to: *unset_invalid
+    to: *set_invalid
     conditions: *system_mode
 
   # 新下駄配列 再開
   - type: basic
     from:
       key_code: i
-    to: *set_invalid
+    to: *unset_invalid
     conditions: *system_mode
 
   # Return
