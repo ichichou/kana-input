@@ -23,30 +23,9 @@ rules:
       optional:
       - shift
 
-  # to
-  - var/to: &set_system_mode
-    - set_variable:
-        name: system_mode
-        value: 1
-
-  - var/to/: &set_invalid
-    - set_variable:
-        name: invalid
-        value: 1
-
-  - var/to: &unset_invalid
-    - set_variable:
-        name: invalid
-        value: 0
-
+  # to - modifiers
   - var/to/modifiers: &shift_key
     - shift
-
-  # to_after_key_up
-  - var/to_after_key_up: &unset_system_mode
-    - set_variable:
-        name: system_mode
-        value: 0
 
   # conditions
   - var/conditions: &ja_input
@@ -79,11 +58,17 @@ rules:
     to_if_alone:
     - key_code: hyphen
       repeat: false
-    to: *set_system_mode
-    to_after_key_up: *unset_system_mode
+    to: &set_system_mode
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up: &unset_system_mode
+    - set_variable:
+        name: system_mode
+        value: 0
     conditions: *common_state
 
-  # System Mode (ja_input)
+  # System Mode (not common_state)
   - type: basic
     from:
       key_code: q
@@ -92,20 +77,27 @@ rules:
       repeat: false
     to: *set_system_mode
     to_after_key_up: *unset_system_mode
-    conditions: *ja_input
 
-  # 新下駄配列 中断
+  # 新下駄配列を中断
   - type: basic
     from:
       key_code: o
-    to: *set_invalid
+    to:
+    - set_variable:
+        name: invalid
+        value: 1
     conditions: *system_mode
 
-  # 新下駄配列 再開
+  # 新下駄配列を再開（日本語入力オン）
   - type: basic
     from:
       key_code: i
-    to: *unset_invalid
+    to:
+    - set_variable:
+        name: invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
     conditions: *system_mode
 
   # Return
