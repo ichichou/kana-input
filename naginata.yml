@@ -22,36 +22,16 @@ rules:
       - shift
 
   # to
-  - var/to: &set_invalid
-    - set_variable:
-        name: invalid
-        value: 1
-
-  - var/to: &unset_invalid
-    - set_variable:
-        name: invalid
-        value: 0
-
   - var/to/modifiers: &shift_key
     - shift
 
   # to_if_held_down
-  - var/to_if_held_down: &set_system_mode
-    - set_variable:
-        name: system_mode
-        value: 1
-
   - var/to_if_held_down: &set_shifted
     - set_variable:
         name: shifted
         value: 1
 
   # to_after_key_up
-  - var/to_after_key_up: &unset_system_mode
-    - set_variable:
-        name: system_mode
-        value: 0
-
   - var/to_after_key_up: &unset_shifted
     - set_variable:
         name: shifted
@@ -83,9 +63,6 @@ rules:
       value: 1
 
   - var/conditions: &system_mode
-    - type: input_source_if
-      input_sources:
-      - language: ja
     - type: variable_if
       name: system_mode
       value: 1
@@ -103,23 +80,36 @@ rules:
     to_if_alone:
     - key_code: q
       repeat: false
-    to_if_held_down: *set_system_mode
-    to_after_key_up: *unset_system_mode
-    conditions: *ja_input
+    to_if_held_down:
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
     parameters: *held_down_time
 
-  # 薙刀式 中断
+  # 薙刀式を中断
   - type: basic
     from:
       key_code: o
-    to: *set_invalid
+    to:
+    - set_variable:
+        name: invalid
+        value: 1
     conditions: *system_mode
 
-  # 薙刀式 再開
+  # 薙刀式を再開（日本語入力オン）
   - type: basic
     from:
       key_code: i
-    to: *unset_invalid
+    to:
+    - set_variable:
+        name: invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
     conditions: *system_mode
 
   # Return
