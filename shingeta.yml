@@ -35,6 +35,11 @@ rules:
       input_sources:
       - language: ja
 
+  - var/conditions: &system_mode
+    - type: variable_if
+      name: system_mode
+      value: 1
+
   - var/conditions: &common_state
     - type: input_source_if
       input_sources:
@@ -42,6 +47,49 @@ rules:
     - type: variable_unless
       name: kana_layout_invalid
       value: 1
+    - type: variable_unless
+      name: system_mode
+      value: 1
+
+  # ===== System Mode =====
+
+  # System Mode Key
+  - type: basic
+    from:
+      key_code: q
+    to_if_alone:
+    - key_code: hyphen
+      repeat: false
+    to:
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
+
+  # 新下駄配列を中断
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - set_variable: &turn_off_kana_layout
+        name: kana_layout_invalid
+        value: 1
+    conditions: *system_mode
+
+  # 新下駄配列を再開（日本語入力オン）
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - set_variable: &turn_on_kana_layout
+        name: kana_layout_invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
+    conditions: *system_mode
 
   # ===== 機能・記号 =====
 
