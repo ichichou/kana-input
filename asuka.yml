@@ -1,0 +1,276 @@
+# title: 飛鳥配列
+# rules:
+# - description: 飛鳥配列
+#   manipulators:
+
+# ===== Aliases =====
+
+# ----- Shift Modifier Key -----
+
+- var/from/modifiers: &opt_shift_key
+    optional:
+    - shift
+
+- var/to/modifiers: &shift_key
+  - shift
+
+# ----- The Same/Reverse Hand Shift -----
+
+- var/to: &turn_on_same_hand_shift
+  - set_variable:
+      name: same_hand_shifted
+      value: 1
+
+- var/to_after_key_up: &turn_off_same_hand_shift
+  - set_variable:
+      name: same_hand_shifted
+      value: 0
+
+- var/to: &turn_on_reverse_hand_shift
+  - set_variable:
+      name: reverse_hand_shifted
+      value: 1
+
+- var/to_after_key_up: &turn_off_reverse_hand_shift
+  - set_variable:
+      name: reverse_hand_shifted
+      value: 0
+
+# ----- Conditions -----
+
+- var/conditions: &ja_input
+  - type: input_source_if
+    input_sources:
+    - language: ja
+
+- var/conditions: &base_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+
+- var/conditions: &same_hand_shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+  - type: variable_if
+    name: same_hand_shifted
+    value: 1
+
+- var/conditions: &reverse_hand_shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: invalid
+    value: 1
+  - type: variable_if
+    name: reverse_hand_shifted
+    value: 1
+
+# ===== 同手・逆手シフトキー =====
+
+# ----- 同手シフト時 -----
+
+# kana
+- type: basic
+  from:
+    key_code: s
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *same_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: d
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *same_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: l
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *same_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: k
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *same_hand_shifted
+
+# ----- 逆手シフト時 -----
+
+# kana
+- type: basic
+  from:
+    key_code: s
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *reverse_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: d
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *reverse_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: l
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *reverse_hand_shifted
+
+# kana
+- type: basic
+  from:
+    key_code: k
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *reverse_hand_shifted
+
+# ----- ベース面-----
+
+# kana（同手シフトキー）
+- type: basic
+  from:
+    key_code: s
+    modifiers: *opt_shift_key
+  to_if_alone:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  to: *turn_on_same_hand_shift
+  to_after_key_up: *turn_off_same_hand_shift
+  conditions: *base_state
+
+# kana（同手シフトキー）
+- type: basic
+  from:
+    key_code: l
+    modifiers: *opt_shift_key
+  to_if_alone:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  to: *turn_on_same_hand_shift
+  to_after_key_up: *turn_off_same_hand_shift
+  conditions: *base_state
+
+# kana（逆手シフトキー）
+- type: basic
+  from:
+    key_code: d
+    modifiers: *opt_shift_key
+  to_if_alone:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  to: *turn_on_reverse_hand_shift
+  to_after_key_up: *turn_off_reverse_hand_shift
+  conditions: *base_state
+
+# kana（逆手シフトキー）
+- type: basic
+  from:
+    key_code: k
+    modifiers: *opt_shift_key
+  to_if_alone:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  to: *turn_on_reverse_hand_shift
+  to_after_key_up: *turn_off_reverse_hand_shift
+  conditions: *base_state
+
+# ===== 同手シフト =====
+
+# kana
+- type: basic
+  from:
+    key_code: from_key
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *same_hand_shifted
+
+# ===== 逆手シフト =====
+
+# kana
+- type: basic
+  from:
+    key_code: from_key
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *reverse_hand_shifted
+
+# ===== ベース =====
+
+# kana
+- type: basic
+  from:
+    key_code: from_key
+    modifiers: *opt_shift_key
+  to:
+  - key_code: to_key
+    repeat: false
+  - key_code: to_key
+    repeat: false
+  conditions: *base_state
