@@ -5,7 +5,7 @@
 
 # ===== Aliases =====
 
-# ----- Shift Modifier Key -----
+# ----- Modifier Keys -----
 
 - var/from/modifiers: &opt_shift_key
     optional:
@@ -14,7 +14,7 @@
 - var/to/modifiers: &shift_key
   - shift
 
-# ----- The Same/Reverse Hand Shift -----
+# ----- Kana Shift Keys -----
 
 - var/to: &turn_on_same_hand_shift
   - set_variable:
