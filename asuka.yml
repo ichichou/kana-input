@@ -66,11 +66,11 @@
   - type: variable_unless
     name: kana_layout_invalid
     value: 1
-  - type: variable_if
-    name: same_hand_shifted
-    value: 1
   - type: variable_unless
     name: system_mode
+    value: 1
+  - type: variable_if
+    name: same_hand_shifted
     value: 1
 
 - var/conditions: &reverse_hand_shifted
@@ -80,11 +80,11 @@
   - type: variable_unless
     name: kana_layout_invalid
     value: 1
-  - type: variable_if
-    name: reverse_hand_shifted
-    value: 1
   - type: variable_unless
     name: system_mode
+    value: 1
+  - type: variable_if
+    name: reverse_hand_shifted
     value: 1
 
 # ===== System Mode =====
