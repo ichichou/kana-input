@@ -62,55 +62,11 @@ rules:
       name: shifted
       value: 1
 
-  - var/conditions: &system_mode
-    - type: variable_if
-      name: system_mode
-      value: 1
-
   # parameters
   - var/parameters: &held_down_time
       basic.to_if_held_down_threshold_milliseconds: 50
 
   # ---------- 機能・記号 ----------
-
-  # System Mode
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: q
-      repeat: false
-    to_if_held_down:
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up:
-    - set_variable:
-        name: system_mode
-        value: 0
-    parameters: *held_down_time
-
-  # 薙刀式を中断
-  - type: basic
-    from:
-      key_code: o
-    to:
-    - set_variable:
-        name: invalid
-        value: 1
-    conditions: *system_mode
-
-  # 薙刀式を再開（日本語入力オン）
-  - type: basic
-    from:
-      key_code: i
-    to:
-    - set_variable:
-        name: invalid
-        value: 0
-    - key_code: japanese_kana
-      repeat: false
-    conditions: *system_mode
 
   # Return
   - type: basic

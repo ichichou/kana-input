@@ -41,64 +41,7 @@ rules:
       name: invalid
       value: 1
 
-  - var/conditions: &system_mode
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_if
-      name: system_mode
-      value: 1
-
   # ---------- 機能・記号 ----------
-
-  # System Mode (common_state)
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: hyphen
-      repeat: false
-    to: &set_system_mode
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up: &unset_system_mode
-    - set_variable:
-        name: system_mode
-        value: 0
-    conditions: *common_state
-
-  # System Mode (not common_state)
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: q
-      repeat: false
-    to: *set_system_mode
-    to_after_key_up: *unset_system_mode
-
-  # 新下駄配列を中断
-  - type: basic
-    from:
-      key_code: o
-    to:
-    - set_variable:
-        name: invalid
-        value: 1
-    conditions: *system_mode
-
-  # 新下駄配列を再開（日本語入力オン）
-  - type: basic
-    from:
-      key_code: i
-    to:
-    - set_variable:
-        name: invalid
-        value: 0
-    - key_code: japanese_kana
-      repeat: false
-    conditions: *system_mode
 
   # Return
   - type: basic
