@@ -86,157 +86,149 @@
 
 # ----- 同手シフト時 -----
 
-# kana
+# あ
 - type: basic
   from:
     key_code: s
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
-    repeat: false
-  - key_code: to_key
+  - key_code: a
     repeat: false
   conditions: *same_hand_shifted
 
-# kana
+# が
 - type: basic
   from:
     key_code: d
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: g
     repeat: false
-  - key_code: to_key
+  - key_code: a
     repeat: false
   conditions: *same_hand_shifted
 
-# kana
+# こ
 - type: basic
   from:
     key_code: l
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: k
     repeat: false
-  - key_code: to_key
+  - key_code: o
     repeat: false
   conditions: *same_hand_shifted
 
-# kana
+# の
 - type: basic
   from:
     key_code: k
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: "n"
     repeat: false
-  - key_code: to_key
+  - key_code: o
     repeat: false
   conditions: *same_hand_shifted
 
 # ----- 逆手シフト時 -----
 
-# kana
+# お
 - type: basic
   from:
     key_code: s
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
-    repeat: false
-  - key_code: to_key
+  - key_code: o
     repeat: false
   conditions: *reverse_hand_shifted
 
-# kana
+# な
 - type: basic
   from:
     key_code: d
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: "n"
     repeat: false
-  - key_code: to_key
+  - key_code: a
     repeat: false
   conditions: *reverse_hand_shifted
 
-# kana
+# ま
 - type: basic
   from:
     key_code: l
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: m
     repeat: false
-  - key_code: to_key
+  - key_code: a
     repeat: false
   conditions: *reverse_hand_shifted
 
-# kana
+# す
 - type: basic
   from:
     key_code: k
     modifiers: *opt_shift_key
   to:
-  - key_code: to_key
+  - key_code: s
     repeat: false
-  - key_code: to_key
+  - key_code: u
     repeat: false
   conditions: *reverse_hand_shifted
 
 # ----- ベース面-----
 
-# kana（同手シフトキー）
+# し（同手シフトキー）
 - type: basic
   from:
     key_code: s
     modifiers: *opt_shift_key
   to_if_alone:
-  - key_code: to_key
+  - key_code: s
     repeat: false
-  - key_code: to_key
+  - key_code: i
     repeat: false
   to: *turn_on_same_hand_shift
   to_after_key_up: *turn_off_same_hand_shift
   conditions: *base_state
 
-# kana（同手シフトキー）
+# か（同手シフトキー）
 - type: basic
   from:
     key_code: l
     modifiers: *opt_shift_key
   to_if_alone:
-  - key_code: to_key
+  - key_code: k
     repeat: false
-  - key_code: to_key
+  - key_code: a
     repeat: false
   to: *turn_on_same_hand_shift
   to_after_key_up: *turn_off_same_hand_shift
   conditions: *base_state
 
-# kana（逆手シフトキー）
+# う（逆手シフトキー）
 - type: basic
   from:
     key_code: d
     modifiers: *opt_shift_key
   to_if_alone:
-  - key_code: to_key
-    repeat: false
-  - key_code: to_key
+  - key_code: u
     repeat: false
   to: *turn_on_reverse_hand_shift
   to_after_key_up: *turn_off_reverse_hand_shift
   conditions: *base_state
 
-# kana（逆手シフトキー）
+# い（逆手シフトキー）
 - type: basic
   from:
     key_code: k
     modifiers: *opt_shift_key
   to_if_alone:
-  - key_code: to_key
-    repeat: false
-  - key_code: to_key
+  - key_code: i
     repeat: false
   to: *turn_on_reverse_hand_shift
   to_after_key_up: *turn_off_reverse_hand_shift
