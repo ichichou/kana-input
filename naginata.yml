@@ -2327,6 +2327,28 @@ rules:
       repeat: false
     conditions: *shifted
 
+  # Shift + Left Arrow
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *opt_shift_key
+    to:
+    - key_code: left_arrow
+      modifiers: *shift_key
+      repeat: false
+    conditions: *shifted
+
+  # Shift + Right Arrow
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: right_arrow
+      modifiers: *shift_key
+      repeat: false
+    conditions: *shifted
+
   # ===== 清音（ベース） =====
   # 中指シフトの場合、「と・い」はコメントアウトする？
 
