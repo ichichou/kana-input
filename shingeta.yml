@@ -40,7 +40,7 @@ rules:
       input_sources:
       - language: ja
     - type: variable_unless
-      name: invalid
+      name: kana_layout_invalid
       value: 1
 
   # ===== 機能・記号 =====

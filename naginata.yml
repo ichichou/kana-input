@@ -50,7 +50,7 @@ rules:
       input_sources:
       - language: ja
     - type: variable_unless
-      name: invalid
+      name: kana_layout_invalid
       value: 1
 
   - var/conditions: &shifted
@@ -58,7 +58,7 @@ rules:
       input_sources:
       - language: ja
     - type: variable_unless
-      name: invalid
+      name: kana_layout_invalid
       value: 1
     - type: variable_if
       name: shifted
