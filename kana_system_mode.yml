@@ -5,27 +5,27 @@ rules:
 
   # ===== Aliases =====
 
-  - var/conditions: &kana_system_mode
+  - var/conditions: &system_mode
     - type: variable_if
-      name: kana_system_mode
+      name: system_mode
       value: 1
 
-  # ===== Kana System Mode =====
+  # ===== System Mode =====
 
-  # Kana System Mode Key
+  # System Mode Key
   - type: basic
     from:
       key_code: q
     to_if_alone:
-    - key_code: q
+    - key_code: null
       repeat: false
     to:
     - set_variable:
-        name: kana_system_mode
+        name: system_mode
         value: 1
     to_after_key_up:
     - set_variable:
-        name: kana_system_mode
+        name: system_mode
         value: 0
 
   # かな配列を中断
@@ -36,7 +36,7 @@ rules:
     - set_variable: &turn_off_kana_layout
         name: kana_layout_invalid
         value: 1
-    conditions: *kana_system_mode
+    conditions: *system_mode
 
   # かな配列を再開（日本語入力オン）
   - type: basic
@@ -48,4 +48,4 @@ rules:
         value: 0
     - key_code: japanese_kana
       repeat: false
-    conditions: *kana_system_mode
+    conditions: *system_mode
