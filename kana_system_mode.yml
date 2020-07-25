@@ -1,0 +1,51 @@
+title: Kana System Mode
+rules:
+- description: Kana System Mode
+  manipulators:
+
+  # ===== Aliases =====
+
+  - var/conditions: &kana_system_mode
+    - type: variable_if
+      name: kana_system_mode
+      value: 1
+
+  # ===== Kana System Mode =====
+
+  # Kana System Mode Key
+  - type: basic
+    from:
+      key_code: q
+    to_if_alone:
+    - key_code: q
+      repeat: false
+    to:
+    - set_variable:
+        name: kana_system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: kana_system_mode
+        value: 0
+
+  # かな配列を中断
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - set_variable: &turn_off_kana_layout
+        name: kana_layout_invalid
+        value: 1
+    conditions: *kana_system_mode
+
+  # かな配列を再開（日本語入力オン）
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - set_variable: &turn_on_kana_layout
+        name: kana_layout_invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
+    conditions: *kana_system_mode
