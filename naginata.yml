@@ -3,9 +3,19 @@ rules:
 - description: 薙刀式 v12
   manipulators:
 
-  # ---------- Variables ----------
+  # ===== Aliases =====
 
-  # from - key_code
+  # ----- Modifier Keys -----
+
+  - var/from/modifiers: &opt_shift_key
+      optional:
+      - shift
+
+  - var/to/modifiers: &shift_key
+    - shift
+
+  # ----- Kana Shift Keys -----
+
   - var/from/key_code: &dakuon_right j
 
   - var/from/key_code: &dakuon_left f
@@ -16,28 +26,20 @@ rules:
 
   - var/from/key_code: &kogaki q
 
-  # from - modifiers
-  - var/from/modifiers: &opt_shift_key
-      optional:
-      - shift
+  # ----- Variables -----
 
-  # to
-  - var/to/modifiers: &shift_key
-    - shift
-
-  # to_if_held_down
-  - var/to_if_held_down: &set_shifted
+  - var/to_if_held_down: &turn_on_shift
     - set_variable:
         name: shifted
         value: 1
 
-  # to_after_key_up
-  - var/to_after_key_up: &unset_shifted
+  - var/to_after_key_up: &turn_off_shift
     - set_variable:
         name: shifted
         value: 0
 
-  # conditions
+  # ----- Conditions -----
+
   - var/conditions: &ja_input
     - type: input_source_if
       input_sources:
@@ -51,7 +53,7 @@ rules:
       name: invalid
       value: 1
 
-  - var/conditions: &shifted_state
+  - var/conditions: &shifted
     - type: input_source_if
       input_sources:
       - language: ja
@@ -62,11 +64,12 @@ rules:
       name: shifted
       value: 1
 
-  # parameters
+  # ----- Parameters -----
+
   - var/parameters: &held_down_time
       basic.to_if_held_down_threshold_milliseconds: 50
 
-  # ---------- 機能・記号 ----------
+  # ===== 機能・記号 =====
 
   # Return
   - type: basic
@@ -206,7 +209,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- センターシフト ----------
+  # ===== センターシフトキー =====
 
   # # Space
   # - type: basic
@@ -216,8 +219,8 @@ rules:
   #   to_if_alone:
   #   - key_code: spacebar
   #     repeat: false
-  #   to_if_held_down: *set_shifted
-  #   to_after_key_up: *unset_shifted
+  #   to_if_held_down: *turn_on_shift
+  #   to_after_key_up: *turn_off_shift
   #   conditions: *base_state
   #   parameters: *held_down_time
 
@@ -229,14 +232,16 @@ rules:
   #   to_if_alone:
   #   - key_code: return_or_enter
   #     repeat: false
-  #   to_if_held_down: *set_shifted
-  #   to_after_key_up: *unset_shifted
+  #   to_if_held_down: *turn_on_shift
+  #   to_after_key_up: *turn_off_shift
   #   conditions: *base_state
   #   parameters: *held_down_time
 
-  # ---------- 中指シフト ----------
+  # ===== 中指シフトキー =====
 
-  # に（シフト）
+  # ----- シフト時 -----
+
+  # に
   - type: basic
     from:
       key_code: d
@@ -246,9 +251,9 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
-  # も（シフト）
+  # も
   - type: basic
     from:
       key_code: k
@@ -258,9 +263,11 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
-  # と（ベース）
+  # ----- ベース面 -----
+
+  # と
   - type: basic
     from:
       key_code: d
@@ -270,12 +277,12 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    to_if_held_down: *set_shifted
-    to_after_key_up: *unset_shifted
+    to_if_held_down: *turn_on_shift
+    to_after_key_up: *turn_off_shift
     conditions: *base_state
     parameters: *held_down_time
 
-  # い（ベース）
+  # い
   - type: basic
     from:
       key_code: k
@@ -283,12 +290,12 @@ rules:
     to_if_alone:
     - key_code: i
       repeat: false
-    to_if_held_down: *set_shifted
-    to_after_key_up: *unset_shifted
+    to_if_held_down: *turn_on_shift
+    to_after_key_up: *turn_off_shift
     conditions: *base_state
     parameters: *held_down_time
 
-  # ---------- 外来音（濁音） ----------
+  # ===== 外来音（濁音） =====
 
   # でぃ
   - type: basic
@@ -541,7 +548,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 外来音（清音） ----------
+  # ===== 外来音（清音） =====
 
   # てぃ
   - type: basic
@@ -909,7 +916,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 拗音（半濁音） ----------
+  # ===== 拗音（半濁音） =====
 
   # ぴゃ
   - type: basic
@@ -962,7 +969,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 拗音（濁音） ----------
+  # ===== 拗音（濁音） =====
 
   # じゃ
   - type: basic
@@ -1162,7 +1169,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 拗音（清音） ----------
+  # ===== 拗音（清音） =====
 
   # しゃ
   - type: basic
@@ -1500,7 +1507,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 小書き ----------
+  # ===== 小書き =====
 
   # ぁ
   - type: basic
@@ -1666,9 +1673,9 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
-  # ---------- 半濁音 ----------
+  # ===== 半濁音 =====
 
   # ぱ
   - type: basic
@@ -1740,7 +1747,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 濁音 ----------
+  # ===== 濁音 =====
 
   # が
   - type: basic
@@ -2036,7 +2043,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ---------- 清音（シフト） ----------
+  # ===== 清音（シフト） =====
 
   # え
   - type: basic
@@ -2046,7 +2053,7 @@ rules:
     to:
     - key_code: e
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # お
   - type: basic
@@ -2056,7 +2063,7 @@ rules:
     to:
     - key_code: o
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # さ
   - type: basic
@@ -2068,7 +2075,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # せ
   - type: basic
@@ -2080,7 +2087,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # ち
   - type: basic
@@ -2092,7 +2099,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # つ
   - type: basic
@@ -2104,7 +2111,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # # に
   # - type: basic
@@ -2116,7 +2123,7 @@ rules:
   #     repeat: false
   #   - key_code: i
   #     repeat: false
-  #   conditions: *shifted_state
+  #   conditions: *shifted
 
   # ぬ
   - type: basic
@@ -2128,7 +2135,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # ね
   - type: basic
@@ -2140,7 +2147,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # の
   - type: basic
@@ -2152,7 +2159,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # ふ
   - type: basic
@@ -2164,7 +2171,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # ま
   - type: basic
@@ -2176,7 +2183,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # み
   - type: basic
@@ -2188,7 +2195,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # む
   - type: basic
@@ -2200,7 +2207,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # め
   - type: basic
@@ -2212,7 +2219,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # # も
   # - type: basic
@@ -2224,7 +2231,7 @@ rules:
   #     repeat: false
   #   - key_code: o
   #     repeat: false
-  #   conditions: *shifted_state
+  #   conditions: *shifted
 
   # や
   - type: basic
@@ -2236,7 +2243,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # ゆ
   - type: basic
@@ -2248,7 +2255,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # よ
   - type: basic
@@ -2260,7 +2267,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # り
   - type: basic
@@ -2272,7 +2279,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # わ
   - type: basic
@@ -2284,7 +2291,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # を
   - type: basic
@@ -2296,7 +2303,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # 読点
   - type: basic
@@ -2306,7 +2313,7 @@ rules:
     to:
     - key_code: comma
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
   # 句点 & Return
   - type: basic
@@ -2318,9 +2325,9 @@ rules:
       repeat: false
     - key_code: return_or_enter
       repeat: false
-    conditions: *shifted_state
+    conditions: *shifted
 
-  # ---------- 清音（ベース） ----------
+  # ===== 清音（ベース） =====
   # 中指シフトの場合、「と・い」はコメントアウトする？
 
   # あ

@@ -3,9 +3,19 @@ rules:
 - description: 新下駄配列
   manipulators:
 
-  # ---------- Variables ----------
+  # ===== Aliases =====
 
-  # from - key_code
+  # ----- Modifier Keys -----
+
+  - var/from/modifiers: &opt_shift_key
+      optional:
+      - shift
+
+  - var/to/modifiers: &shift_key
+    - shift
+
+  # ----- Kana Shift Keys -----
+
   - var/from/key_code: &middle_shift_right k
 
   - var/from/key_code: &middle_shift_left d
@@ -18,16 +28,8 @@ rules:
 
   - var/from/key_code: &ring_upper_shift o
 
-  # from - modifiers
-  - var/from/modifiers: &opt_shift_key
-      optional:
-      - shift
+  # ----- Conditions -----
 
-  # to - modifiers
-  - var/to/modifiers: &shift_key
-    - shift
-
-  # conditions
   - var/conditions: &ja_input
     - type: input_source_if
       input_sources:
@@ -41,7 +43,7 @@ rules:
       name: invalid
       value: 1
 
-  # ---------- 機能・記号 ----------
+  # ===== 機能・記号 =====
 
   # Return
   - type: basic
@@ -181,7 +183,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 中指シフト（右） ----------
+  # ===== 中指シフト（右） =====
 
   # ふ
   - type: basic
@@ -463,7 +465,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 中指シフト（左） ----------
+  # ===== 中指シフト（左） =====
 
   # あ
   - type: basic
@@ -707,7 +709,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 薬指シフト（右） ----------
+  # ===== 薬指シフト（右） =====
 
   # お
   - type: basic
@@ -985,7 +987,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 薬指シフト（左） ----------
+  # ===== 薬指シフト（左） =====
 
   # そ
   - type: basic
@@ -1226,7 +1228,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 中指上段シフト ----------
+  # ===== 中指上段シフト =====
 
   # きゃ
   - type: basic
@@ -1484,7 +1486,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- 薬指上段シフト ----------
+  # ===== 薬指上段シフト =====
 
   # にゃ
   - type: basic
@@ -1742,7 +1744,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # ---------- ベース ----------
+  # ===== ベース =====
 
   # い
   - type: basic
@@ -2098,7 +2100,7 @@ rules:
       repeat: false
     conditions: *common_state
 
-  # 長音府
+  # 長音符
   - type: basic
     from:
       key_code: q
