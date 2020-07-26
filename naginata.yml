@@ -1,93 +1,108 @@
 title: 薙刀式 v12
+
+# ===== Aliases =====
+
+aliases:
+
+# ----- Modifier Keys -----
+
+- from/modifiers: &opt_shift_key
+    optional:
+    - shift
+
+- to/modifiers: &shift_key
+  - shift
+
+# ----- Kana Shift Keys -----
+
+- from/key_code: &dakuon_right j
+- from/key_code: &dakuon_left f
+- from/key_code: &handakuon_right m
+- from/key_code: &handakuon_left v
+- from/key_code: &kogaki q
+
+# ----- Variables -----
+
+- to_if_held_down: &turn_on_shift
+  - set_variable:
+      name: shifted
+      value: 1
+
+- to_after_key_up: &turn_off_shift
+  - set_variable:
+      name: shifted
+      value: 0
+
+# ----- Conditions -----
+
+- conditions: &ja_input
+  - type: input_source_if
+    input_sources:
+    - language: ja
+
+- conditions: &system_mode
+  - type: variable_if
+    name: system_mode
+    value: 1
+
+- conditions: &base_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+
+- conditions: &shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+  - type: variable_if
+    name: shifted
+    value: 1
+
+# ----- Parameters -----
+
+- parameters: &held_down_time
+    basic.to_if_held_down_threshold_milliseconds: 50
+
+# ===== Rules =====
+
 rules:
 - description: 薙刀式 v12
   manipulators:
 
-  # ===== Aliases =====
+# ===== System Mode =====
 
-  # ----- Modifier Keys -----
-
-  - var/from/modifiers: &opt_shift_key
-      optional:
-      - shift
-
-  - var/to/modifiers: &shift_key
-    - shift
-
-  # ----- Kana Shift Keys -----
-
-  - var/from/key_code: &dakuon_right j
-
-  - var/from/key_code: &dakuon_left f
-
-  - var/from/key_code: &handakuon_right m
-
-  - var/from/key_code: &handakuon_left v
-
-  - var/from/key_code: &kogaki q
-
-  # ----- Variables -----
-
-  - var/to_if_held_down: &turn_on_shift
+  # System Mode Key (Japanese Input)
+  - type: basic
+    from:
+      key_code: q
+    to:
     - set_variable:
-        name: shifted
+        name: system_mode
         value: 1
-
-  - var/to_after_key_up: &turn_off_shift
+    to_after_key_up:
     - set_variable:
-        name: shifted
+        name: system_mode
         value: 0
+    conditions: *ja_input
 
-  # ----- Conditions -----
-
-  - var/conditions: &ja_input
-    - type: input_source_if
-      input_sources:
-      - language: ja
-
-  - var/conditions: &system_mode
-    - type: variable_if
-      name: system_mode
-      value: 1
-
-  - var/conditions: &base_state
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-
-  - var/conditions: &shifted
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-    - type: variable_if
-      name: shifted
-      value: 1
-
-  # ----- Parameters -----
-
-  - var/parameters: &held_down_time
-      basic.to_if_held_down_threshold_milliseconds: 50
-
-  # ===== System Mode =====
-
-  # System Mode Key
+  # System Mode Key (English Input)
   - type: basic
     from:
       key_code: q
     to_if_alone:
-    - key_code: ""
+    - key_code: q
       repeat: false
     to:
     - set_variable:
@@ -120,7 +135,7 @@ rules:
       repeat: false
     conditions: *system_mode
 
-  # ===== 機能・記号 =====
+# ===== 機能・記号 =====
 
   # Return
   - type: basic
@@ -168,7 +183,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== センターシフトキー =====
+# ===== センターシフトキー =====
 
   # # Space
   # - type: basic
@@ -196,9 +211,9 @@ rules:
   #   conditions: *base_state
   #   parameters: *held_down_time
 
-  # ===== 中指シフトキー =====
+# ===== 中指シフトキー =====
 
-  # ----- シフト時 -----
+# ----- シフト時 -----
 
   # に
   - type: basic
@@ -224,7 +239,7 @@ rules:
       repeat: false
     conditions: *shifted
 
-  # ----- ベース面 -----
+# ----- ベース面 -----
 
   # と
   - type: basic
@@ -254,7 +269,7 @@ rules:
     conditions: *base_state
     parameters: *held_down_time
 
-  # ===== 外来音（濁音） =====
+# ===== 外来音（濁音） =====
 
   # でぃ
   - type: basic
@@ -507,7 +522,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 外来音（清音） =====
+# ===== 外来音（清音） =====
 
   # てぃ
   - type: basic
@@ -676,7 +691,7 @@ rules:
     from:
       simultaneous:
       - key_code: *handakuon_left
-      - key_code: peirod
+      - key_code: period
       - key_code: o
       modifiers: *opt_shift_key
     to:
@@ -875,7 +890,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 拗音（半濁音） =====
+# ===== 拗音（半濁音） =====
 
   # ぴゃ
   - type: basic
@@ -928,7 +943,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 拗音（濁音） =====
+# ===== 拗音（濁音） =====
 
   # じゃ
   - type: basic
@@ -1128,7 +1143,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 拗音（清音） =====
+# ===== 拗音（清音） =====
 
   # しゃ
   - type: basic
@@ -1466,7 +1481,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 小書き =====
+# ===== 小書き =====
 
   # ぁ
   - type: basic
@@ -1634,7 +1649,7 @@ rules:
       repeat: false
     conditions: *shifted
 
-  # ===== 半濁音 =====
+# ===== 半濁音 =====
 
   # ぱ
   - type: basic
@@ -1706,7 +1721,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 濁音 =====
+# ===== 濁音 =====
 
   # が
   - type: basic
@@ -2002,7 +2017,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 清音（シフト） =====
+# ===== 清音（シフト） =====
 
   # え
   - type: basic
@@ -2308,8 +2323,8 @@ rules:
       repeat: false
     conditions: *shifted
 
-  # ===== 清音（ベース） =====
-  # 中指シフトの場合、「と・い」はコメントアウトする？
+# ===== 清音（ベース） =====
+# 中指シフトの場合、「と・い」はコメントアウトする？
 
   # あ
   - type: basic
