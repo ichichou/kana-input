@@ -34,7 +34,7 @@ aliases:
     name: system_mode
     value: 1
 
-- conditions: &common_state
+- conditions: &base_state
   - type: input_source_if
     input_sources:
     - language: ja
@@ -135,7 +135,7 @@ rules:
       repeat: false
     - key_code: left_arrow
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 丸括弧
   - type: basic
@@ -154,7 +154,7 @@ rules:
       repeat: false
     - key_code: left_arrow
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 中黒（RF）
   - type: basic
@@ -165,7 +165,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 中黒（RG）
   - type: basic
@@ -176,7 +176,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 感嘆符（FV）
   - type: basic
@@ -188,7 +188,7 @@ rules:
     - key_code: "1"
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 感嘆符（FB）
   - type: basic
@@ -200,7 +200,7 @@ rules:
     - key_code: "1"
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # スラッシュ（UJ）
   - type: basic
@@ -211,7 +211,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # スラッシュ（UH）
   - type: basic
@@ -222,7 +222,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 疑問符（JM）
   - type: basic
@@ -234,7 +234,7 @@ rules:
     - key_code: slash
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 疑問符（JN）
   - type: basic
@@ -246,7 +246,7 @@ rules:
     - key_code: slash
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 中指シフト（右） =====
 
@@ -262,7 +262,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ほ
   - type: basic
@@ -276,7 +276,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # む
   - type: basic
@@ -290,7 +290,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # も
   - type: basic
@@ -304,7 +304,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ゆ
   - type: basic
@@ -318,7 +318,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # れ
   - type: basic
@@ -332,7 +332,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ご
   - type: basic
@@ -346,7 +346,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # じ
   - type: basic
@@ -360,7 +360,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぞ
   - type: basic
@@ -374,7 +374,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # づ
   - type: basic
@@ -388,7 +388,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぼ
   - type: basic
@@ -402,7 +402,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ふぁ
   - type: basic
@@ -416,7 +416,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ふぃ
   - type: basic
@@ -430,7 +430,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ふぇ
   - type: basic
@@ -444,7 +444,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ふぉ
   - type: basic
@@ -458,7 +458,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぁ
   - type: basic
@@ -472,7 +472,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぃ
   - type: basic
@@ -486,7 +486,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぅ
   - type: basic
@@ -500,7 +500,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぇ
   - type: basic
@@ -514,7 +514,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぉ
   - type: basic
@@ -528,7 +528,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 中指シフト（左） =====
 
@@ -542,7 +542,7 @@ rules:
     to:
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # え
   - type: basic
@@ -554,7 +554,7 @@ rules:
     to:
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # せ
   - type: basic
@@ -568,7 +568,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ね
   - type: basic
@@ -582,7 +582,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # へ
   - type: basic
@@ -596,7 +596,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # み
   - type: basic
@@ -610,7 +610,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # よ
   - type: basic
@@ -624,7 +624,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # べ
   - type: basic
@@ -638,7 +638,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぱ
   - type: basic
@@ -652,7 +652,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぷ
   - type: basic
@@ -666,7 +666,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ヴ
   - type: basic
@@ -680,7 +680,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # うぃ
   - type: basic
@@ -694,7 +694,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # うぇ
   - type: basic
@@ -708,7 +708,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # うぉ
   - type: basic
@@ -724,7 +724,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # カンマ
   - type: basic
@@ -736,7 +736,7 @@ rules:
     to:
     - key_code: comma
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # セミコロン
   - type: basic
@@ -748,7 +748,7 @@ rules:
     to:
     - key_code: semicolon
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 開き鉤括弧
   - type: basic
@@ -760,7 +760,7 @@ rules:
     to:
     - key_code: open_bracket
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 閉じ鉤括弧
   - type: basic
@@ -772,7 +772,7 @@ rules:
     to:
     - key_code: close_bracket
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 薬指シフト（右） =====
 
@@ -786,7 +786,7 @@ rules:
     to:
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # け
   - type: basic
@@ -800,7 +800,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # さ
   - type: basic
@@ -814,7 +814,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぬ
   - type: basic
@@ -828,7 +828,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # め
   - type: basic
@@ -842,7 +842,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # り
   - type: basic
@@ -856,7 +856,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ろ
   - type: basic
@@ -870,7 +870,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # を
   - type: basic
@@ -884,7 +884,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぎ
   - type: basic
@@ -898,7 +898,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ざ
   - type: basic
@@ -912,7 +912,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ず
   - type: basic
@@ -926,7 +926,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぜ
   - type: basic
@@ -940,7 +940,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぢ
   - type: basic
@@ -954,7 +954,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # てぃ
   - type: basic
@@ -970,7 +970,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # でぃ
   - type: basic
@@ -986,7 +986,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # みゃ
   - type: basic
@@ -1002,7 +1002,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # みゅ
   - type: basic
@@ -1018,7 +1018,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # みょ
   - type: basic
@@ -1034,7 +1034,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ゃ
   - type: basic
@@ -1050,7 +1050,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 薬指シフト（左） =====
 
@@ -1066,7 +1066,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # や
   - type: basic
@@ -1080,7 +1080,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ら
   - type: basic
@@ -1094,7 +1094,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # わ
   - type: basic
@@ -1108,7 +1108,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # だ
   - type: basic
@@ -1122,7 +1122,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ど
   - type: basic
@@ -1136,7 +1136,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # び
   - type: basic
@@ -1150,7 +1150,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぴ
   - type: basic
@@ -1164,7 +1164,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぺ
   - type: basic
@@ -1178,7 +1178,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぽ
   - type: basic
@@ -1192,7 +1192,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # しぇ
   - type: basic
@@ -1208,7 +1208,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ちぇ
   - type: basic
@@ -1224,7 +1224,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # じぇ
   - type: basic
@@ -1240,7 +1240,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ピリオド
   - type: basic
@@ -1252,7 +1252,7 @@ rules:
     to:
     - key_code: period
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # コロン
   - type: basic
@@ -1265,7 +1265,7 @@ rules:
     - key_code: semicolon
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 開き丸括弧
   - type: basic
@@ -1278,7 +1278,7 @@ rules:
     - key_code: "9"
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 閉じ丸括弧
   - type: basic
@@ -1291,7 +1291,7 @@ rules:
     - key_code: "0"
       modifiers: *shift_key
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 中指上段シフト =====
 
@@ -1309,7 +1309,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # きゅ
   - type: basic
@@ -1325,7 +1325,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # きょ
   - type: basic
@@ -1341,7 +1341,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # しゃ
   - type: basic
@@ -1357,7 +1357,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # しゅ
   - type: basic
@@ -1373,7 +1373,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # しょ
   - type: basic
@@ -1389,7 +1389,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ちゃ
   - type: basic
@@ -1405,7 +1405,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ちゅ
   - type: basic
@@ -1421,7 +1421,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ちょ
   - type: basic
@@ -1437,7 +1437,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ひゃ
   - type: basic
@@ -1453,7 +1453,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ひゅ
   - type: basic
@@ -1469,7 +1469,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ひょ
   - type: basic
@@ -1485,7 +1485,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # びゃ
   - type: basic
@@ -1501,7 +1501,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # びゅ
   - type: basic
@@ -1517,7 +1517,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # びょ
   - type: basic
@@ -1533,7 +1533,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ゅ
   - type: basic
@@ -1549,7 +1549,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== 薬指上段シフト =====
 
@@ -1567,7 +1567,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # にゅ
   - type: basic
@@ -1583,7 +1583,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # にょ
   - type: basic
@@ -1599,7 +1599,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # りゃ
   - type: basic
@@ -1615,7 +1615,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # りゅ
   - type: basic
@@ -1631,7 +1631,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # りょ
   - type: basic
@@ -1647,7 +1647,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぎゃ
   - type: basic
@@ -1663,7 +1663,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぎゅ
   - type: basic
@@ -1679,7 +1679,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぎょ
   - type: basic
@@ -1695,7 +1695,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # じゃ
   - type: basic
@@ -1711,7 +1711,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # じゅ
   - type: basic
@@ -1727,7 +1727,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # じょ
   - type: basic
@@ -1743,7 +1743,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぴゃ
   - type: basic
@@ -1759,7 +1759,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぴゅ
   - type: basic
@@ -1775,7 +1775,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぴょ
   - type: basic
@@ -1791,7 +1791,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ょ
   - type: basic
@@ -1807,7 +1807,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
 # ===== ベース =====
 
@@ -1819,7 +1819,7 @@ rules:
     to:
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # う
   - type: basic
@@ -1829,7 +1829,7 @@ rules:
     to:
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # か
   - type: basic
@@ -1841,7 +1841,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # き
   - type: basic
@@ -1853,7 +1853,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # く
   - type: basic
@@ -1865,7 +1865,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # こ
   - type: basic
@@ -1877,7 +1877,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # し
   - type: basic
@@ -1889,7 +1889,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # す
   - type: basic
@@ -1901,7 +1901,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # た
   - type: basic
@@ -1913,7 +1913,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ち
   - type: basic
@@ -1925,7 +1925,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # つ
   - type: basic
@@ -1937,7 +1937,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # て
   - type: basic
@@ -1949,7 +1949,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # と
   - type: basic
@@ -1961,7 +1961,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # な
   - type: basic
@@ -1973,7 +1973,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # に
   - type: basic
@@ -1985,7 +1985,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # の
   - type: basic
@@ -1997,7 +1997,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # は
   - type: basic
@@ -2009,7 +2009,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ひ
   - type: basic
@@ -2021,7 +2021,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ま
   - type: basic
@@ -2033,7 +2033,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # る
   - type: basic
@@ -2045,7 +2045,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ん
   - type: basic
@@ -2057,7 +2057,7 @@ rules:
       repeat: false
     - key_code: "n"
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # が
   - type: basic
@@ -2069,7 +2069,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぐ
   - type: basic
@@ -2081,7 +2081,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # げ
   - type: basic
@@ -2093,7 +2093,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # で
   - type: basic
@@ -2105,7 +2105,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ば
   - type: basic
@@ -2117,7 +2117,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # ぶ
   - type: basic
@@ -2129,7 +2129,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # っ
   - type: basic
@@ -2143,7 +2143,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 読点
   - type: basic
@@ -2153,7 +2153,7 @@ rules:
     to:
     - key_code: comma
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 句点
   - type: basic
@@ -2163,7 +2163,7 @@ rules:
     to:
     - key_code: period
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
 
   # 長音符
   - type: basic
@@ -2173,4 +2173,4 @@ rules:
     to:
     - key_code: hyphen
       repeat: false
-    conditions: *common_state
+    conditions: *base_state
