@@ -23,14 +23,40 @@ aliases:
 
 # ----- Variables -----
 
-- to_if_held_down: &turn_on_shift
+- to_if_held_down: &turn_on_left_shift
   - set_variable:
-      name: shifted
+      name: left_shifted
       value: 1
 
-- to_after_key_up: &turn_off_shift
+- to_if_held_down: &turn_on_right_shift
   - set_variable:
-      name: shifted
+      name: right_shifted
+      value: 1
+
+- to_if_held_down: &turn_on_right_and_left_shift
+  - set_variable:
+      name: right_shifted
+      value: 1
+  - set_variable:
+      name: left_shifted
+      value: 1
+
+- to_after_key_up: &turn_off_left_shift
+  - set_variable:
+      name: left_shifted
+      value: 0
+
+- to_after_key_up: &turn_off_right_shift
+  - set_variable:
+      name: right_shifted
+      value: 0
+
+- to_after_key_up: &turn_off_right_and_left_shift
+  - set_variable:
+      name: right_shifted
+      value: 0
+  - set_variable:
+      name: left_shifted
       value: 0
 
 # ----- Conditions -----
@@ -56,7 +82,7 @@ aliases:
     name: system_mode
     value: 1
 
-- conditions: &shifted
+- conditions: &left_shifted
   - type: input_source_if
     input_sources:
     - language: ja
@@ -67,7 +93,21 @@ aliases:
     name: system_mode
     value: 1
   - type: variable_if
-    name: shifted
+    name: left_shifted
+    value: 1
+
+- conditions: &right_shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+  - type: variable_if
+    name: right_shifted
     value: 1
 
 # ----- Parameters -----
@@ -179,8 +219,8 @@ rules:
   #   to_if_alone:
   #   - key_code: spacebar
   #     repeat: false
-  #   to_if_held_down: *turn_on_shift
-  #   to_after_key_up: *turn_off_shift
+  #   to_if_held_down: *turn_on_right_and_left_shift
+  #   to_after_key_up: *turn_off_right_and_left_shift
   #   conditions: *base_state
   #   parameters: *held_down_time
 
@@ -192,8 +232,8 @@ rules:
   #   to_if_alone:
   #   - key_code: return_or_enter
   #     repeat: false
-  #   to_if_held_down: *turn_on_shift
-  #   to_after_key_up: *turn_off_shift
+  #   to_if_held_down: *turn_on_right_and_left_shift
+  #   to_after_key_up: *turn_off_right_and_left_shift
   #   conditions: *base_state
   #   parameters: *held_down_time
 
@@ -211,7 +251,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # も
   - type: basic
@@ -223,11 +263,11 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
 # ----- ベース面 -----
 
-  # と
+  # と（左シフト）
   - type: basic
     from:
       key_code: d
@@ -237,12 +277,12 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    to_if_held_down: *turn_on_shift
-    to_after_key_up: *turn_off_shift
+    to_if_held_down: *turn_on_left_shift
+    to_after_key_up: *turn_off_left_shift
     conditions: *base_state
     parameters: *held_down_time
 
-  # い
+  # い（右シフト）
   - type: basic
     from:
       key_code: k
@@ -250,8 +290,8 @@ rules:
     to_if_alone:
     - key_code: i
       repeat: false
-    to_if_held_down: *turn_on_shift
-    to_after_key_up: *turn_off_shift
+    to_if_held_down: *turn_on_right_shift
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
     parameters: *held_down_time
 
@@ -1633,7 +1673,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
 # ===== 半濁音 =====
 
@@ -2013,7 +2053,7 @@ rules:
     to:
     - key_code: e
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # お
   - type: basic
@@ -2023,7 +2063,7 @@ rules:
     to:
     - key_code: o
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # さ
   - type: basic
@@ -2035,7 +2075,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # せ
   - type: basic
@@ -2047,7 +2087,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # ち
   - type: basic
@@ -2059,7 +2099,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # つ
   - type: basic
@@ -2071,7 +2111,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # # に
   # - type: basic
@@ -2083,7 +2123,7 @@ rules:
   #     repeat: false
   #   - key_code: i
   #     repeat: false
-  #   conditions: *shifted
+  #   conditions: *right_shifted
 
   # ぬ
   - type: basic
@@ -2095,7 +2135,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # ね
   - type: basic
@@ -2107,7 +2147,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # の
   - type: basic
@@ -2119,7 +2159,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # ふ
   - type: basic
@@ -2131,7 +2171,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # ま
   - type: basic
@@ -2143,7 +2183,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # み
   - type: basic
@@ -2155,7 +2195,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # む
   - type: basic
@@ -2167,7 +2207,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # め
   - type: basic
@@ -2179,7 +2219,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # # も
   # - type: basic
@@ -2191,7 +2231,7 @@ rules:
   #     repeat: false
   #   - key_code: o
   #     repeat: false
-  #   conditions: *shifted
+  #   conditions: *left_shifted
 
   # や
   - type: basic
@@ -2203,7 +2243,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # ゆ
   - type: basic
@@ -2215,7 +2255,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # よ
   - type: basic
@@ -2227,7 +2267,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # り
   - type: basic
@@ -2239,7 +2279,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # わ
   - type: basic
@@ -2251,7 +2291,7 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # を
   - type: basic
@@ -2263,7 +2303,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # 読点
   - type: basic
@@ -2273,7 +2313,7 @@ rules:
     to:
     - key_code: comma
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
 
   # 句点 & Return
   - type: basic
@@ -2285,7 +2325,7 @@ rules:
       repeat: false
     - key_code: return_or_enter
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
 
   # Shift + Left Arrow
   - type: basic
@@ -2296,7 +2336,17 @@ rules:
     - key_code: left_arrow
       modifiers: *shift_key
       repeat: false
-    conditions: *shifted
+    conditions: *right_shifted
+
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *opt_shift_key
+    to:
+    - key_code: left_arrow
+      modifiers: *shift_key
+      repeat: false
+    conditions: *left_shifted
 
   # Shift + Right Arrow
   - type: basic
@@ -2307,7 +2357,17 @@ rules:
     - key_code: right_arrow
       modifiers: *shift_key
       repeat: false
-    conditions: *shifted
+    conditions: *left_shifted
+
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: right_arrow
+      modifiers: *shift_key
+      repeat: false
+    conditions: *right_shifted
 
 # ===== 清音（ベース） =====
 # 中指シフトの場合、「と・い」はコメントアウトする？
