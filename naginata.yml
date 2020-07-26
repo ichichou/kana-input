@@ -2113,17 +2113,17 @@ rules:
       repeat: false
     conditions: *left_shifted
 
-  # # に
-  # - type: basic
-  #   from:
-  #     key_code: d
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: "n"
-  #     repeat: false
-  #   - key_code: i
-  #     repeat: false
-  #   conditions: *right_shifted
+  # に
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *right_shifted
 
   # ぬ
   - type: basic
@@ -2221,17 +2221,17 @@ rules:
       repeat: false
     conditions: *right_shifted
 
-  # # も
-  # - type: basic
-  #   from:
-  #     key_code: k
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: m
-  #     repeat: false
-  #   - key_code: o
-  #     repeat: false
-  #   conditions: *left_shifted
+  # も
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *left_shifted
 
   # や
   - type: basic
@@ -2327,7 +2327,7 @@ rules:
       repeat: false
     conditions: *left_shifted
 
-  # Shift + Left Arrow
+  # Shift + Left Arrow (right shifted)
   - type: basic
     from:
       key_code: t
@@ -2338,6 +2338,7 @@ rules:
       repeat: false
     conditions: *right_shifted
 
+  # Shift + Left Arrow (left shifted)
   - type: basic
     from:
       key_code: t
@@ -2348,7 +2349,7 @@ rules:
       repeat: false
     conditions: *left_shifted
 
-  # Shift + Right Arrow
+  # Shift + Right Arrow (left shifted)
   - type: basic
     from:
       key_code: "y"
@@ -2359,6 +2360,7 @@ rules:
       repeat: false
     conditions: *left_shifted
 
+  # Shift + Right Arrow (right shifted)
   - type: basic
     from:
       key_code: "y"
@@ -2370,7 +2372,6 @@ rules:
     conditions: *right_shifted
 
 # ===== 清音（ベース） =====
-# 中指シフトの場合、「と・い」はコメントアウトする？
 
   # あ
   - type: basic
@@ -2382,15 +2383,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # い
-  # - type: basic
-  #   from:
-  #     key_code: k
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: i
-  #     repeat: false
-  #   conditions: *base_state
+  # い
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - key_code: i
+      repeat: false
+    conditions: *base_state
 
   # う
   - type: basic
@@ -2536,17 +2537,17 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # と
-  # - type: basic
-  #   from:
-  #     key_code: d
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: t
-  #     repeat: false
-  #   - key_code: o
-  #     repeat: false
-  #   conditions: *base_state
+  # と
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - key_code: t
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
 
   # な
   - type: basic
