@@ -103,6 +103,42 @@ rules:
     - key_code: return_or_enter
       repeat: false
 
+  # 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: g
+    to:
+    - key_code: open_bracket
+      repeat: false
+    - key_code: close_bracket
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *common_state
+
+  # 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: h
+    to:
+    - key_code: "9"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: "0"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *common_state
+
   # 中黒（RF）
   - type: basic
     from:
@@ -192,42 +228,6 @@ rules:
     to:
     - key_code: slash
       modifiers: *shift_key
-      repeat: false
-    conditions: *common_state
-
-  # 鉤括弧
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: f
-      - key_code: g
-    to:
-    - key_code: open_bracket
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *common_state
-
-  # 丸括弧
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: j
-      - key_code: h
-    to:
-    - key_code: "9"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: "0"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
       repeat: false
     conditions: *common_state
 
