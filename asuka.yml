@@ -94,21 +94,7 @@ rules:
 
 # ===== System Mode =====
 
-  # System Mode Key (Japanese Input)
-  - type: basic
-    from:
-      key_code: q
-    to:
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up:
-    - set_variable:
-        name: system_mode
-        value: 0
-    conditions: *ja_input
-
-  # System Mode Key (English Input)
+  # System Mode Key
   - type: basic
     from:
       key_code: q
