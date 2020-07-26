@@ -237,64 +237,6 @@ rules:
   #   conditions: *base_state
   #   parameters: *held_down_time
 
-# ===== 中指シフトキー =====
-
-# ----- シフト時 -----
-
-  # に
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - key_code: "n"
-      repeat: false
-    - key_code: i
-      repeat: false
-    conditions: *right_shifted
-
-  # も
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to:
-    - key_code: m
-      repeat: false
-    - key_code: o
-      repeat: false
-    conditions: *left_shifted
-
-# ----- ベース面 -----
-
-  # と（左シフト）
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to_if_alone:
-    - key_code: t
-      repeat: false
-    - key_code: o
-      repeat: false
-    to_if_held_down: *turn_on_left_shift
-    to_after_key_up: *turn_off_left_shift
-    conditions: *base_state
-    parameters: *held_down_time
-
-  # い（右シフト）
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to_if_alone:
-    - key_code: i
-      repeat: false
-    to_if_held_down: *turn_on_right_shift
-    to_after_key_up: *turn_off_right_shift
-    conditions: *base_state
-    parameters: *held_down_time
-
 # ===== 外来音（濁音） =====
 
   # でぃ
@@ -2042,6 +1984,64 @@ rules:
     - key_code: u
       repeat: false
     conditions: *base_state
+
+# ===== 中指シフトキー =====
+
+# ----- シフト時 -----
+
+  # に
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *right_shifted
+
+  # も
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - key_code: m
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *left_shifted
+
+# ----- ベース面 -----
+
+  # と（左シフト）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: t
+      repeat: false
+    - key_code: o
+      repeat: false
+    to_if_held_down: *turn_on_left_shift
+    to_after_key_up: *turn_off_left_shift
+    conditions: *base_state
+    parameters: *held_down_time
+
+  # い（右シフト）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: i
+      repeat: false
+    to_if_held_down: *turn_on_right_shift
+    to_after_key_up: *turn_off_right_shift
+    conditions: *base_state
+    parameters: *held_down_time
 
 # ===== 清音（シフト） =====
 
