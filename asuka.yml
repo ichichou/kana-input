@@ -94,7 +94,7 @@ rules:
     from:
       key_code: q
     to_if_alone:
-    - key_code: null
+    - key_code: ""
       repeat: false
     to:
     - set_variable:
