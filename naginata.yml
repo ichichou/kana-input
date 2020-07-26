@@ -164,32 +164,6 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== センターシフトキー =====
-
-  # # Space
-  # - type: basic
-  #   from:
-  #     key_code: spacebar
-  #     modifiers: *opt_shift_key
-  #   to_if_alone:
-  #   - key_code: spacebar
-  #     repeat: false
-  #   to: *turn_on_right_and_left_shift
-  #   to_after_key_up: *turn_off_right_and_left_shift
-  #   conditions: *base_state
-
-  # # Return
-  # - type: basic
-  #   from:
-  #     key_code: return_or_enter
-  #     modifiers: *opt_shift_key
-  #   to_if_alone:
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   to: *turn_on_right_and_left_shift
-  #   to_after_key_up: *turn_off_right_and_left_shift
-  #   conditions: *base_state
-
 # ===== 外来音（濁音） =====
 
   # でぃ
@@ -1937,6 +1911,32 @@ rules:
     - key_code: u
       repeat: false
     conditions: *base_state
+
+# ===== センターシフトキー =====
+
+  # # Space
+  # - type: basic
+  #   from:
+  #     key_code: spacebar
+  #     modifiers: *opt_shift_key
+  #   to_if_alone:
+  #   - key_code: spacebar
+  #     repeat: false
+  #   to: *turn_on_right_and_left_shift
+  #   to_after_key_up: *turn_off_right_and_left_shift
+  #   conditions: *base_state
+
+  # # Return
+  # - type: basic
+  #   from:
+  #     key_code: return_or_enter
+  #     modifiers: *opt_shift_key
+  #   to_if_alone:
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   to: *turn_on_right_and_left_shift
+  #   to_after_key_up: *turn_off_right_and_left_shift
+  #   conditions: *base_state
 
 # ===== 中指シフトキー =====
 
