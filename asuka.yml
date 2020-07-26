@@ -1,100 +1,119 @@
 title: 飛鳥配列
+
+# ===== Aliases =====
+
+aliases:
+
+# ----- Modifier Keys -----
+
+- from/modifiers: &opt_shift_key
+    optional:
+    - shift
+
+- to/modifiers: &shift_key
+  - shift
+
+# ----- Variables -----
+
+- to: &turn_on_same_hand_shift
+  - set_variable:
+      name: same_hand_shifted
+      value: 1
+
+- to_after_key_up: &turn_off_same_hand_shift
+  - set_variable:
+      name: same_hand_shifted
+      value: 0
+
+- to: &turn_on_reverse_hand_shift
+  - set_variable:
+      name: reverse_hand_shifted
+      value: 1
+
+- to_after_key_up: &turn_off_reverse_hand_shift
+  - set_variable:
+      name: reverse_hand_shifted
+      value: 0
+
+# ----- Conditions -----
+
+- conditions: &ja_input
+  - type: input_source_if
+    input_sources:
+    - language: ja
+
+- conditions: &system_mode
+  - type: variable_if
+    name: system_mode
+    value: 1
+
+- conditions: &base_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+
+- conditions: &same_hand_shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+  - type: variable_if
+    name: same_hand_shifted
+    value: 1
+
+- conditions: &reverse_hand_shifted
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+  - type: variable_if
+    name: reverse_hand_shifted
+    value: 1
+
+# ===== Rules =====
+
 rules:
 - description: 飛鳥配列
   manipulators:
 
-  # ===== Aliases =====
+# ===== System Mode =====
 
-  # ----- Modifier Keys -----
-
-  - var/from/modifiers: &opt_shift_key
-      optional:
-      - shift
-
-  - var/to/modifiers: &shift_key
-    - shift
-
-  # ----- Kana Shift Keys -----
-
-  - var/to: &turn_on_same_hand_shift
+  # System Mode Key (Japanese Input)
+  - type: basic
+    from:
+      key_code: q
+    to:
     - set_variable:
-        name: same_hand_shifted
+        name: system_mode
         value: 1
-
-  - var/to_after_key_up: &turn_off_same_hand_shift
+    to_after_key_up:
     - set_variable:
-        name: same_hand_shifted
+        name: system_mode
         value: 0
+    conditions: *ja_input
 
-  - var/to: &turn_on_reverse_hand_shift
-    - set_variable:
-        name: reverse_hand_shifted
-        value: 1
-
-  - var/to_after_key_up: &turn_off_reverse_hand_shift
-    - set_variable:
-        name: reverse_hand_shifted
-        value: 0
-
-  # ----- Conditions -----
-
-  - var/conditions: &ja_input
-    - type: input_source_if
-      input_sources:
-      - language: ja
-
-  - var/conditions: &system_mode
-    - type: variable_if
-      name: system_mode
-      value: 1
-
-  - var/conditions: &base_state
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-
-  - var/conditions: &same_hand_shifted
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-    - type: variable_if
-      name: same_hand_shifted
-      value: 1
-
-  - var/conditions: &reverse_hand_shifted
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-    - type: variable_if
-      name: reverse_hand_shifted
-      value: 1
-
-  # ===== System Mode =====
-
-  # System Mode Key
+  # System Mode Key (English Input)
   - type: basic
     from:
       key_code: q
     to_if_alone:
-    - key_code: ""
+    - key_code: q
       repeat: false
     to:
     - set_variable:
@@ -127,7 +146,7 @@ rules:
       repeat: false
     conditions: *system_mode
 
-  # ===== 機能・記号 =====
+# ===== 機能・記号 =====
 
   # Return
   - type: basic
@@ -175,9 +194,9 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ===== 同手・逆手シフトキー =====
+# ===== 同手・逆手シフトキー =====
 
-  # ----- 同手シフト時 -----
+# ----- 同手シフト時 -----
 
   # あ
   - type: basic
@@ -225,7 +244,7 @@ rules:
       repeat: false
     conditions: *same_hand_shifted
 
-  # ----- 逆手シフト時 -----
+# ----- 逆手シフト時 -----
 
   # お
   - type: basic
@@ -273,7 +292,7 @@ rules:
       repeat: false
     conditions: *reverse_hand_shifted
 
-  # ----- ベース面-----
+# ----- ベース面-----
 
   # し（同手シフトキー）
   - type: basic
@@ -327,7 +346,7 @@ rules:
     to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *base_state
 
-  # ===== 同手シフト =====
+# ===== 同手シフト =====
 
   # あ
   - type: basic
@@ -800,7 +819,7 @@ rules:
       repeat: false
     conditions: *same_hand_shifted
 
-  # ===== 逆手シフト =====
+# ===== 逆手シフト =====
 
   # え
   - type: basic
@@ -1264,7 +1283,7 @@ rules:
       repeat: false
     conditions: *reverse_hand_shifted
 
-  # ===== ベース =====
+# ===== ベース =====
 
   # い
   - type: basic
