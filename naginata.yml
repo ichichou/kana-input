@@ -23,17 +23,17 @@ aliases:
 
 # ----- Variables -----
 
-- to_if_held_down: &turn_on_left_shift
+- to: &turn_on_left_shift
   - set_variable:
       name: left_shifted
       value: 1
 
-- to_if_held_down: &turn_on_right_shift
+- to: &turn_on_right_shift
   - set_variable:
       name: right_shifted
       value: 1
 
-- to_if_held_down: &turn_on_right_and_left_shift
+- to: &turn_on_right_and_left_shift
   - set_variable:
       name: right_shifted
       value: 1
@@ -109,11 +109,6 @@ aliases:
   - type: variable_if
     name: right_shifted
     value: 1
-
-# ----- Parameters -----
-
-- parameters: &held_down_time
-    basic.to_if_held_down_threshold_milliseconds: 50
 
 # ===== Rules =====
 
@@ -219,10 +214,9 @@ rules:
   #   to_if_alone:
   #   - key_code: spacebar
   #     repeat: false
-  #   to_if_held_down: *turn_on_right_and_left_shift
+  #   to: *turn_on_right_and_left_shift
   #   to_after_key_up: *turn_off_right_and_left_shift
   #   conditions: *base_state
-  #   parameters: *held_down_time
 
   # # Return
   # - type: basic
@@ -232,10 +226,9 @@ rules:
   #   to_if_alone:
   #   - key_code: return_or_enter
   #     repeat: false
-  #   to_if_held_down: *turn_on_right_and_left_shift
+  #   to: *turn_on_right_and_left_shift
   #   to_after_key_up: *turn_off_right_and_left_shift
   #   conditions: *base_state
-  #   parameters: *held_down_time
 
 # ===== 外来音（濁音） =====
 
@@ -2025,10 +2018,9 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    to_if_held_down: *turn_on_left_shift
+    to: *turn_on_left_shift
     to_after_key_up: *turn_off_left_shift
     conditions: *base_state
-    parameters: *held_down_time
 
   # い（右シフト）
   - type: basic
@@ -2038,10 +2030,9 @@ rules:
     to_if_alone:
     - key_code: i
       repeat: false
-    to_if_held_down: *turn_on_right_shift
+    to: *turn_on_right_shift
     to_after_key_up: *turn_off_right_shift
     conditions: *base_state
-    parameters: *held_down_time
 
 # ===== 清音（シフト） =====
 
