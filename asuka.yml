@@ -15,6 +15,10 @@ aliases:
 
 # ----- Variables -----
 
+- to/set_variable: &set_variable_same_hand_shifted
+    name: same_hand_shifted
+    value: 1
+
 - to: &turn_on_same_hand_shift
   - set_variable:
       name: same_hand_shifted
@@ -24,6 +28,10 @@ aliases:
   - set_variable:
       name: same_hand_shifted
       value: 0
+
+- to/set_variable: &set_variable_reverse_hand_shifted
+    name: reverse_hand_shifted
+    value: 1
 
 - to: &turn_on_reverse_hand_shift
   - set_variable:
@@ -144,7 +152,7 @@ rules:
 
 # ----- 同手シフト時 -----
 
-  # あ
+  # あ（同手シフトキー）
   - type: basic
     from:
       key_code: s
@@ -152,21 +160,11 @@ rules:
     to:
     - key_code: a
       repeat: false
+    - set_variable: *set_variable_same_hand_shifted
+    to_after_key_up: *turn_off_same_hand_shift
     conditions: *same_hand_shifted
 
-  # が
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - key_code: g
-      repeat: false
-    - key_code: a
-      repeat: false
-    conditions: *same_hand_shifted
-
-  # こ
+  # こ（同手シフトキー）
   - type: basic
     from:
       key_code: l
@@ -176,9 +174,25 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
+    - set_variable: *set_variable_same_hand_shifted
+    to_after_key_up: *turn_off_same_hand_shift
     conditions: *same_hand_shifted
 
-  # の
+  # が（逆手シフトキー）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: a
+      repeat: false
+    - set_variable: *set_variable_reverse_hand_shifted
+    to_after_key_up: *turn_off_reverse_hand_shift
+    conditions: *same_hand_shifted
+
+  # の（逆手シフトキー）
   - type: basic
     from:
       key_code: k
@@ -188,11 +202,13 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
+    - set_variable: *set_variable_reverse_hand_shifted
+    to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *same_hand_shifted
 
 # ----- 逆手シフト時 -----
 
-  # お
+  # お（同手シフトキー）
   - type: basic
     from:
       key_code: s
@@ -200,21 +216,11 @@ rules:
     to:
     - key_code: o
       repeat: false
+    - set_variable: *set_variable_same_hand_shifted
+    to_after_key_up: *turn_off_same_hand_shift
     conditions: *reverse_hand_shifted
 
-  # な
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - key_code: "n"
-      repeat: false
-    - key_code: a
-      repeat: false
-    conditions: *reverse_hand_shifted
-
-  # ま
+  # ま（同手シフトキー）
   - type: basic
     from:
       key_code: l
@@ -224,9 +230,25 @@ rules:
       repeat: false
     - key_code: a
       repeat: false
+    - set_variable: *set_variable_same_hand_shifted
+    to_after_key_up: *turn_off_same_hand_shift
     conditions: *reverse_hand_shifted
 
-  # す
+  # な（逆手シフトキー）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - key_code: "n"
+      repeat: false
+    - key_code: a
+      repeat: false
+    - set_variable: *set_variable_reverse_hand_shifted
+    to_after_key_up: *turn_off_reverse_hand_shift
+    conditions: *reverse_hand_shifted
+
+  # す（逆手シフトキー）
   - type: basic
     from:
       key_code: k
@@ -236,6 +258,8 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
+    - set_variable: *set_variable_reverse_hand_shifted
+    to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *reverse_hand_shifted
 
 # ----- ベース面-----
