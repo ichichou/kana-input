@@ -1378,6 +1378,22 @@ rules:
 
 # ===== 小書き =====
 
+  # ゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *kogaki
+      - key_code: l
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *left_shifted
+
   # ぁ
   - type: basic
     from:
@@ -1527,22 +1543,6 @@ rules:
     - key_code: e
       repeat: false
     conditions: *base_state
-
-  # ゎ
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *kogaki
-      - key_code: l
-      modifiers: *opt_shift_key
-    to:
-    - key_code: l
-      repeat: false
-    - key_code: w
-      repeat: false
-    - key_code: a
-      repeat: false
-    conditions: *left_shifted
 
 # ===== 半濁音 =====
 
