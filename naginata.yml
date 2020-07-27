@@ -2046,7 +2046,7 @@ rules:
       repeat: false
     - key_code: e
       repeat: false
-    conditions: *left_shifted
+    conditions: *right_shifted
 
   # ち
   - type: basic
