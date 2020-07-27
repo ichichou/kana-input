@@ -2240,15 +2240,13 @@ rules:
       repeat: false
     conditions: *right_shifted
 
-  # 句点 & Return
+  # 句点
   - type: basic
     from:
       key_code: m
       modifiers: *opt_shift_key
     to:
     - key_code: period
-      repeat: false
-    - key_code: return_or_enter
       repeat: false
     conditions: *left_shifted
 
@@ -2611,7 +2609,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: delete_or_backspace
-      repeat: false
     conditions: *base_state
 
   # Left Arrow
