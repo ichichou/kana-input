@@ -648,7 +648,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *handakuon_right
+      - key_code: *handakuon_left
       - key_code: semicolon
       - key_code: "n"
       modifiers: *opt_shift_key
@@ -667,7 +667,7 @@ rules:
       simultaneous:
       - key_code: *handakuon_left
       - key_code: h
-      - key_code: k
+      - key_code: j
       modifiers: *opt_shift_key
     to:
     - key_code: k
