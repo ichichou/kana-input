@@ -116,7 +116,7 @@ rules:
 - description: 薙刀式 v12
   manipulators:
 
-# ===== 機能・記号 =====
+# ===== Functions =====
 
   # Return
   - type: basic
@@ -127,42 +127,6 @@ rules:
     to:
     - key_code: return_or_enter
       repeat: false
-
-  # 鉤括弧
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: f
-      - key_code: g
-    to:
-    - key_code: open_bracket
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *base_state
-
-  # 丸括弧
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: j
-      - key_code: h
-    to:
-    - key_code: "9"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: "0"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *base_state
 
 # ===== 外来音（濁音） =====
 
@@ -2705,5 +2669,56 @@ rules:
         name: kana_layout_invalid
         value: 0
     - key_code: japanese_kana
+      repeat: false
+    conditions: *system_mode
+
+  # 丸括弧（開き・閉じ）
+  - type: basic
+    from:
+      key_code: j
+    to:
+    - key_code: "9"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: "0"
+      modifiers: *shift_key
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *system_mode
+
+  # 鉤括弧（開き・閉じ）
+  - type: basic
+    from:
+      key_code: k
+    to:
+    - key_code: open_bracket
+      repeat: false
+    - key_code: close_bracket
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
+      repeat: false
+    conditions: *system_mode
+
+  # 二重鉤括弧（開き・閉じ）
+  - type: basic
+    from:
+      key_code: l
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: open_bracket
+      repeat: false
+    - key_code: z
+      repeat: false
+    - key_code: close_bracket
+      repeat: false
+    - key_code: return_or_enter
+      repeat: false
+    - key_code: left_arrow
       repeat: false
     conditions: *system_mode
