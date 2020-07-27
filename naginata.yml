@@ -117,6 +117,7 @@ rules:
   manipulators:
 
 # ===== Functions =====
+# 単打より先に記述する
 
   # Return
   - type: basic
@@ -1903,6 +1904,7 @@ rules:
   #   conditions: *base_state
 
 # ===== 中指シフトキー =====
+# 同時押しより後に記述する
 
 # ----- シフト時 -----
 
@@ -2633,6 +2635,7 @@ rules:
     conditions: *base_state
 
 # ===== System Mode =====
+# 小書きより後に記述する
 
   # System Mode Key
   - type: basic
