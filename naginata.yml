@@ -1942,7 +1942,7 @@ rules:
 
 # ----- シフト時 -----
 
-  # に
+  # に（左シフト）
   - type: basic
     from:
       key_code: d
@@ -1952,9 +1952,13 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: left_shifted
+        value: 1
+    to_after_key_up: *turn_off_left_shift
     conditions: *right_shifted
 
-  # も
+  # も（右シフト）
   - type: basic
     from:
       key_code: k
@@ -1964,6 +1968,10 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *left_shifted
 
 # ----- ベース面 -----
