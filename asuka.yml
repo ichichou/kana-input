@@ -92,46 +92,6 @@ rules:
 - description: 飛鳥配列
   manipulators:
 
-# ===== System Mode =====
-
-  # System Mode Key
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: q
-      repeat: false
-    to:
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up:
-    - set_variable:
-        name: system_mode
-        value: 0
-
-  # 飛鳥配列を中断
-  - type: basic
-    from:
-      key_code: o
-    to:
-    - set_variable: &turn_off_kana_layout
-        name: kana_layout_invalid
-        value: 1
-    conditions: *system_mode
-
-  # 飛鳥配列を再開（日本語入力オン）
-  - type: basic
-    from:
-      key_code: i
-    to:
-    - set_variable: &turn_on_kana_layout
-        name: kana_layout_invalid
-        value: 0
-    - key_code: japanese_kana
-      repeat: false
-    conditions: *system_mode
-
 # ===== 機能・記号 =====
 
   # Return
@@ -1625,3 +1585,43 @@ rules:
     - key_code: escape
       repeat: false
     conditions: *base_state
+
+# ===== System Mode =====
+
+  # System Mode Key
+  - type: basic
+    from:
+      key_code: q
+    to_if_alone:
+    - key_code: q
+      repeat: false
+    to:
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
+
+  # 飛鳥配列を中断
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - set_variable: &turn_off_kana_layout
+        name: kana_layout_invalid
+        value: 1
+    conditions: *system_mode
+
+  # 飛鳥配列を再開（日本語入力オン）
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - set_variable: &turn_on_kana_layout
+        name: kana_layout_invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
+    conditions: *system_mode
