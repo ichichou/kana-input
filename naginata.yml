@@ -131,13 +131,15 @@ rules:
 
 # ===== 外来音（濁音） =====
 
-  # でぃ
+  # でぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *dakuon_right
       - key_code: e
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: d
@@ -146,6 +148,10 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # でゅ
@@ -165,13 +171,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # どぅ
+  # どぅ（左シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *dakuon_right
       - key_code: d
       - key_code: l
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: d
@@ -180,6 +188,10 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
+    - set_variable:
+        name: left_shifted
+        value: 1
+    to_after_key_up: *turn_off_left_shift
     conditions: *base_state
 
   # じぇ
@@ -231,19 +243,25 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ヴぃ
+  # ヴぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *dakuon_left
       - key_code: l
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: v
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # ヴぇ
@@ -310,13 +328,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ぐぃ
+  # ぐぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *dakuon_left
       - key_code: h
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: g
@@ -325,6 +345,10 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # ぐぇ
@@ -384,13 +408,15 @@ rules:
 
 # ===== 外来音（清音） =====
 
-  # てぃ
+  # てぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *handakuon_right
       - key_code: e
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: t
@@ -399,6 +425,10 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # てゅ
@@ -425,6 +455,8 @@ rules:
       - key_code: *handakuon_right
       - key_code: d
       - key_code: l
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: t
@@ -433,6 +465,10 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
+    - set_variable:
+        name: left_shifted
+        value: 1
+    to_after_key_up: *turn_off_left_shift
     conditions: *base_state
 
   # しぇ
@@ -469,19 +505,25 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # うぃ
+  # うぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *handakuon_left
       - key_code: l
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: w
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # うぇ
@@ -531,19 +573,25 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ふぃ
+  # ふぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *handakuon_left
       - key_code: period
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: f
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # ふぇ
@@ -610,13 +658,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # つぃ
+  # つぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *handakuon_left
       - key_code: semicolon
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: t
@@ -625,6 +675,10 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # つぇ
@@ -678,13 +732,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # くぃ
+  # くぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *handakuon_left
       - key_code: h
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: k
@@ -693,6 +749,10 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # くぇ
@@ -1373,18 +1433,24 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ぃ
+  # ぃ（右シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *kogaki
       - key_code: k
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: l
       repeat: false
     - key_code: i
       repeat: false
+    - set_variable:
+        name: right_shifted
+        value: 1
+    to_after_key_up: *turn_off_right_shift
     conditions: *base_state
 
   # ぅ
@@ -1779,18 +1845,24 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ど
+  # ど（左シフト）
   - type: basic
     from:
       simultaneous:
       - key_code: *dakuon_right
       - key_code: d
+      simultaneous_options:
+        key_up_when: all
       modifiers: *opt_shift_key
     to:
     - key_code: d
       repeat: false
     - key_code: o
       repeat: false
+    - set_variable:
+        name: left_shifted
+        value: 1
+    to_after_key_up: *turn_off_left_shift
     conditions: *base_state
 
   # ば
