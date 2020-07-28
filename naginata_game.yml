@@ -2672,53 +2672,53 @@ rules:
     #   repeat: false
     conditions: *system_mode
 
-  # 丸括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: j
-    to:
-    - key_code: "9"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: "0"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *system_mode
-
-  # 鉤括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: k
-    to:
-    - key_code: open_bracket
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *system_mode
-
-  # 二重鉤括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: l
-    to:
-    - key_code: z
-      repeat: false
-    - key_code: open_bracket
-      repeat: false
-    - key_code: z
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *system_mode
+  # # 丸括弧（開き・閉じ）
+  # - type: basic
+  #   from:
+  #     key_code: j
+  #   to:
+  #   - key_code: "9"
+  #     modifiers: *shift_key
+  #     repeat: false
+  #   - key_code: "0"
+  #     modifiers: *shift_key
+  #     repeat: false
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   - key_code: left_arrow
+  #     repeat: false
+  #   conditions: *system_mode
+  #
+  # # 鉤括弧（開き・閉じ）
+  # - type: basic
+  #   from:
+  #     key_code: k
+  #   to:
+  #   - key_code: open_bracket
+  #     repeat: false
+  #   - key_code: close_bracket
+  #     repeat: false
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   - key_code: left_arrow
+  #     repeat: false
+  #   conditions: *system_mode
+  #
+  # # 二重鉤括弧（開き・閉じ）
+  # - type: basic
+  #   from:
+  #     key_code: l
+  #   to:
+  #   - key_code: z
+  #     repeat: false
+  #   - key_code: open_bracket
+  #     repeat: false
+  #   - key_code: z
+  #     repeat: false
+  #   - key_code: close_bracket
+  #     repeat: false
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   - key_code: left_arrow
+  #     repeat: false
+  #   conditions: *system_mode
