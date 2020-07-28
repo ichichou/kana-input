@@ -1,4 +1,4 @@
-title: 薙刀式 v12
+title: 薙刀式 v12 (for typing game)
 
 # ===== Aliases =====
 
@@ -72,9 +72,9 @@ aliases:
     value: 1
 
 - conditions: &base_state
-  - type: input_source_if
-    input_sources:
-    - language: ja
+  # - type: input_source_if
+  #   input_sources:
+  #   - language: ja
   - type: variable_unless
     name: kana_layout_invalid
     value: 1
@@ -83,9 +83,9 @@ aliases:
     value: 1
 
 - conditions: &left_shifted
-  - type: input_source_if
-    input_sources:
-    - language: ja
+  # - type: input_source_if
+  #   input_sources:
+  #   - language: ja
   - type: variable_unless
     name: kana_layout_invalid
     value: 1
@@ -97,9 +97,9 @@ aliases:
     value: 1
 
 - conditions: &right_shifted
-  - type: input_source_if
-    input_sources:
-    - language: ja
+  # - type: input_source_if
+  #   input_sources:
+  #   - language: ja
   - type: variable_unless
     name: kana_layout_invalid
     value: 1
@@ -113,7 +113,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 薙刀式 v12
+- description: 薙刀式 v12 (for typing game)
   manipulators:
 
 # ===== Functions =====
@@ -2660,7 +2660,7 @@ rules:
         value: 1
     conditions: *system_mode
 
-  # 薙刀式を再開（日本語入力オン）
+  # 薙刀式を再開
   - type: basic
     from:
       key_code: i
@@ -2668,8 +2668,8 @@ rules:
     - set_variable: &turn_on_kana_layout
         name: kana_layout_invalid
         value: 0
-    - key_code: japanese_kana
-      repeat: false
+    # - key_code: japanese_kana
+    #   repeat: false
     conditions: *system_mode
 
   # 丸括弧（開き・閉じ）
