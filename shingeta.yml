@@ -1236,6 +1236,18 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # 長音符（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_left_shift
+      - key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - key_code: hyphen
+      repeat: false
+    conditions: *base_state
+
 # ===== 中指上段シフト =====
 
   # きゃ
@@ -1494,6 +1506,102 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # びゃ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: m
+      modifiers: *opt_shift_key
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # びゅ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: u
+      modifiers: *opt_shift_key
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # びょ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: j
+      modifiers: *opt_shift_key
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ゃ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: "n"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ゅ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: u
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ょ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *middle_upper_shift
+      - key_code: h
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
 # ===== 薬指上段シフト =====
 
   # にゃ
@@ -1747,6 +1855,124 @@ rules:
     - key_code: l
       repeat: false
     - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ぴゃ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: m
+      modifiers: *opt_shift_key
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぴゅ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: u
+      modifiers: *opt_shift_key
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ぴょ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: j
+      modifiers: *opt_shift_key
+    to:
+    - key_code: p
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ぁ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: i
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ぃ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: comma
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # ぅ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: p
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ぇ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: semicolon
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # ぉ（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *ring_upper_shift
+      - key_code: slash
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
       repeat: false
     - key_code: o
       repeat: false
