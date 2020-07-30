@@ -1,4 +1,4 @@
-title: 薙刀式 v12
+title: 薙刀式 v12 (Middle Finger Shift)
 
 # ===== Aliases =====
 
@@ -33,14 +33,6 @@ aliases:
       name: right_shifted
       value: 1
 
-- to: &turn_on_right_and_left_shift
-  - set_variable:
-      name: right_shifted
-      value: 1
-  - set_variable:
-      name: left_shifted
-      value: 1
-
 - to_after_key_up: &turn_off_left_shift
   - set_variable:
       name: left_shifted
@@ -49,14 +41,6 @@ aliases:
 - to_after_key_up: &turn_off_right_shift
   - set_variable:
       name: right_shifted
-      value: 0
-
-- to_after_key_up: &turn_off_right_and_left_shift
-  - set_variable:
-      name: right_shifted
-      value: 0
-  - set_variable:
-      name: left_shifted
       value: 0
 
 # ----- Conditions -----
@@ -113,7 +97,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 薙刀式 v12
+- description: 薙刀式 v12 (Middle Finger Shift)
   manipulators:
 
 # ===== Functions =====
@@ -1949,32 +1933,6 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== センターシフトキー =====
-
-  # # Space
-  # - type: basic
-  #   from:
-  #     key_code: spacebar
-  #     modifiers: *opt_shift_key
-  #   to_if_alone:
-  #   - key_code: spacebar
-  #     repeat: false
-  #   to: *turn_on_right_and_left_shift
-  #   to_after_key_up: *turn_off_right_and_left_shift
-  #   conditions: *base_state
-
-  # # Return
-  # - type: basic
-  #   from:
-  #     key_code: return_or_enter
-  #     modifiers: *opt_shift_key
-  #   to_if_alone:
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   to: *turn_on_right_and_left_shift
-  #   to_after_key_up: *turn_off_right_and_left_shift
-  #   conditions: *base_state
-
 # ===== 中指シフトキー =====
 # 同時押しより後に記述する
 
@@ -2741,56 +2699,5 @@ rules:
         name: kana_layout_invalid
         value: 0
     - key_code: japanese_kana
-      repeat: false
-    conditions: *system_mode
-
-  # 丸括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: j
-    to:
-    - key_code: "9"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: "0"
-      modifiers: *shift_key
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *system_mode
-
-  # 鉤括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: k
-    to:
-    - key_code: open_bracket
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
-      repeat: false
-    conditions: *system_mode
-
-  # 二重鉤括弧（開き・閉じ）
-  - type: basic
-    from:
-      key_code: l
-    to:
-    - key_code: z
-      repeat: false
-    - key_code: open_bracket
-      repeat: false
-    - key_code: z
-      repeat: false
-    - key_code: close_bracket
-      repeat: false
-    - key_code: return_or_enter
-      repeat: false
-    - key_code: left_arrow
       repeat: false
     conditions: *system_mode
