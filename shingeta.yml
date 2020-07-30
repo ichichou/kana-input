@@ -15,12 +15,12 @@ aliases:
 
 # ----- Kana Shift Keys -----
 
-- from/key_code: &middle_right_shift k
-- from/key_code: &middle_left_shift d
-- from/key_code: &ring_right_shift l
-- from/key_code: &ring_left_shift s
-- from/key_code: &middle_upper_shift i
-- from/key_code: &ring_upper_shift o
+- from/key_code: &right_middlefinger_shift k
+- from/key_code: &left_middlefinger_shift d
+- from/key_code: &right_ringfinger_shift l
+- from/key_code: &left_ringfinger_shift s
+- from/key_code: &upper_middlefinger_shift i
+- from/key_code: &upper_ringfinger_shift o
 
 # ----- Conditions -----
 
@@ -197,7 +197,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: e
       modifiers: *opt_shift_key
     to:
@@ -211,7 +211,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: a
       modifiers: *opt_shift_key
     to:
@@ -225,7 +225,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: v
       modifiers: *opt_shift_key
     to:
@@ -239,7 +239,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: f
       modifiers: *opt_shift_key
     to:
@@ -253,7 +253,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: g
       modifiers: *opt_shift_key
     to:
@@ -267,7 +267,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: d
       modifiers: *opt_shift_key
     to:
@@ -281,7 +281,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: e
       modifiers: *opt_shift_key
     to:
@@ -295,7 +295,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: s
       modifiers: *opt_shift_key
     to:
@@ -309,7 +309,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: x
       modifiers: *opt_shift_key
     to:
@@ -323,7 +323,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: z
       modifiers: *opt_shift_key
     to:
@@ -337,7 +337,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: c
       modifiers: *opt_shift_key
     to:
@@ -351,7 +351,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: q
       modifiers: *opt_shift_key
     to:
@@ -365,7 +365,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: r
       modifiers: *opt_shift_key
     to:
@@ -379,7 +379,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: t
       modifiers: *opt_shift_key
     to:
@@ -393,7 +393,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: b
       modifiers: *opt_shift_key
     to:
@@ -407,7 +407,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
@@ -421,7 +421,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: "2"
       modifiers: *opt_shift_key
     to:
@@ -435,7 +435,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: "3"
       modifiers: *opt_shift_key
     to:
@@ -449,7 +449,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: "4"
       modifiers: *opt_shift_key
     to:
@@ -463,7 +463,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_right_shift
+      - key_code: *right_middlefinger_shift
       - key_code: "5"
       modifiers: *opt_shift_key
     to:
@@ -479,7 +479,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: j
       modifiers: *opt_shift_key
     to:
@@ -491,7 +491,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: semicolon
       modifiers: *opt_shift_key
     to:
@@ -503,7 +503,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "n"
       modifiers: *opt_shift_key
     to:
@@ -517,7 +517,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: m
       modifiers: *opt_shift_key
     to:
@@ -531,7 +531,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: h
       modifiers: *opt_shift_key
     to:
@@ -545,7 +545,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: o
       modifiers: *opt_shift_key
     to:
@@ -559,7 +559,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: i
       modifiers: *opt_shift_key
     to:
@@ -573,7 +573,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: comma
       modifiers: *opt_shift_key
     to:
@@ -587,7 +587,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: u
       modifiers: *opt_shift_key
     to:
@@ -601,7 +601,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: period
       modifiers: *opt_shift_key
     to:
@@ -615,7 +615,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: slash
       modifiers: *opt_shift_key
     to:
@@ -629,7 +629,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "y"
       modifiers: *opt_shift_key
     to:
@@ -643,7 +643,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: p
       modifiers: *opt_shift_key
     to:
@@ -657,7 +657,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: quote
       modifiers: *opt_shift_key
     to:
@@ -673,7 +673,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "7"
       modifiers: *opt_shift_key
     to:
@@ -685,7 +685,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "8"
       modifiers: *opt_shift_key
     to:
@@ -697,7 +697,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "9"
       modifiers: *opt_shift_key
     to:
@@ -709,7 +709,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_left_shift
+      - key_code: *left_middlefinger_shift
       - key_code: "0"
       modifiers: *opt_shift_key
     to:
@@ -723,7 +723,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: d
       modifiers: *opt_shift_key
     to:
@@ -735,7 +735,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: e
       modifiers: *opt_shift_key
     to:
@@ -749,7 +749,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: s
       modifiers: *opt_shift_key
     to:
@@ -763,7 +763,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: b
       modifiers: *opt_shift_key
     to:
@@ -777,7 +777,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: w
       modifiers: *opt_shift_key
     to:
@@ -791,7 +791,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: f
       modifiers: *opt_shift_key
     to:
@@ -805,7 +805,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: v
       modifiers: *opt_shift_key
     to:
@@ -819,7 +819,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: a
       modifiers: *opt_shift_key
     to:
@@ -833,7 +833,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: c
       modifiers: *opt_shift_key
     to:
@@ -847,7 +847,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: x
       modifiers: *opt_shift_key
     to:
@@ -861,7 +861,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: g
       modifiers: *opt_shift_key
     to:
@@ -875,7 +875,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: z
       modifiers: *opt_shift_key
     to:
@@ -889,7 +889,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: q
       modifiers: *opt_shift_key
     to:
@@ -903,7 +903,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: r
       modifiers: *opt_shift_key
     to:
@@ -919,7 +919,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: t
       modifiers: *opt_shift_key
     to:
@@ -935,7 +935,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: "2"
       modifiers: *opt_shift_key
     to:
@@ -951,7 +951,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: "3"
       modifiers: *opt_shift_key
     to:
@@ -967,7 +967,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: "4"
       modifiers: *opt_shift_key
     to:
@@ -983,7 +983,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_right_shift
+      - key_code: *right_ringfinger_shift
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
@@ -1001,7 +1001,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: semicolon
       modifiers: *opt_shift_key
     to:
@@ -1015,7 +1015,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: o
       modifiers: *opt_shift_key
     to:
@@ -1029,7 +1029,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: j
       modifiers: *opt_shift_key
     to:
@@ -1043,7 +1043,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "n"
       modifiers: *opt_shift_key
     to:
@@ -1057,7 +1057,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: m
       modifiers: *opt_shift_key
     to:
@@ -1071,7 +1071,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: i
       modifiers: *opt_shift_key
     to:
@@ -1085,7 +1085,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: h
       modifiers: *opt_shift_key
     to:
@@ -1099,7 +1099,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: comma
       modifiers: *opt_shift_key
     to:
@@ -1113,7 +1113,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: u
       modifiers: *opt_shift_key
     to:
@@ -1127,7 +1127,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: period
       modifiers: *opt_shift_key
     to:
@@ -1141,7 +1141,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "y"
       modifiers: *opt_shift_key
     to:
@@ -1157,7 +1157,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: slash
       modifiers: *opt_shift_key
     to:
@@ -1173,7 +1173,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: p
       modifiers: *opt_shift_key
     to:
@@ -1189,7 +1189,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "7"
       modifiers: *opt_shift_key
     to:
@@ -1201,7 +1201,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "8"
       modifiers: *opt_shift_key
     to:
@@ -1214,7 +1214,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "9"
       modifiers: *opt_shift_key
     to:
@@ -1227,7 +1227,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: "0"
       modifiers: *opt_shift_key
     to:
@@ -1240,7 +1240,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_left_shift
+      - key_code: *left_ringfinger_shift
       - key_code: quote
       modifiers: *opt_shift_key
     to:
@@ -1254,7 +1254,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: v
       modifiers: *opt_shift_key
     to:
@@ -1270,7 +1270,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: r
       modifiers: *opt_shift_key
     to:
@@ -1286,7 +1286,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: f
       modifiers: *opt_shift_key
     to:
@@ -1302,7 +1302,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: c
       modifiers: *opt_shift_key
     to:
@@ -1318,7 +1318,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: w
       modifiers: *opt_shift_key
     to:
@@ -1334,7 +1334,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: e
       modifiers: *opt_shift_key
     to:
@@ -1350,7 +1350,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: b
       modifiers: *opt_shift_key
     to:
@@ -1366,7 +1366,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: t
       modifiers: *opt_shift_key
     to:
@@ -1382,7 +1382,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: g
       modifiers: *opt_shift_key
     to:
@@ -1398,7 +1398,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: z
       modifiers: *opt_shift_key
     to:
@@ -1414,7 +1414,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: q
       modifiers: *opt_shift_key
     to:
@@ -1430,7 +1430,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: a
       modifiers: *opt_shift_key
     to:
@@ -1446,7 +1446,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: "2"
       modifiers: *opt_shift_key
     to:
@@ -1462,7 +1462,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: "3"
       modifiers: *opt_shift_key
     to:
@@ -1478,7 +1478,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: "4"
       modifiers: *opt_shift_key
     to:
@@ -1494,7 +1494,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
@@ -1510,7 +1510,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: m
       modifiers: *opt_shift_key
     to:
@@ -1526,7 +1526,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: u
       modifiers: *opt_shift_key
     to:
@@ -1542,7 +1542,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: j
       modifiers: *opt_shift_key
     to:
@@ -1558,7 +1558,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: "n"
       modifiers: *opt_shift_key
     to:
@@ -1574,7 +1574,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: u
       modifiers: *opt_shift_key
     to:
@@ -1590,7 +1590,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *middle_upper_shift
+      - key_code: *upper_middlefinger_shift
       - key_code: h
       modifiers: *opt_shift_key
     to:
@@ -1608,7 +1608,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: b
       modifiers: *opt_shift_key
     to:
@@ -1624,7 +1624,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: t
       modifiers: *opt_shift_key
     to:
@@ -1640,7 +1640,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: g
       modifiers: *opt_shift_key
     to:
@@ -1656,7 +1656,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: z
       modifiers: *opt_shift_key
     to:
@@ -1672,7 +1672,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: q
       modifiers: *opt_shift_key
     to:
@@ -1688,7 +1688,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: a
       modifiers: *opt_shift_key
     to:
@@ -1704,7 +1704,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: v
       modifiers: *opt_shift_key
     to:
@@ -1720,7 +1720,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: r
       modifiers: *opt_shift_key
     to:
@@ -1736,7 +1736,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: f
       modifiers: *opt_shift_key
     to:
@@ -1752,7 +1752,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: c
       modifiers: *opt_shift_key
     to:
@@ -1768,7 +1768,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: w
       modifiers: *opt_shift_key
     to:
@@ -1784,7 +1784,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: e
       modifiers: *opt_shift_key
     to:
@@ -1800,7 +1800,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: "2"
       modifiers: *opt_shift_key
     to:
@@ -1816,7 +1816,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: "3"
       modifiers: *opt_shift_key
     to:
@@ -1832,7 +1832,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: "4"
       modifiers: *opt_shift_key
     to:
@@ -1848,7 +1848,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
@@ -1864,7 +1864,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: m
       modifiers: *opt_shift_key
     to:
@@ -1880,7 +1880,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: u
       modifiers: *opt_shift_key
     to:
@@ -1896,7 +1896,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: j
       modifiers: *opt_shift_key
     to:
@@ -1912,7 +1912,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: i
       modifiers: *opt_shift_key
     to:
@@ -1926,7 +1926,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: comma
       modifiers: *opt_shift_key
     to:
@@ -1940,7 +1940,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: p
       modifiers: *opt_shift_key
     to:
@@ -1954,7 +1954,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: semicolon
       modifiers: *opt_shift_key
     to:
@@ -1968,7 +1968,7 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *ring_upper_shift
+      - key_code: *upper_ringfinger_shift
       - key_code: slash
       modifiers: *opt_shift_key
     to:
