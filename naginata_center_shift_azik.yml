@@ -1,4 +1,4 @@
-title: 薙刀式 v12 (Center Shift)
+title: 薙刀式 v12 (Center Shift, AZIK)
 
 # ===== Aliases =====
 
@@ -73,7 +73,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 薙刀式 v12 (Center Shift)
+- description: 薙刀式 v12 (Center Shift, AZIK)
   manipulators:
 
 # ===== Center Shift Key =====
@@ -128,7 +128,7 @@ rules:
     to:
     - key_code: d
       repeat: false
-    - key_code: h
+    - key_code: c
       repeat: false
     - key_code: i
       repeat: false
@@ -145,9 +145,9 @@ rules:
     to:
     - key_code: d
       repeat: false
-    - key_code: h
+    - key_code: c
       repeat: false
-    - key_code: u
+    - key_code: e
       repeat: false
     conditions: *base_state
 
@@ -162,7 +162,7 @@ rules:
     to:
     - key_code: d
       repeat: false
-    - key_code: w
+    - key_code: c
       repeat: false
     - key_code: u
       repeat: false
@@ -177,9 +177,7 @@ rules:
       - key_code: o
       modifiers: *opt_shift_key
     to:
-    - key_code: z
-      repeat: false
-    - key_code: "y"
+    - key_code: j
       repeat: false
     - key_code: e
       repeat: false
@@ -273,6 +271,10 @@ rules:
     to:
     - key_code: v
       repeat: false
+    - key_code: u
+      repeat: false
+    - key_code: l
+      repeat: false
     - key_code: "y"
       repeat: false
     - key_code: u
@@ -290,7 +292,9 @@ rules:
     to:
     - key_code: g
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: a
       repeat: false
@@ -307,7 +311,9 @@ rules:
     to:
     - key_code: g
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: i
       repeat: false
@@ -324,7 +330,9 @@ rules:
     to:
     - key_code: g
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: e
       repeat: false
@@ -341,7 +349,9 @@ rules:
     to:
     - key_code: g
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: o
       repeat: false
@@ -381,7 +391,7 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: h
+    - key_code: g
       repeat: false
     - key_code: i
       repeat: false
@@ -398,9 +408,9 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: h
+    - key_code: g
       repeat: false
-    - key_code: u
+    - key_code: e
       repeat: false
     conditions: *base_state
 
@@ -415,7 +425,7 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: w
+    - key_code: g
       repeat: false
     - key_code: u
       repeat: false
@@ -430,9 +440,7 @@ rules:
       - key_code: o
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: e
       repeat: false
@@ -447,9 +455,7 @@ rules:
       - key_code: o
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: e
       repeat: false
@@ -496,7 +502,7 @@ rules:
     to:
     - key_code: w
       repeat: false
-    - key_code: h
+    - key_code: s
       repeat: false
     - key_code: o
       repeat: false
@@ -573,6 +579,10 @@ rules:
     to:
     - key_code: f
       repeat: false
+    - key_code: u
+      repeat: false
+    - key_code: l
+      repeat: false
     - key_code: "y"
       repeat: false
     - key_code: u
@@ -590,7 +600,9 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: s
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: a
       repeat: false
@@ -607,7 +619,9 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: s
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: i
       repeat: false
@@ -624,7 +638,9 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: s
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: e
       repeat: false
@@ -641,7 +657,9 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: s
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: o
       repeat: false
@@ -658,7 +676,9 @@ rules:
     to:
     - key_code: k
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: a
       repeat: false
@@ -675,7 +695,9 @@ rules:
     to:
     - key_code: k
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: i
       repeat: false
@@ -692,7 +714,9 @@ rules:
     to:
     - key_code: k
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: e
       repeat: false
@@ -709,7 +733,9 @@ rules:
     to:
     - key_code: k
       repeat: false
-    - key_code: w
+    - key_code: u
+      repeat: false
+    - key_code: l
       repeat: false
     - key_code: o
       repeat: false
@@ -821,7 +847,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # じゅ
+  # じょ
   - type: basic
     from:
       simultaneous:
@@ -999,9 +1025,7 @@ rules:
       - key_code: h
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: a
       repeat: false
@@ -1015,9 +1039,7 @@ rules:
       - key_code: p
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: u
       repeat: false
@@ -1031,9 +1053,7 @@ rules:
       - key_code: i
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: o
       repeat: false
@@ -1095,9 +1115,7 @@ rules:
       - key_code: h
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: a
       repeat: false
@@ -1111,9 +1129,7 @@ rules:
       - key_code: p
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: u
       repeat: false
@@ -1127,9 +1143,7 @@ rules:
       - key_code: i
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: o
       repeat: false
@@ -1473,7 +1487,7 @@ rules:
     to:
     - key_code: l
       repeat: false
-    - key_code: k
+    - key_code: q
       repeat: false
     - key_code: a
       repeat: false
@@ -1489,7 +1503,7 @@ rules:
     to:
     - key_code: l
       repeat: false
-    - key_code: k
+    - key_code: q
       repeat: false
     - key_code: e
       repeat: false
@@ -2313,11 +2327,7 @@ rules:
       key_code: g
       modifiers: *opt_shift_key
     to:
-    - key_code: l
-      repeat: false
-    - key_code: t
-      repeat: false
-    - key_code: u
+    - key_code: semicolon
       repeat: false
     conditions: *base_state
 
@@ -2459,9 +2469,7 @@ rules:
       key_code: comma
       modifiers: *opt_shift_key
     to:
-    - key_code: "n"
-      repeat: false
-    - key_code: "n"
+    - key_code: q
       repeat: false
     conditions: *base_state
 
@@ -2471,7 +2479,7 @@ rules:
       key_code: semicolon
       modifiers: *opt_shift_key
     to:
-    - key_code: hyphen
+    - key_code: quote
       repeat: false
     conditions: *base_state
 
