@@ -879,7 +879,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # じゅ
+  # じょ
   - type: basic
     from:
       simultaneous:
