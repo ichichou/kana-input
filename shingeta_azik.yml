@@ -1,4 +1,4 @@
-title: 新下駄配列
+title: 新下駄配列 (AZIK)
 
 # ===== Aliases =====
 
@@ -50,7 +50,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 新下駄配列
+- description: 新下駄配列 (AZIK)
   manipulators:
 
 # ===== 機能・記号 =====
@@ -665,7 +665,7 @@ rules:
     to:
     - key_code: w
       repeat: false
-    - key_code: h
+    - key_code: s
       repeat: false
     - key_code: o
       repeat: false
@@ -691,6 +691,8 @@ rules:
       - key_code: "8"
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: semicolon
       repeat: false
     conditions: *base_state
@@ -911,7 +913,7 @@ rules:
     to:
     - key_code: t
       repeat: false
-    - key_code: h
+    - key_code: g
       repeat: false
     - key_code: i
       repeat: false
@@ -927,7 +929,7 @@ rules:
     to:
     - key_code: d
       repeat: false
-    - key_code: h
+    - key_code: c
       repeat: false
     - key_code: i
       repeat: false
@@ -1147,9 +1149,7 @@ rules:
       - key_code: "y"
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: e
       repeat: false
@@ -1164,8 +1164,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: c
-      repeat: false
-    - key_code: "y"
       repeat: false
     - key_code: e
       repeat: false
@@ -1195,6 +1193,8 @@ rules:
       - key_code: "7"
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: period
       repeat: false
     conditions: *base_state
@@ -1207,6 +1207,8 @@ rules:
       - key_code: "8"
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: semicolon
       modifiers: *shift_key
       repeat: false
@@ -1246,7 +1248,7 @@ rules:
       - key_code: quote
       modifiers: *opt_shift_key
     to:
-    - key_code: hyphen
+    - key_code: quote
       repeat: false
     conditions: *base_state
 
@@ -1308,9 +1310,7 @@ rules:
       - key_code: c
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: a
       repeat: false
@@ -1324,9 +1324,7 @@ rules:
       - key_code: w
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: u
       repeat: false
@@ -1340,9 +1338,7 @@ rules:
       - key_code: e
       modifiers: *opt_shift_key
     to:
-    - key_code: s
-      repeat: false
-    - key_code: "y"
+    - key_code: x
       repeat: false
     - key_code: o
       repeat: false
@@ -1356,9 +1352,7 @@ rules:
       - key_code: b
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: a
       repeat: false
@@ -1372,9 +1366,7 @@ rules:
       - key_code: t
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: u
       repeat: false
@@ -1388,9 +1380,7 @@ rules:
       - key_code: g
       modifiers: *opt_shift_key
     to:
-    - key_code: t
-      repeat: false
-    - key_code: "y"
+    - key_code: c
       repeat: false
     - key_code: o
       repeat: false
@@ -2052,6 +2042,8 @@ rules:
       - key_code: j
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: period
       repeat: false
     conditions: *base_state
@@ -2064,6 +2056,8 @@ rules:
       - key_code: p
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: semicolon
       repeat: false
     conditions: *base_state
@@ -2076,6 +2070,8 @@ rules:
       - key_code: semicolon
       modifiers: *opt_shift_key
     to:
+    - key_code: l
+      repeat: false
     - key_code: semicolon
       modifiers: *shift_key
       repeat: false
@@ -2331,17 +2327,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ん
-  - type: basic
-    from:
-      key_code: f
-      modifiers: *opt_shift_key
-    to:
-    - key_code: "n"
-      repeat: false
-    - key_code: "n"
-      repeat: false
-    conditions: *base_state
+  # # ん
+  # - type: basic
+  #   from:
+  #     key_code: f
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: q
+  #     repeat: false
+  #   conditions: *base_state
 
   # が
   - type: basic
@@ -2421,11 +2415,7 @@ rules:
       key_code: g
       modifiers: *opt_shift_key
     to:
-    - key_code: l
-      repeat: false
-    - key_code: t
-      repeat: false
-    - key_code: u
+    - key_code: semicolon
       repeat: false
     conditions: *base_state
 
@@ -2449,17 +2439,34 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # 長音符
+  # # 長音符
+  # - type: basic
+  #   from:
+  #     key_code: q
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: quote
+  #     repeat: false
+  #   conditions: *base_state
+
+# ===== System Mode =====
+
+  # System Mode Key (ja_input)
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
-    to:
-    - key_code: hyphen
+    to_if_alone:
+    - key_code: quote
       repeat: false
-    conditions: *base_state
-
-# ===== System Mode =====
+    to:
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
+    conditions: *ja_input
 
   # System Mode Key
   - type: basic
