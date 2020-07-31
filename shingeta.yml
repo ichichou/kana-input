@@ -1163,7 +1163,7 @@ rules:
       - key_code: slash
       modifiers: *opt_shift_key
     to:
-    - key_code: c
+    - key_code: t
       repeat: false
     - key_code: "y"
       repeat: false
