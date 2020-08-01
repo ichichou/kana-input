@@ -1,4 +1,4 @@
-title: 薙刀式 v12 (Center Shift, AZIK)
+title: 薙刀式 v12（AZIK）
 
 # ===== Aliases =====
 
@@ -73,7 +73,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 薙刀式 v12 (Center Shift, AZIK)
+- description: 薙刀式 v12（AZIK）
   manipulators:
 
 # ===== Center Shift Key =====
