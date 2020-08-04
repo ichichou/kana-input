@@ -247,7 +247,7 @@ rules:
     to:
     - key_code: m
       repeat: false
-    - key_code: u
+    - key_code: o
       repeat: false
     conditions: *base_state
 
@@ -284,7 +284,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_middlefinger_shift
-      - key_code: e
+      - key_code: w
       modifiers: *opt_shift_key
     to:
     - key_code: g
@@ -2039,7 +2039,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_indexfinger_shift
-      - key_code: j
+      - key_code: h
       modifiers: *opt_shift_key
     to:
     - key_code: l
@@ -2327,15 +2327,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # ん
-  # - type: basic
-  #   from:
-  #     key_code: f
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: q
-  #     repeat: false
-  #   conditions: *base_state
+  # ん
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *opt_shift_key
+    to:
+    - key_code: q
+      repeat: false
+    conditions: *base_state
 
   # が
   - type: basic
@@ -2440,6 +2440,7 @@ rules:
     conditions: *base_state
 
   # # 長音符
+  # # System mode key で定義する
   # - type: basic
   #   from:
   #     key_code: q
@@ -2466,7 +2467,7 @@ rules:
     - set_variable:
         name: system_mode
         value: 0
-    conditions: *ja_input
+    conditions: *base_state
 
   # System Mode Key
   - type: basic
