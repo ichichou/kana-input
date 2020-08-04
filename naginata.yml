@@ -90,17 +90,18 @@ rules:
     to_after_key_up: *turn_off_shift
     conditions: *base_state
 
-  # # Return
-  # - type: basic
-  #   from:
-  #     key_code: return_or_enter
-  #     modifiers: *opt_shift_key
-  #   to_if_alone:
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   to: *turn_on_shift
-  #   to_after_key_up: *turn_off_shift
-  #   conditions: *base_state
+  # Return
+  # 左右分割キーボード用
+  - type: basic
+    from:
+      key_code: return_or_enter
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: return_or_enter
+      repeat: false
+    to: *turn_on_shift
+    to_after_key_up: *turn_off_shift
+    conditions: *base_state
 
 # ===== Functions =====
 # 単打より先に記述する
