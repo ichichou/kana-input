@@ -53,17 +53,7 @@ rules:
 - description: 新下駄配列 (AZIK)
   manipulators:
 
-# ===== 機能・記号 =====
-
-  # Return
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: v
-      - key_code: m
-    to:
-    - key_code: return_or_enter
-      repeat: false
+# ===== 記号 =====
 
   # 鉤括弧
   - type: basic

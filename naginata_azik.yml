@@ -103,19 +103,6 @@ rules:
     to_after_key_up: *turn_off_shift
     conditions: *base_state
 
-# ===== Functions =====
-# 単打より先に記述する
-
-  # Return
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: v
-      - key_code: m
-    to:
-    - key_code: return_or_enter
-      repeat: false
-
 # ===== 外来音（濁音） =====
 
   # でぃ
