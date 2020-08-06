@@ -49,11 +49,22 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+- conditions: &unless_login_window
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
 
 - conditions: &system_mode
   - type: variable_if
     name: system_mode
     value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
 
 - conditions: &base_state
   - type: input_source_if
@@ -65,6 +76,9 @@ aliases:
   - type: variable_unless
     name: system_mode
     value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
 
 - conditions: &same_hand_shifted
   - type: input_source_if
@@ -79,6 +93,9 @@ aliases:
   - type: variable_if
     name: same_hand_shifted
     value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
 
 - conditions: &reverse_hand_shifted
   - type: input_source_if
@@ -93,6 +110,9 @@ aliases:
   - type: variable_if
     name: reverse_hand_shifted
     value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
 
 # ===== Rules =====
 
@@ -1579,6 +1599,7 @@ rules:
     - set_variable:
         name: system_mode
         value: 0
+    conditions: *unless_login_window
 
   # 飛鳥配列を中断
   - type: basic
