@@ -1001,6 +1001,22 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # ゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ringfinger_shift
+      - key_code: "5"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
 # ===== 薬指シフト（左） =====
 
   # そ
@@ -2111,6 +2127,22 @@ rules:
     - key_code: l
       repeat: false
     - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_upper_indexfinger_shift
+      - key_code: semicolon
+      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: w
+      repeat: false
+    - key_code: a
       repeat: false
     conditions: *base_state
 
