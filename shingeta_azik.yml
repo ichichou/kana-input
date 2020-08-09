@@ -1262,7 +1262,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # 長音符（改変）
+  # 中黒（改変）
   - type: basic
     from:
       simultaneous:
@@ -1270,7 +1270,7 @@ rules:
       - key_code: quote
       modifiers: *opt_shift_key
     to:
-    - key_code: quote
+    - key_code: slash
       repeat: false
     conditions: *base_state
 
