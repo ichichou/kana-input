@@ -1835,14 +1835,14 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 人差し指上段シフト（改変） =====
+# ===== 小指上段シフト（改変） =====
 
   # みゃ
   - type: basic
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: v
+      - key_code: c
       modifiers: *opt_shift_key
     to:
     - key_code: m
@@ -1858,7 +1858,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: r
+      - key_code: w
       modifiers: *opt_shift_key
     to:
     - key_code: m
@@ -1874,7 +1874,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: f
+      - key_code: e
       modifiers: *opt_shift_key
     to:
     - key_code: m
@@ -1938,7 +1938,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: c
+      - key_code: v
       modifiers: *opt_shift_key
     to:
     - key_code: b
@@ -1954,7 +1954,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: w
+      - key_code: r
       modifiers: *opt_shift_key
     to:
     - key_code: b
@@ -1970,7 +1970,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_littlefinger_shift
-      - key_code: e
+      - key_code: f
       modifiers: *opt_shift_key
     to:
     - key_code: b
