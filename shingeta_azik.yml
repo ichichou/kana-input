@@ -47,6 +47,14 @@ aliases:
     bundle_identifiers:
     - "^com\\.apple\\.loginwindow$"
 
+- conditions: &symbol_mode
+  - type: variable_if
+    name: symbol_mode
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
 - conditions: &base_state
   - type: input_source_if
     input_sources:
@@ -57,22 +65,8 @@ aliases:
   - type: variable_unless
     name: system_mode
     value: 1
-  - type: frontmost_application_unless
-    bundle_identifiers:
-    - "^com\\.apple\\.loginwindow$"
-
-- conditions: &symbol_mode
-  - type: input_source_if
-    input_sources:
-    - language: ja
-  - type: variable_if
+  - type: variable_unless
     name: symbol_mode
-    value: 1
-  - type: variable_unless
-    name: kana_layout_invalid
-    value: 1
-  - type: variable_unless
-    name: system_mode
     value: 1
   - type: frontmost_application_unless
     bundle_identifiers:
@@ -81,7 +75,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: 新下駄配列 (AZIK)
+- description: "[Kana-input] 新下駄配列 (AZIK)"
   manipulators:
 
 # ===== 記号 =====
@@ -2578,7 +2572,7 @@ rules:
 
 # ===== Symbol Mode =====
 
-- description: Symbol Mode
+- description: "[Kana-input] Symbol Mode"
   manipulators:
 
 # ----- Symbols -----
@@ -2783,10 +2777,10 @@ rules:
     - key_code: hyphen
     conditions: *symbol_mode
 
-  # Space → 全角スペース
+  # S → 全角スペース
   - type: basic
     from:
-      key_code: spacebar
+      key_code: s
     to:
     - key_code: l
     - key_code: s
@@ -2820,19 +2814,4 @@ rules:
       - set_variable:
           name: symbol_mode
           value: 0
-    conditions:
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: kana_layout_invalid
-      value: 1
-    - type: variable_unless
-      name: system_mode
-      value: 1
-    - type: variable_unless
-      name: symbol_mode
-      value: 1
-    - type: frontmost_application_unless
-      bundle_identifiers:
-      - "^com\\.apple\\.loginwindow$"
+    conditions: *base_state
