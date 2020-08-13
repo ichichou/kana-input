@@ -1275,7 +1275,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # 中黒（改変）
+  # げ（改変）
   - type: basic
     from:
       simultaneous:
@@ -1283,7 +1283,9 @@ rules:
       - key_code: quote
       modifiers: *opt_shift_key
     to:
-    - key_code: slash
+    - key_code: g
+      repeat: false
+    - key_code: e
       repeat: false
     conditions: *base_state
 
@@ -2437,17 +2439,17 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # げ
-  - type: basic
-    from:
-      key_code: quote
-      modifiers: *opt_shift_key
-    to:
-    - key_code: g
-      repeat: false
-    - key_code: e
-      repeat: false
-    conditions: *base_state
+  # # げ
+  # - type: basic
+  #   from:
+  #     key_code: quote
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: g
+  #     repeat: false
+  #   - key_code: e
+  #     repeat: false
+  #   conditions: *base_state
 
   # で
   - type: basic
