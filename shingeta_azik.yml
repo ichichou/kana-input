@@ -61,6 +61,23 @@ aliases:
     bundle_identifiers:
     - "^com\\.apple\\.loginwindow$"
 
+- conditions: &symbol_mode
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_if
+    name: symbol_mode
+    value: 1
+  - type: variable_unless
+    name: kana_layout_invalid
+    value: 1
+  - type: variable_unless
+    name: system_mode
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
 # ===== Rules =====
 
 rules:
