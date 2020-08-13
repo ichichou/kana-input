@@ -2556,3 +2556,264 @@ rules:
     - key_code: japanese_kana
       repeat: false
     conditions: *system_mode
+
+# ===== Symbol Mode =====
+
+- description: Symbol Mode
+  manipulators:
+
+# ----- Symbols -----
+
+  # H → Left Arrow
+  - type: basic
+    from:
+      key_code: h
+    to:
+    - key_code: l
+    - key_code: h
+    conditions: *symbol_mode
+
+  # J → Down Arrow
+  - type: basic
+    from:
+      key_code: j
+    to:
+    - key_code: l
+    - key_code: j
+    conditions: *symbol_mode
+
+  # K → Up Arrow
+  - type: basic
+    from:
+      key_code: k
+    to:
+    - key_code: l
+    - key_code: k
+    conditions: *symbol_mode
+
+  # L → Right Arrow
+  - type: basic
+    from:
+      key_code: l
+    to:
+    - key_code: l
+    - key_code: l
+    conditions: *symbol_mode
+
+  # Comma → 三点リーダ
+  - type: basic
+    from:
+      key_code: comma
+    to:
+    - key_code: l
+    - key_code: comma
+    conditions: *symbol_mode
+
+  # Period → Period
+  - type: basic
+    from:
+      key_code: period
+    to:
+    - key_code: l
+    - key_code: period
+    conditions: *symbol_mode
+
+  # Slash → Slash
+  - type: basic
+    from:
+      key_code: slash
+    to:
+    - key_code: l
+    - key_code: slash
+    conditions: *symbol_mode
+
+  # Shift-Semicolon → 全角コロン
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: semicolon
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+
+  # Semicolon → 全角セミコロン
+  - type: basic
+    from:
+      key_code: semicolon
+    to:
+    - key_code: l
+    - key_code: semicolon
+    conditions: *symbol_mode
+
+  # Shift-Quote → Double Quote
+  - type: basic
+    from:
+      key_code: quote
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: quote
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+
+  # Quote → Single Quote
+  - type: basic
+    from:
+      key_code: quote
+    to:
+    - key_code: l
+    - key_code: quote
+    conditions: *symbol_mode
+
+  # Open/Close Bracket → 山括弧
+  - type: basic
+    from:
+      key_code: open_bracket
+    to:
+    - key_code: l
+    - key_code: open_bracket
+    conditions: *symbol_mode
+  - type: basic
+    from:
+      key_code: close_bracket
+    to:
+    - key_code: l
+    - key_code: close_bracket
+    conditions: *symbol_mode
+
+  # Shift-Open/Close Bracket → 隅付き括弧
+  - type: basic
+    from:
+      key_code: open_bracket
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: open_bracket
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+  - type: basic
+    from:
+      key_code: close_bracket
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: close_bracket
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+
+  # Open/Close Paren → 引用符
+  - type: basic
+    from:
+      key_code: "9"
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: "9"
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+  - type: basic
+    from:
+      key_code: "0"
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: "0"
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+
+  # Asterisk → 全角アスタリスク
+  - type: basic
+    from:
+      key_code: "8"
+      modifiers:
+        mandatory:
+        - shift
+    to:
+    - key_code: l
+    - key_code: "8"
+      modifiers:
+      - shift
+    conditions: *symbol_mode
+
+  # Hyphen → 全角ダッシュ
+  - type: basic
+    from:
+      key_code: hyphen
+    to:
+    - key_code: l
+    - key_code: hyphen
+    conditions: *symbol_mode
+
+  # Space → 全角スペース
+  - type: basic
+    from:
+      key_code: spacebar
+    to:
+    - key_code: l
+    - key_code: s
+    conditions: *symbol_mode
+
+  # X → 乗算記号
+  - type: basic
+    from:
+      key_code: x
+    to:
+    - key_code: l
+    - key_code: x
+    conditions: *symbol_mode
+
+# ----- Symbol Mode Key -----
+
+  # Symbol Mode Key
+  - type: basic
+    from:
+      key_code: quote
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: symbol_mode
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: symbol_mode
+          value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: kana_layout_invalid
+      value: 1
+    - type: variable_unless
+      name: system_mode
+      value: 1
+    - type: variable_unless
+      name: symbol_mode
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
