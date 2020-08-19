@@ -10,6 +10,10 @@ aliases:
     optional:
     - shift
 
+- from/modifiers: &mand_shift_key
+    mandatory:
+    - shift
+
 - to/modifiers: &shift_key
   - shift
 
@@ -1273,20 +1277,6 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # げ（改変）
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *left_ringfinger_shift
-      - key_code: quote
-      modifiers: *opt_shift_key
-    to:
-    - key_code: g
-      repeat: false
-    - key_code: e
-      repeat: false
-    conditions: *base_state
-
 # ===== 中指上段シフト =====
 
   # きゃ
@@ -2423,17 +2413,17 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # げ
-  # - type: basic
-  #   from:
-  #     key_code: quote
-  #     modifiers: *opt_shift_key
-  #   to:
-  #   - key_code: g
-  #     repeat: false
-  #   - key_code: e
-  #     repeat: false
-  #   conditions: *base_state
+  # げ
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - key_code: g
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *base_state
 
   # で
   - type: basic
@@ -2481,15 +2471,16 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # 読点
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: comma
-      repeat: false
-    conditions: *base_state
+  # # 読点
+  # # Symbol mode key で定義する
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: comma
+  #     repeat: false
+  #   conditions: *base_state
 
   # 句点
   - type: basic
@@ -2512,70 +2503,25 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-# ===== System Mode =====
-
-  # System Mode Key (ja_input)
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: quote
-      repeat: false
-    to:
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up:
-    - set_variable:
-        name: system_mode
-        value: 0
-    conditions: *base_state
-
-  # System Mode Key
-  - type: basic
-    from:
-      key_code: q
-    to_if_alone:
-    - key_code: q
-      repeat: false
-    to:
-    - set_variable:
-        name: system_mode
-        value: 1
-    to_after_key_up:
-    - set_variable:
-        name: system_mode
-        value: 0
-    conditions: *unless_login_window
-
-  # 新下駄配列を中断
-  - type: basic
-    from:
-      key_code: o
-    to:
-    - set_variable: &turn_off_kana_layout
-        name: kana_layout_invalid
-        value: 1
-    conditions: *system_mode
-
-  # 新下駄配列を再開（日本語入力オン）
-  - type: basic
-    from:
-      key_code: i
-    to:
-    - set_variable: &turn_on_kana_layout
-        name: kana_layout_invalid
-        value: 0
-    - key_code: japanese_kana
-      repeat: false
-    conditions: *system_mode
-
 # ===== Symbol Mode =====
 
-- description: "[Kana-input] Symbol Mode"
-  manipulators:
-
-# ----- Symbols -----
+  # Symbol Mode Key
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: comma
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *base_state
 
   # H → Left Arrow
   - type: basic
@@ -2640,132 +2586,75 @@ rules:
     - key_code: slash
     conditions: *symbol_mode
 
-  # Shift-Semicolon → 全角コロン
+  # Semicolon → 全角セミコロン／コロン
   - type: basic
     from:
       key_code: semicolon
-      modifiers:
-        mandatory:
-        - shift
-    to:
-    - key_code: l
-    - key_code: semicolon
-      modifiers:
-      - shift
-    conditions: *symbol_mode
-
-  # Semicolon → 全角セミコロン
-  - type: basic
-    from:
-      key_code: semicolon
+      modifiers: *opt_shift_key
     to:
     - key_code: l
     - key_code: semicolon
     conditions: *symbol_mode
 
-  # Shift-Quote → Double Quote
+  # Quote → Single/Double Quote
   - type: basic
     from:
       key_code: quote
-      modifiers:
-        mandatory:
-        - shift
-    to:
-    - key_code: l
-    - key_code: quote
-      modifiers:
-      - shift
-    conditions: *symbol_mode
-
-  # Quote → Single Quote
-  - type: basic
-    from:
-      key_code: quote
+      modifiers: *opt_shift_key
     to:
     - key_code: l
     - key_code: quote
     conditions: *symbol_mode
 
-  # Open/Close Bracket → 山括弧
+  # Open/Close Bracket → 山括弧／隅付き括弧
   - type: basic
     from:
       key_code: open_bracket
+      modifiers: *opt_shift_key
     to:
     - key_code: l
     - key_code: open_bracket
-    conditions: *symbol_mode
-  - type: basic
-    from:
-      key_code: close_bracket
-    to:
-    - key_code: l
-    - key_code: close_bracket
     conditions: *symbol_mode
 
-  # Shift-Open/Close Bracket → 隅付き括弧
-  - type: basic
-    from:
-      key_code: open_bracket
-      modifiers:
-        mandatory:
-        - shift
-    to:
-    - key_code: l
-    - key_code: open_bracket
-      modifiers:
-      - shift
-    conditions: *symbol_mode
   - type: basic
     from:
       key_code: close_bracket
-      modifiers:
-        mandatory:
-        - shift
+      modifiers: *opt_shift_key
     to:
     - key_code: l
     - key_code: close_bracket
-      modifiers:
-      - shift
     conditions: *symbol_mode
 
   # Open/Close Paren → 引用符
   - type: basic
     from:
       key_code: "9"
-      modifiers:
-        mandatory:
-        - shift
+      modifiers: *mand_shift_key
     to:
     - key_code: l
     - key_code: "9"
-      modifiers:
-      - shift
+      modifiers: *shift_key
     conditions: *symbol_mode
+
   - type: basic
     from:
       key_code: "0"
-      modifiers:
-        mandatory:
-        - shift
+      modifiers: *mand_shift_key
     to:
     - key_code: l
     - key_code: "0"
-      modifiers:
-      - shift
+      modifiers: *shift_key
     conditions: *symbol_mode
 
   # Asterisk → 全角アスタリスク
   - type: basic
     from:
       key_code: "8"
-      modifiers:
-        mandatory:
-        - shift
+      modifiers: *mand_shift_key
     to:
     - key_code: l
     - key_code: "8"
-      modifiers:
-      - shift
+      modifiers: *shift_key
     conditions: *symbol_mode
 
   # Hyphen → 全角ダッシュ
@@ -2795,23 +2684,61 @@ rules:
     - key_code: x
     conditions: *symbol_mode
 
-# ----- Symbol Mode Key -----
+# ===== System Mode =====
 
-  # Symbol Mode Key
+  # System Mode Key (ja_input)
   - type: basic
     from:
-      key_code: quote
+      key_code: q
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: quote
+      repeat: false
     to:
     - set_variable:
-        name: symbol_mode
+        name: system_mode
         value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: symbol_mode
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: symbol_mode
-          value: 0
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
     conditions: *base_state
+
+  # System Mode Key
+  - type: basic
+    from:
+      key_code: q
+    to_if_alone:
+    - key_code: q
+      repeat: false
+    to:
+    - set_variable:
+        name: system_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: system_mode
+        value: 0
+    conditions: *unless_login_window
+
+  # 新下駄配列を中断
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - set_variable: &turn_off_kana_layout
+        name: kana_layout_invalid
+        value: 1
+    conditions: *system_mode
+
+  # 新下駄配列を再開（日本語入力オン）
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - set_variable: &turn_on_kana_layout
+        name: kana_layout_invalid
+        value: 0
+    - key_code: japanese_kana
+      repeat: false
+    conditions: *system_mode
