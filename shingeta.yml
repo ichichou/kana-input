@@ -2524,7 +2524,9 @@ rules:
       key_code: h
     to:
     - key_code: l
+      repeat: false
     - key_code: h
+      repeat: false
     conditions: *symbol_mode
 
   # J → Down Arrow
@@ -2533,7 +2535,9 @@ rules:
       key_code: j
     to:
     - key_code: l
+      repeat: false
     - key_code: j
+      repeat: false
     conditions: *symbol_mode
 
   # K → Up Arrow
@@ -2542,7 +2546,9 @@ rules:
       key_code: k
     to:
     - key_code: l
+      repeat: false
     - key_code: k
+      repeat: false
     conditions: *symbol_mode
 
   # L → Right Arrow
@@ -2551,7 +2557,9 @@ rules:
       key_code: l
     to:
     - key_code: l
+      repeat: false
     - key_code: l
+      repeat: false
     conditions: *symbol_mode
 
   # Comma → 三点リーダ
@@ -2560,7 +2568,9 @@ rules:
       key_code: comma
     to:
     - key_code: l
+      repeat: false
     - key_code: comma
+      repeat: false
     conditions: *symbol_mode
 
   # Period → Period
@@ -2569,7 +2579,9 @@ rules:
       key_code: period
     to:
     - key_code: l
+      repeat: false
     - key_code: period
+      repeat: false
     conditions: *symbol_mode
 
   # Slash → Slash
@@ -2578,7 +2590,9 @@ rules:
       key_code: slash
     to:
     - key_code: l
+      repeat: false
     - key_code: slash
+      repeat: false
     conditions: *symbol_mode
 
   # Semicolon → 全角セミコロン／コロン
@@ -2588,7 +2602,9 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: semicolon
+      repeat: false
     conditions: *symbol_mode
 
   # Quote → Single/Double Quote
@@ -2598,7 +2614,9 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: quote
+      repeat: false
     conditions: *symbol_mode
 
   # Open/Close Bracket → 山括弧／隅付き括弧
@@ -2608,7 +2626,9 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: open_bracket
+      repeat: false
     conditions: *symbol_mode
 
   - type: basic
@@ -2617,7 +2637,9 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: close_bracket
+      repeat: false
     conditions: *symbol_mode
 
   # Open/Close Paren → 引用符
@@ -2627,8 +2649,10 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: "9"
       modifiers: *to_shift_key
+      repeat: false
     conditions: *symbol_mode
 
   - type: basic
@@ -2637,7 +2661,9 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: "0"
+      repeat: false
       modifiers: *to_shift_key
     conditions: *symbol_mode
 
@@ -2648,8 +2674,10 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: l
+      repeat: false
     - key_code: "8"
       modifiers: *to_shift_key
+      repeat: false
     conditions: *symbol_mode
 
   # Hyphen → 全角ダッシュ
@@ -2658,7 +2686,9 @@ rules:
       key_code: hyphen
     to:
     - key_code: l
+      repeat: false
     - key_code: hyphen
+      repeat: false
     conditions: *symbol_mode
 
   # S → 全角スペース
@@ -2667,7 +2697,9 @@ rules:
       key_code: s
     to:
     - key_code: l
+      repeat: false
     - key_code: s
+      repeat: false
     conditions: *symbol_mode
 
   # X → 乗算記号
@@ -2676,5 +2708,7 @@ rules:
       key_code: x
     to:
     - key_code: l
+      repeat: false
     - key_code: x
+      repeat: false
     conditions: *symbol_mode
