@@ -412,7 +412,7 @@ rules:
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: a
       repeat: false
@@ -426,7 +426,7 @@ rules:
       - key_code: "2"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: i
       repeat: false
@@ -440,7 +440,7 @@ rules:
       - key_code: "3"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: u
       repeat: false
@@ -454,7 +454,7 @@ rules:
       - key_code: "4"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: e
       repeat: false
@@ -468,7 +468,7 @@ rules:
       - key_code: "5"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: o
       repeat: false
@@ -988,7 +988,7 @@ rules:
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -1004,7 +1004,7 @@ rules:
       - key_code: "5"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: w
       repeat: false
@@ -1505,7 +1505,7 @@ rules:
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -1779,7 +1779,7 @@ rules:
       - key_code: "1"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -2005,7 +2005,7 @@ rules:
       - key_code: "n"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -2021,7 +2021,7 @@ rules:
       - key_code: "y"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -2037,7 +2037,7 @@ rules:
       - key_code: h
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: "y"
       repeat: false
@@ -2053,7 +2053,7 @@ rules:
       - key_code: j
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: a
       repeat: false
@@ -2067,7 +2067,7 @@ rules:
       - key_code: m
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: i
       repeat: false
@@ -2081,7 +2081,7 @@ rules:
       - key_code: comma
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: u
       repeat: false
@@ -2095,7 +2095,7 @@ rules:
       - key_code: period
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: e
       repeat: false
@@ -2109,7 +2109,7 @@ rules:
       - key_code: slash
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: o
       repeat: false
@@ -2123,7 +2123,7 @@ rules:
       - key_code: semicolon
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: w
       repeat: false
@@ -2494,7 +2494,7 @@ rules:
       key_code: q
       modifiers: *opt_shift_key
     to:
-    - key_code: quote
+    - key_code: hyphen
       repeat: false
     conditions: *base_state
 
@@ -2517,6 +2517,38 @@ rules:
         name: symbol_mode
         value: 0
     conditions: *base_state
+
+  # U → 全角ダッシュ
+  - type: basic
+    from:
+      key_code: u
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: hyphen
+      repeat: false
+    conditions: *symbol_mode
+
+  # I → 三点リーダ
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *symbol_mode
+
+  # O → 全角コロン
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - key_code: semicolon
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *symbol_mode
 
   # H → Left Arrow
   - type: basic
@@ -2562,7 +2594,51 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Comma → 三点リーダ
+  # N → 全角スペース
+  - type: basic
+    from:
+      key_code: "n"
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: s
+      repeat: false
+    conditions: *symbol_mode
+
+  # M → 乗算記号
+  - type: basic
+    from:
+      key_code: m
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: x
+      repeat: false
+    conditions: *symbol_mode
+
+  # S → 全角スペース
+  - type: basic
+    from:
+      key_code: s
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: s
+      repeat: false
+    conditions: *symbol_mode
+
+  # X → 乗算記号
+  - type: basic
+    from:
+      key_code: x
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: x
+      repeat: false
+    conditions: *symbol_mode
+
+  # Comma → Comma
   - type: basic
     from:
       key_code: comma
@@ -2601,8 +2677,6 @@ rules:
       key_code: semicolon
       modifiers: *opt_shift_key
     to:
-    - key_code: l
-      repeat: false
     - key_code: semicolon
       repeat: false
     conditions: *symbol_mode
@@ -2613,8 +2687,6 @@ rules:
       key_code: quote
       modifiers: *opt_shift_key
     to:
-    - key_code: l
-      repeat: false
     - key_code: quote
       repeat: false
     conditions: *symbol_mode
@@ -2688,27 +2760,5 @@ rules:
     - key_code: l
       repeat: false
     - key_code: hyphen
-      repeat: false
-    conditions: *symbol_mode
-
-  # S → 全角スペース
-  - type: basic
-    from:
-      key_code: s
-    to:
-    - key_code: l
-      repeat: false
-    - key_code: s
-      repeat: false
-    conditions: *symbol_mode
-
-  # X → 乗算記号
-  - type: basic
-    from:
-      key_code: x
-    to:
-    - key_code: l
-      repeat: false
-    - key_code: x
       repeat: false
     conditions: *symbol_mode
