@@ -2459,7 +2459,7 @@ rules:
       key_code: g
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: x
       repeat: false
     - key_code: t
       repeat: false
