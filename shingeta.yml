@@ -1255,6 +1255,18 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # 長音府（改変）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_shift
+      - key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - key_code: quote
+      repeat: false
+    conditions: *base_state
+
 # ===== 中指上段シフト =====
 
   # きゃ
@@ -2494,7 +2506,7 @@ rules:
       key_code: q
       modifiers: *opt_shift_key
     to:
-    - key_code: hyphen
+    - key_code: quote
       repeat: false
     conditions: *base_state
 
@@ -2685,9 +2697,20 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    - key_code: quote
+      repeat: false
+    conditions: *symbol_mode
+
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *mand_shift_key
     to:
     - key_code: quote
+      modifiers: *to_shift_key
       repeat: false
     conditions: *symbol_mode
 
