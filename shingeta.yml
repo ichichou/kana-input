@@ -1255,17 +1255,17 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # 長音府（改変）
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *left_ring_shift
-      - key_code: quote
-      modifiers: *opt_shift_key
-    to:
-    - key_code: quote
-      repeat: false
-    conditions: *base_state
+  # # （未定義）（改変）
+  # - type: basic
+  #   from:
+  #     simultaneous:
+  #     - key_code: *left_ring_shift
+  #     - key_code: quote
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: 
+  #     repeat: false
+  #   conditions: *base_state
 
 # ===== 中指上段シフト =====
 
