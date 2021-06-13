@@ -1,4 +1,4 @@
-title: "9. $BF1;~BG80$G5-9fF~NO(B"
+title: "9. 同時打鍵で記号入力"
 
 # ===== Aliases =====
 
@@ -28,10 +28,10 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] $BF1;~BG80$G5-9fF~NO(B"
+- description: "[Kana Input] 同時打鍵で記号入力"
   manipulators:
 
-  # RF $B"*(B $BCf9u(B
+  # RF → 中黒
   - type: basic
     from:
       simultaneous:
@@ -42,7 +42,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # RG $B"*(B $BCf9u(B
+  # RG → 中黒
   - type: basic
     from:
       simultaneous:
@@ -53,7 +53,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # FV $B"*(B $B46C2Id(B
+  # FV → 感嘆符
   - type: basic
     from:
       simultaneous:
@@ -65,7 +65,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # FB $B"*(B $B46C2Id(B
+  # FB → 感嘆符
   - type: basic
     from:
       simultaneous:
@@ -77,7 +77,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # UJ $B"*(B $B%9%i%C%7%e(B
+  # UJ → スラッシュ
   - type: basic
     from:
       simultaneous:
@@ -90,7 +90,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # UH $B"*(B $B%9%i%C%7%e(B
+  # UH → スラッシュ
   - type: basic
     from:
       simultaneous:
@@ -103,7 +103,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # JM $B"*(B $B5?LdId(B
+  # JM → 疑問符
   - type: basic
     from:
       simultaneous:
@@ -115,7 +115,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # JN $B"*(B $B5?LdId(B
+  # JN → 疑問符
   - type: basic
     from:
       simultaneous:
@@ -127,7 +127,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # FG $B"*(B $Bnl3g8L(B
+  # # FG → 鉤括弧
   # - type: basic
   #   from:
   #     simultaneous:
@@ -144,7 +144,7 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-  # # JH $B"*(B $B4]3g8L(B
+  # # JH → 丸括弧
   # - type: basic
   #   from:
   #     simultaneous:

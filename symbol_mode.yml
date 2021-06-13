@@ -58,7 +58,7 @@ rules:
         value: 0
     conditions: *base_state
 
-  # Y $B"*(B $BCf9u(B
+  # Y → 中黒
   - type: basic
     from:
       key_code: "y"
@@ -69,7 +69,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # U $B"*(B Em $B%@%C%7%e(B
+  # U → Em ダッシュ
   - type: basic
     from:
       key_code: u
@@ -80,7 +80,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # I $B"*(B $B;0E@%j!<%@(B
+  # I → 三点リーダ
   - type: basic
     from:
       key_code: i
@@ -91,7 +91,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # O $B"*(B $B%3%m%s(B
+  # O → コロン
   - type: basic
     from:
       key_code: o
@@ -102,7 +102,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # P $B"*(B $BGH%@%C%7%e(B
+  # P → 波ダッシュ
   - type: basic
     from:
       key_code: p
@@ -113,7 +113,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # H $B"*(B Left Arrow
+  # H → Left Arrow
   - type: basic
     from:
       key_code: h
@@ -124,7 +124,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # J $B"*(B Down Arrow
+  # J → Down Arrow
   - type: basic
     from:
       key_code: j
@@ -135,7 +135,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # K $B"*(B Up Arrow
+  # K → Up Arrow
   - type: basic
     from:
       key_code: k
@@ -146,7 +146,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # L $B"*(B Right Arrow
+  # L → Right Arrow
   - type: basic
     from:
       key_code: l
@@ -157,7 +157,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Semicolon $B"*(B $B%;%_%3%m%s(B
+  # Semicolon → セミコロン
   - type: basic
     from:
       key_code: semicolon
@@ -168,7 +168,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Colon $B"*(B $B%3%m%s(B
+  # Colon → コロン
   - type: basic
     from:
       key_code: semicolon
@@ -181,7 +181,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Single Quote $B"*(B $B%7%s%0%k%/%)!<%H(B
+  # Single Quote → シングルクォート
   - type: basic
     from:
       key_code: quote
@@ -192,7 +192,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Double Quote $B"*(B $B%@%V%k%/%)!<%H(B
+  # Double Quote → ダブルクォート
   - type: basic
     from:
       key_code: quote
@@ -205,7 +205,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # N $B"*(B $B>h;;5-9f(B
+  # N → 乗算記号
   - type: basic
     from:
       key_code: "n"
@@ -216,7 +216,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # M $B"*(B $BA43Q%9%Z!<%9(B
+  # M → 全角スペース
   - type: basic
     from:
       key_code: m
@@ -227,7 +227,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Comma $B"*(B $B46C2Id(B
+  # Comma → コンマ
   - type: basic
     from:
       key_code: comma
@@ -238,7 +238,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Period $B"*(B $B5?LdId(B
+  # Period → ピリオド
   - type: basic
     from:
       key_code: period
@@ -249,7 +249,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Less Than $B"*(B $B>.$J$j5-9f(B
+  # Less Than → 感嘆符
   - type: basic
     from:
       key_code: comma
@@ -262,7 +262,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Greater Than $B"*(B $BBg$J$j5-9f(B
+  # Greater Than → 疑問符
   - type: basic
     from:
       key_code: period
@@ -275,7 +275,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Slash $B"*(B $B%9%i%C%7%e(B
+  # Slash → スラッシュ
   - type: basic
     from:
       key_code: slash
@@ -286,7 +286,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Question Mark $B"*(B $B5?LdId(B
+  # Question Mark → 疑問符
   - type: basic
     from:
       key_code: slash
@@ -299,7 +299,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Bracket $B"*(B $B;33g8L!?6yIU$-3g8L(B
+  # Bracket → 山括弧／隅付き括弧
   - type: basic
     from:
       key_code: open_bracket
@@ -322,7 +322,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Paren $B"*(B $B0l=E0zMQId!?Fs=E0zMQId(B
+  # Paren → 一重引用符／二重引用符
   - type: basic
     from:
       key_code: "9"
