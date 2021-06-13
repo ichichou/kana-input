@@ -47,7 +47,7 @@ rules:
 - description: "[Kana Input] 新下駄配列"
   manipulators:
 
-# ===== 中指シフト（右） =====
+# ----- 中指シフト（右） -----
 
   # ふ
   - type: basic
@@ -329,7 +329,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 中指シフト（左） =====
+# ----- 中指シフト（左） -----
 
   # あ
   - type: basic
@@ -525,7 +525,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # カンマ
+  # コンマ
   - type: basic
     from:
       simultaneous:
@@ -573,7 +573,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 薬指シフト（右） =====
+# ----- 薬指シフト（右） -----
 
   # お
   - type: basic
@@ -867,7 +867,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 薬指シフト（左） =====
+# ----- 薬指シフト（左） -----
 
   # そ
   - type: basic
@@ -1065,7 +1065,7 @@ rules:
       - key_code: "7"
       modifiers: *opt_shift_key
     to:
-    - key_code: l
+    - key_code: backslash
       repeat: false
     - key_code: period
       repeat: false
@@ -1118,11 +1118,11 @@ rules:
   #     - key_code: quote
   #     modifiers: *opt_shift_key
   #   to:
-  #   - key_code: 
+  #   - key_code:
   #     repeat: false
   #   conditions: *base_state
 
-# ===== 中指上段シフト =====
+# ----- 中指上段シフト -----
 
   # きゃ
   - type: basic
@@ -1396,7 +1396,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 薬指上段シフト =====
+# ----- 薬指上段シフト -----
 
   # にゃ
   - type: basic
@@ -1670,7 +1670,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 小指上段シフト（改変） =====
+# ----- 小指上段シフト（右）（改変） -----
 
   # みゃ
   - type: basic
@@ -1864,6 +1864,8 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # ----- 小指上段シフト（左）（改変） -----
+
   # ゃ
   - type: basic
     from:
@@ -1998,7 +2000,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== ベース =====
+# ----- ベース -----
 
   # い
   - type: basic
