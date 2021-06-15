@@ -55,7 +55,7 @@ rules:
 - description: "[Kana Input] 新下駄配列"
   manipulators:
 
-  # ----- 同時打鍵 → 記号 -----
+# ----- 同時打鍵 → 記号 -----
 
   # RF → 中黒
   - type: basic
@@ -2004,7 +2004,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ----- 小指上段シフト（左）（改変） -----
+# ----- 小指上段シフト（左）（改変） -----
 
   # ゃ
   - type: basic
@@ -2507,7 +2507,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # ----- Symbol Mode -----
+# ----- Symbol Mode -----
 
   # Symbol Mode Key
   - type: basic

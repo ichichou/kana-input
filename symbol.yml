@@ -44,7 +44,7 @@ rules:
 - description: "[Kana Input] 記号"
   manipulators:
 
-  # ----- 同時打鍵 → 記号 -----
+# ----- 同時打鍵 → 記号 -----
 
   # RF → 中黒
   - type: basic
@@ -176,7 +176,7 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-  # ----- Symbol Mode -----
+# ----- Symbol Mode -----
 
   # Symbol Mode Key
   - type: basic

@@ -93,7 +93,7 @@ rules:
 - description: 薙刀式 v12
   manipulators:
 
-# ===== Center Shift Key =====
+# ----- Center Shift Key -----
 
   # Space
   - type: basic
@@ -120,7 +120,7 @@ rules:
     to_after_key_up: *turn_off_shift
     conditions: *base_state
 
-# ===== 外来音（濁音） =====
+# ----- 外来音（濁音） -----
 
   # でぃ
   - type: basic
@@ -373,7 +373,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 外来音（清音） =====
+# ----- 外来音（清音） -----
 
   # てぃ
   - type: basic
@@ -741,7 +741,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 拗音（半濁音） =====
+# ----- 拗音（半濁音） -----
 
   # ぴゃ
   - type: basic
@@ -794,7 +794,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 拗音（濁音） =====
+# ----- 拗音（濁音） -----
 
   # じゃ
   - type: basic
@@ -994,7 +994,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 拗音（清音） =====
+# ----- 拗音（清音） -----
 
   # しゃ
   - type: basic
@@ -1332,7 +1332,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 小書き =====
+# ----- 捨て仮名 -----
 
   # ゎ
   - type: basic
@@ -1500,7 +1500,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 半濁音 =====
+# ----- 半濁音 -----
 
   # ぱ
   - type: basic
@@ -1572,7 +1572,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 濁音 =====
+# ----- 濁音 -----
 
   # が
   - type: basic
@@ -1868,7 +1868,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== 清音（シフト） =====
+# ----- 清音（シフト） -----
 
   # え
   - type: basic
@@ -2172,7 +2172,7 @@ rules:
       repeat: false
     conditions: *shifted
 
-# ===== 清音（ベース） =====
+# ----- 清音（ベース） -----
 
   # あ
   - type: basic
@@ -2509,8 +2509,8 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== System Mode =====
-# 小書きより後に記述する
+# ----- System Mode -----
+# 捨て仮名より後に記述する
 
   # System Mode Key
   - type: basic

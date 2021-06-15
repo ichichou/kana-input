@@ -120,9 +120,9 @@ rules:
 - description: 飛鳥配列
   manipulators:
 
-# ===== 同手・逆手シフトキー =====
+# ----- 同手・逆手シフトキー -----
 
-# ----- 同手シフト時 -----
+# 同手シフト時
 
   # あ（同手シフトキー）
   - type: basic
@@ -178,7 +178,7 @@ rules:
     to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *same_hand_shifted
 
-# ----- 逆手シフト時 -----
+# 逆手シフト時
 
   # お（同手シフトキー）
   - type: basic
@@ -234,7 +234,7 @@ rules:
     to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *reverse_hand_shifted
 
-# ----- ベース面-----
+# ベース面
 
   # し（同手シフトキー）
   - type: basic
@@ -288,7 +288,7 @@ rules:
     to_after_key_up: *turn_off_reverse_hand_shift
     conditions: *base_state
 
-# ===== 同手シフト =====
+# ----- 同手シフト -----
 
   # あ
   - type: basic
@@ -761,7 +761,7 @@ rules:
       repeat: false
     conditions: *same_hand_shifted
 
-# ===== 逆手シフト =====
+# ----- 逆手シフト -----
 
   # え
   - type: basic
@@ -1225,7 +1225,7 @@ rules:
       repeat: false
     conditions: *reverse_hand_shifted
 
-# ===== ベース =====
+# ----- ベース -----
 
   # い
   - type: basic
@@ -1582,7 +1582,7 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ===== System Mode =====
+# ----- System Mode -----
 
   # System Mode Key
   - type: basic
