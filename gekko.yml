@@ -787,16 +787,17 @@ rules:
     conditions: *dakuon_shifted_state
 
   # ぼ
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: b
-      repeat: false
-    - key_code: o
-      repeat: false
-    conditions: *dakuon_shifted_state
+  # Symbol Mode Key で定義
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: b
+  #     repeat: false
+  #   - key_code: o
+  #     repeat: false
+  #   conditions: *dakuon_shifted_state
 
   # ぴ
   - type: basic
@@ -835,16 +836,17 @@ rules:
     conditions: *handakuon_shifted_state
 
   # ぽ
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: p
-      repeat: false
-    - key_code: o
-      repeat: false
-    conditions: *handakuon_shifted_state
+  # Symbol Mode Key で定義
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: p
+  #     repeat: false
+  #   - key_code: o
+  #     repeat: false
+  #   conditions: *handakuon_shifted_state
 
 # ----- 中指シフト（清音） -----
 
@@ -987,16 +989,17 @@ rules:
     conditions: *shifted_state
 
   # ほ
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: h
-      repeat: false
-    - key_code: o
-      repeat: false
-    conditions: *shifted_state
+  # Symbol Mode Key で定義
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: h
+  #     repeat: false
+  #   - key_code: o
+  #     repeat: false
+  #   conditions: *shifted_state
 
   # み
   - type: basic
@@ -1289,16 +1292,17 @@ rules:
     conditions: *dakuon_base_state
 
   # で
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: d
-      repeat: false
-    - key_code: e
-      repeat: false
-    conditions: *dakuon_base_state
+  # Symbol Mode Key で定義
+  #   - type: basic
+  #     from:
+  #       key_code: r
+  #       modifiers: *opt_shift_key
+  #     to:
+  #     - key_code: d
+  #       repeat: false
+  #     - key_code: e
+  #       repeat: false
+  #     conditions: *dakuon_base_state
 
   # ど
   - type: basic
@@ -1455,16 +1459,17 @@ rules:
     conditions: *base_state
 
   # て
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *opt_shift_key
-    to:
-    - key_code: t
-      repeat: false
-    - key_code: e
-      repeat: false
-    conditions: *base_state
+  # Symbol Mode Key で定義
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *opt_shift_key
+  #   to:
+  #   - key_code: t
+  #     repeat: false
+  #   - key_code: e
+  #     repeat: false
+  #   conditions: *base_state
 
   # と
   - type: basic
@@ -1646,13 +1651,95 @@ rules:
 
 # ----- Symbol Mode -----
 
-  # Symbol Mode Key
+  # Symbol Mode Key（シフト・濁音時）
   - type: basic
     from:
       key_code: r
       modifiers: *opt_shift_key
     to_if_alone:
-    - key_code: comma
+    - key_code: b
+      repeat: false
+    - key_code: o
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *dakuon_shifted_state
+
+  # Symbol Mode Key（シフト・半濁音時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: p
+      repeat: false
+    - key_code: o
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *handakuon_shifted_state
+
+  # Symbol Mode Key（シフト・清音時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: h
+      repeat: false
+    - key_code: o
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *shifted_state
+
+  # Symbol Mode Key（ベース・濁音時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: d
+      repeat: false
+    - key_code: e
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *dakuon_base_state
+
+  # Symbol Mode Key（ベース・清音時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: t
+      repeat: false
+    - key_code: e
       repeat: false
     to:
     - set_variable:
