@@ -1,0 +1,673 @@
+title: "9'. ぶな配列"
+
+# ===== Aliases =====
+
+aliases:
+
+# ----- Modifier Keys -----
+
+- from/modifiers: &opt_shift_key
+    optional:
+    - shift
+
+- from/modifiers: &mand_shift_key
+    mandatory:
+    - shift
+
+- to/modifiers: &to_shift_key
+  - shift
+
+# ----- Conditions -----
+
+- conditions: &symbol_mode
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_if
+    name: symbol_mode
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+- conditions: &left_shifted_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: symbol_mode
+    value: 1
+  - type: variable_if
+    name: left_shift
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+- conditions: &right_shifted_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: symbol_mode
+    value: 1
+  - type: variable_if
+    name: right_shift
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+- conditions: &base_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: variable_unless
+    name: symbol_mode
+    value: 1
+  - type: variable_unless
+    name: left_shift
+    value: 1
+  - type: variable_unless
+    name: right_shift
+    value: 1
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+# ===== Rules =====
+
+rules:
+- description: "[Kana Input] ぶな配列"
+  manipulators:
+
+# ----- 同時打鍵 → 記号 -----
+
+  # RF → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: f
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # RG → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: g
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # FV → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: v
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # FB → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: b
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # UJ → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: j
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # UH → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: h
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # JM → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: m
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # JN → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: "n"
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # # FG → 鉤括弧
+  # - type: basic
+  #   from:
+  #     simultaneous:
+  #     - key_code: f
+  #     - key_code: g
+  #   to:
+  #   - key_code: open_bracket
+  #     repeat: false
+  #   - key_code: close_bracket
+  #     repeat: false
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   - key_code: left_arrow
+  #     repeat: false
+  #   conditions: *base_state
+
+  # # JH → 丸括弧
+  # - type: basic
+  #   from:
+  #     simultaneous:
+  #     - key_code: j
+  #     - key_code: h
+  #   to:
+  #   - key_code: "9"
+  #     modifiers: *to_shift_key
+  #     repeat: false
+  #   - key_code: "0"
+  #     modifiers: *to_shift_key
+  #     repeat: false
+  #   - key_code: return_or_enter
+  #     repeat: false
+  #   - key_code: left_arrow
+  #     repeat: false
+  #   conditions: *base_state
+
+# ----- シフトキー -----
+
+  # 中指シフト（左）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: left_shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: left_shift
+          value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: symbol_mode
+      value: 1
+    - type: variable_unless
+      name: right_shift
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+  # 中指シフト（右）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: right_shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: right_shift
+          value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: symbol_mode
+      value: 1
+    - type: variable_unless
+      name: left_shift
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+# ----- 中指シフト（左） -----
+
+  # づ
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *opt_shift_key
+    to:
+    - key_code: d
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *left_shifted_state
+
+# ----- 中指シフト（右） -----
+
+  # べ
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *opt_shift_key
+    to:
+    - key_code: b
+      repeat: false
+    - key_code: e
+      repeat: false
+    conditions: *right_shifted_state
+
+# ----- ベース -----
+
+  # こ
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *opt_shift_key
+    to:
+    - key_code: k
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+# ----- Symbol Mode -----
+
+  # Symbol Mode Key（左シフト時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: p
+      repeat: false
+    - key_code: u
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *left_shifted_state
+
+  # Symbol Mode Key（右シフト時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: s
+      repeat: false
+    - key_code: o
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *right_shifted_state
+
+  # Symbol Mode Key（ベース時）
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_shift_key
+    to_if_alone:
+    - key_code: t
+      repeat: false
+    - key_code: e
+      repeat: false
+    to:
+    - set_variable:
+        name: symbol_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: symbol_mode
+        value: 0
+    conditions: *base_state
+
+  # Y → 中黒
+  - type: basic
+    from:
+      key_code: "y"
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # U → Em ダッシュ
+  - type: basic
+    from:
+      key_code: u
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # I → 三点リーダ
+  - type: basic
+    from:
+      key_code: i
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # O → コロン
+  - type: basic
+    from:
+      key_code: o
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # P → 波ダッシュ
+  - type: basic
+    from:
+      key_code: p
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: p
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # H → Left Arrow
+  - type: basic
+    from:
+      key_code: h
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: h
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # J → Down Arrow
+  - type: basic
+    from:
+      key_code: j
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: j
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # K → Up Arrow
+  - type: basic
+    from:
+      key_code: k
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: k
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # L → Right Arrow
+  - type: basic
+    from:
+      key_code: l
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: l
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Semicolon → セミコロン
+  - type: basic
+    from:
+      key_code: semicolon
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: semicolon
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Colon → コロン
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: semicolon
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Single Quote → シングルクォート
+  - type: basic
+    from:
+      key_code: quote
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: quote
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Double Quote → ダブルクォート
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # N → 乗算記号
+  - type: basic
+    from:
+      key_code: "n"
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: "n"
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # M → 全角スペース
+  - type: basic
+    from:
+      key_code: m
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: m
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Comma → コンマ
+  - type: basic
+    from:
+      key_code: comma
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: comma
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Period → ピリオド
+  - type: basic
+    from:
+      key_code: period
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: period
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Less Than → 感嘆符
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: comma
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Greater Than → 疑問符
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: period
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Slash → スラッシュ
+  - type: basic
+    from:
+      key_code: slash
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: slash
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Question Mark → 疑問符
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Bracket → 山括弧／隅付き括弧
+  - type: basic
+    from:
+      key_code: open_bracket
+      modifiers: *opt_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: open_bracket
+      repeat: false
+    conditions: symbol_mode_valid
+
+  - type: basic
+    from:
+      key_code: close_bracket
+      modifiers: *opt_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: close_bracket
+      repeat: false
+    conditions: symbol_mode_valid
+
+  # Paren → 一重引用符／二重引用符
+  - type: basic
+    from:
+      key_code: "9"
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: "9"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: symbol_mode_valid
+
+  - type: basic
+    from:
+      key_code: "0"
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: "0"
+      repeat: false
+      modifiers: *to_shift_key
+    conditions: symbol_mode_valid
