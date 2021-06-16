@@ -615,60 +615,54 @@ rules:
   # あ
   - type: basic
     from:
-      key_code: 
+      key_code: g
       modifiers: *opt_shift_key
     to:
-    - key_code: 
-      repeat: false
-    - key_code: 
+    - key_code: a
       repeat: false
     conditions: *right_shifted_state
 
   # え
   - type: basic
     from:
-      key_code: 
+      key_code: o
       modifiers: *opt_shift_key
     to:
-    - key_code: 
-      repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # お
   - type: basic
     from:
-      key_code: 
+      key_code: l
       modifiers: *opt_shift_key
     to:
-    - key_code: 
-      repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # け
   - type: basic
     from:
-      key_code: 
+      key_code: d
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: k
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # せ
   - type: basic
     from:
-      key_code: 
+      key_code: s
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: s
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
@@ -676,276 +670,276 @@ rules:
   # Symbol mode で定義
   - type: basic
     from:
-      key_code: 
+      key_code: r
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: s
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # ち
   - type: basic
     from:
-      key_code: 
+      key_code: m
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: t
       repeat: false
-    - key_code: 
+    - key_code: i
       repeat: false
     conditions: *right_shifted_state
 
   # つ
   - type: basic
     from:
-      key_code: 
+      key_code: j
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: t
       repeat: false
-    - key_code: 
+    - key_code: u
       repeat: false
     conditions: *right_shifted_state
 
   # ね
   - type: basic
     from:
-      key_code: 
+      key_code: v
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: "n"
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # ふ
   - type: basic
     from:
-      key_code: 
+      key_code: z
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: h
       repeat: false
-    - key_code: 
+    - key_code: u
       repeat: false
     conditions: *right_shifted_state
 
   # へ
   - type: basic
     from:
-      key_code: 
+      key_code: r
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: h
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # ほ
   - type: basic
     from:
-      key_code: 
+      key_code: e
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: h
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # み
   - type: basic
     from:
-      key_code: 
+      key_code: "n"
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: m
       repeat: false
-    - key_code: 
+    - key_code: i
       repeat: false
     conditions: *right_shifted_state
 
   # や
   - type: basic
     from:
-      key_code: 
+      key_code: p
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: "y"
       repeat: false
-    - key_code: 
+    - key_code: a
       repeat: false
     conditions: *right_shifted_state
 
   # よ
   - type: basic
     from:
-      key_code: 
+      key_code: b
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: "y"
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # ろ
   - type: basic
     from:
-      key_code: 
+      key_code: semicolon
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: r
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # わ
   - type: basic
     from:
-      key_code: 
+      key_code: a
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: w
       repeat: false
-    - key_code: 
+    - key_code: a
       repeat: false
     conditions: *right_shifted_state
 
   # ご
   - type: basic
     from:
-      key_code: 
+      key_code: c
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: g
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # ざ
   - type: basic
     from:
-      key_code: 
+      key_code: x
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: z
       repeat: false
-    - key_code: 
+    - key_code: a
       repeat: false
     conditions: *right_shifted_state
 
   # ど
   - type: basic
     from:
-      key_code: 
+      key_code: f
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: d
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # び
   - type: basic
     from:
-      key_code: 
+      key_code: h
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: b
       repeat: false
-    - key_code: 
+    - key_code: i
       repeat: false
     conditions: *right_shifted_state
 
   # べ
   - type: basic
     from:
-      key_code: 
+      key_code: q
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: b
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # ぼ
   - type: basic
     from:
-      key_code: 
+      key_code: w
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: b
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
   # ぺ
   - type: basic
     from:
-      key_code: 
+      key_code: u
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: p
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # ぁ
   - type: basic
     from:
-      key_code: 
+      key_code: slash
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: x
       repeat: false
-    - key_code: 
+    - key_code: a
       repeat: false
     conditions: *right_shifted_state
 
   # ぃ
   - type: basic
     from:
-      key_code: 
+      key_code: period
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: x
       repeat: false
-    - key_code: 
+    - key_code: i
       repeat: false
     conditions: *right_shifted_state
 
   # ぇ
   - type: basic
     from:
-      key_code: 
+      key_code: i
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: x
       repeat: false
-    - key_code: 
+    - key_code: e
       repeat: false
     conditions: *right_shifted_state
 
   # ぉ
   - type: basic
     from:
-      key_code: 
+      key_code: comma
       modifiers: *opt_shift_key
     to:
-    - key_code: 
+    - key_code: x
       repeat: false
-    - key_code: 
+    - key_code: o
       repeat: false
     conditions: *right_shifted_state
 
