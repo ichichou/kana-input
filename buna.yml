@@ -730,7 +730,7 @@ rules:
   # へ
   - type: basic
     from:
-      key_code: r
+      key_code: t
       modifiers: *opt_shift_key
     to:
     - key_code: h
