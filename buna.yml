@@ -544,6 +544,39 @@ rules:
       repeat: false
     conditions: *left_shifted_state
 
+  # （未定義）
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 0
+    conditions: *left_shifted_state
+
+  # （未定義）
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 0
+    conditions: *left_shifted_state
+
+  # （未定義）
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 0
+    conditions: *left_shifted_state
+
 # ----- 中指シフト（右） -----
 
   # あ
@@ -875,6 +908,28 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
+    conditions: *right_shifted_state
+
+  # （未定義）
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 0
+    conditions: *right_shifted_state
+
+  # （未定義）
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 0
     conditions: *right_shifted_state
 
 # ----- ベース -----
