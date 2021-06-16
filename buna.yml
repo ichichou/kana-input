@@ -1307,6 +1307,8 @@ rules:
       - set_variable:
           name: left_shift
           value: 0
+    parameters:
+      basic.to_delayed_action_delay_milliseconds: 5000
     conditions:
     - type: input_source_if
       input_sources:
@@ -1339,6 +1341,8 @@ rules:
       - set_variable:
           name: right_shift
           value: 0
+    parameters:
+      basic.to_delayed_action_delay_milliseconds: 5000
     conditions:
     - type: input_source_if
       input_sources:
