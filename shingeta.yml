@@ -2006,54 +2006,6 @@ rules:
 
 # ----- 小指上段シフト（左）（改変） -----
 
-  # ゃ
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *left_upper_pinky_shift
-      - key_code: "n"
-      modifiers: *opt_shift_key
-    to:
-    - key_code: x
-      repeat: false
-    - key_code: "y"
-      repeat: false
-    - key_code: a
-      repeat: false
-    conditions: *base_state
-
-  # ゅ
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *left_upper_pinky_shift
-      - key_code: "y"
-      modifiers: *opt_shift_key
-    to:
-    - key_code: x
-      repeat: false
-    - key_code: "y"
-      repeat: false
-    - key_code: u
-      repeat: false
-    conditions: *base_state
-
-  # ょ
-  - type: basic
-    from:
-      simultaneous:
-      - key_code: *left_upper_pinky_shift
-      - key_code: h
-      modifiers: *opt_shift_key
-    to:
-    - key_code: x
-      repeat: false
-    - key_code: "y"
-      repeat: false
-    - key_code: o
-      repeat: false
-    conditions: *base_state
-
   # ぁ
   - type: basic
     from:
@@ -2119,6 +2071,54 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
+      repeat: false
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # ゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_upper_pinky_shift
+      - key_code: "n"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: x
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # ゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_upper_pinky_shift
+      - key_code: "y"
+      modifiers: *opt_shift_key
+    to:
+    - key_code: x
+      repeat: false
+    - key_code: "y"
+      repeat: false
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # ょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_upper_pinky_shift
+      - key_code: h
+      modifiers: *opt_shift_key
+    to:
+    - key_code: x
+      repeat: false
+    - key_code: "y"
       repeat: false
     - key_code: o
       repeat: false
