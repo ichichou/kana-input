@@ -351,7 +351,7 @@ rules:
 
 # ----- シフトキー -----
 
-  # 濁音（ベース時）
+  # 濁音キー（ベース時）
   - type: basic
     from:
       key_code: l
@@ -371,7 +371,7 @@ rules:
           value: 0
     conditions: *base_state
 
-  # 濁音（シフト時）
+  # 濁音キー（シフト時）
   - type: basic
     from:
       key_code: l
@@ -400,7 +400,7 @@ rules:
           value: 0
     conditions: *shifted_state
 
-  # 半濁音（ベース時）
+  # 半濁音キー（ベース時）
   - type: basic
     from:
       key_code: slash
@@ -420,7 +420,7 @@ rules:
           value: 0
     conditions: *base_state
 
-  # 半濁音（シフト時）
+  # 半濁音キー（シフト時）
   - type: basic
     from:
       key_code: slash
@@ -449,7 +449,7 @@ rules:
           value: 0
     conditions: *shifted_state
 
-  # 中指シフト（左・濁音時）
+  # 中指シフトキー（左・濁音時）
   - type: basic
     from:
       key_code: d
@@ -487,7 +487,7 @@ rules:
           value: 0
     conditions: *dakuon_state
 
-  # 中指シフト（左・半濁音時）
+  # 中指シフトキー（左・半濁音時）
   - type: basic
     from:
       key_code: d
@@ -525,7 +525,7 @@ rules:
           value: 0
     conditions: *handakuon_state
 
-  # 中指シフト（左・清音時）
+  # 中指シフトキー（左・清音時）
   - type: basic
     from:
       key_code: d
@@ -554,7 +554,7 @@ rules:
           value: 0
     conditions: *seion_state
 
-  # 中指シフト（右・濁音時）
+  # 中指シフトキー（右・濁音時）
   - type: basic
     from:
       key_code: k
@@ -592,7 +592,7 @@ rules:
           value: 0
     conditions: *dakuon_state
 
-  # 中指シフト（右・半濁音時）
+  # 中指シフトキー（右・半濁音時）
   - type: basic
     from:
       key_code: k
@@ -630,7 +630,7 @@ rules:
           value: 0
     conditions: *handakuon_state
 
-  # 中指シフト（右・清音時）
+  # 中指シフトキー（右・清音時）
   - type: basic
     from:
       key_code: k

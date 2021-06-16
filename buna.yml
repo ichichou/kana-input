@@ -215,7 +215,7 @@ rules:
 
 # ----- シフトキー -----
 
-  # 中指シフト（左）
+  # 中指シフトキー（左）
   - type: basic
     from:
       key_code: d
@@ -247,7 +247,7 @@ rules:
       bundle_identifiers:
       - "^com\\.apple\\.loginwindow$"
 
-  # 中指シフト（右）
+  # 中指シフトキー（右）
   - type: basic
     from:
       key_code: k
