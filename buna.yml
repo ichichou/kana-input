@@ -213,72 +213,6 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-# ----- シフトキー -----
-
-  # 中指シフトキー（左）
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: left_shift
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: left_shift
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: left_shift
-          value: 0
-    conditions:
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: symbol_mode
-      value: 1
-    - type: variable_unless
-      name: right_shift
-      value: 1
-    - type: frontmost_application_unless
-      bundle_identifiers:
-      - "^com\\.apple\\.loginwindow$"
-
-  # 中指シフトキー（右）
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: right_shift
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: right_shift
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: right_shift
-          value: 0
-    conditions:
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_unless
-      name: symbol_mode
-      value: 1
-    - type: variable_unless
-      name: left_shift
-      value: 1
-    - type: frontmost_application_unless
-      bundle_identifiers:
-      - "^com\\.apple\\.loginwindow$"
-
 # ----- 中指シフト（左） -----
 
   # さ
@@ -534,7 +468,7 @@ rules:
     conditions: *left_shifted_state
 
   # # ぷ
-  # # Symbol mode で定義
+  # # Symbol mode keys で定義
   # - type: basic
   #   from:
   #     key_code: r
@@ -667,7 +601,7 @@ rules:
     conditions: *right_shifted_state
 
   # # そ
-  # # Symbol mode で定義
+  # # Symbol mode keys で定義
   # - type: basic
   #   from:
   #     key_code: r
@@ -1050,7 +984,7 @@ rules:
     conditions: *base_state
 
   # # て
-  # # Symbol mode で定義
+  # # Symbol mode keys で定義
   # - type: basic
   #   from:
   #     key_code: r
@@ -1288,9 +1222,10 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ----- Symbol Mode -----
+# ----- Symbol Mode Keys -----
 
   # Symbol Mode Key（左シフト時）
+  # ぷ
   - type: basic
     from:
       key_code: r
@@ -1311,6 +1246,7 @@ rules:
     conditions: *left_shifted_state
 
   # Symbol Mode Key（右シフト時）
+  # そ
   - type: basic
     from:
       key_code: r
@@ -1331,6 +1267,7 @@ rules:
     conditions: *right_shifted_state
 
   # Symbol Mode Key（ベース時）
+  # て
   - type: basic
     from:
       key_code: r
@@ -1349,6 +1286,74 @@ rules:
         name: symbol_mode
         value: 0
     conditions: *base_state
+
+# ----- シフトキー -----
+
+  # 中指シフトキー（左）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: left_shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: left_shift
+          value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: symbol_mode
+      value: 1
+    - type: variable_unless
+      name: right_shift
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+  # 中指シフトキー（右）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: right_shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: right_shift
+          value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: symbol_mode
+      value: 1
+    - type: variable_unless
+      name: left_shift
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+# ----- Symbol Mode -----
 
   # Y → 中黒
   - type: basic
