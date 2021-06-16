@@ -1359,7 +1359,7 @@ rules:
       repeat: false
     - key_code: "y"
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # U → Em ダッシュ
   - type: basic
@@ -1370,7 +1370,7 @@ rules:
       repeat: false
     - key_code: u
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # I → 三点リーダ
   - type: basic
@@ -1381,7 +1381,7 @@ rules:
       repeat: false
     - key_code: i
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # O → コロン
   - type: basic
@@ -1392,7 +1392,7 @@ rules:
       repeat: false
     - key_code: o
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # P → 波ダッシュ
   - type: basic
@@ -1403,7 +1403,7 @@ rules:
       repeat: false
     - key_code: p
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # H → Left Arrow
   - type: basic
@@ -1414,7 +1414,7 @@ rules:
       repeat: false
     - key_code: h
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # J → Down Arrow
   - type: basic
@@ -1425,7 +1425,7 @@ rules:
       repeat: false
     - key_code: j
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # K → Up Arrow
   - type: basic
@@ -1436,7 +1436,7 @@ rules:
       repeat: false
     - key_code: k
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # L → Right Arrow
   - type: basic
@@ -1447,7 +1447,7 @@ rules:
       repeat: false
     - key_code: l
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Semicolon → セミコロン
   - type: basic
@@ -1458,7 +1458,7 @@ rules:
       repeat: false
     - key_code: semicolon
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Colon → コロン
   - type: basic
@@ -1471,7 +1471,7 @@ rules:
     - key_code: semicolon
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Single Quote → シングルクォート
   - type: basic
@@ -1482,7 +1482,7 @@ rules:
       repeat: false
     - key_code: quote
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Double Quote → ダブルクォート
   - type: basic
@@ -1495,7 +1495,7 @@ rules:
     - key_code: quote
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # N → 乗算記号
   - type: basic
@@ -1506,7 +1506,7 @@ rules:
       repeat: false
     - key_code: "n"
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # M → 全角スペース
   - type: basic
@@ -1517,7 +1517,7 @@ rules:
       repeat: false
     - key_code: m
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Comma → コンマ
   - type: basic
@@ -1528,7 +1528,7 @@ rules:
       repeat: false
     - key_code: comma
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Period → ピリオド
   - type: basic
@@ -1539,7 +1539,7 @@ rules:
       repeat: false
     - key_code: period
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Less Than → 感嘆符
   - type: basic
@@ -1552,7 +1552,7 @@ rules:
     - key_code: comma
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Greater Than → 疑問符
   - type: basic
@@ -1565,7 +1565,7 @@ rules:
     - key_code: period
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Slash → スラッシュ
   - type: basic
@@ -1576,7 +1576,7 @@ rules:
       repeat: false
     - key_code: slash
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Question Mark → 疑問符
   - type: basic
@@ -1589,7 +1589,7 @@ rules:
     - key_code: slash
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Bracket → 山括弧／隅付き括弧
   - type: basic
@@ -1601,7 +1601,7 @@ rules:
       repeat: false
     - key_code: open_bracket
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   - type: basic
     from:
@@ -1612,7 +1612,7 @@ rules:
       repeat: false
     - key_code: close_bracket
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   # Paren → 一重引用符／二重引用符
   - type: basic
@@ -1625,7 +1625,7 @@ rules:
     - key_code: "9"
       modifiers: *to_shift_key
       repeat: false
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
 
   - type: basic
     from:
@@ -1637,4 +1637,4 @@ rules:
     - key_code: "0"
       repeat: false
       modifiers: *to_shift_key
-    conditions: symbol_mode_valid
+    conditions: *symbol_mode
