@@ -349,316 +349,6 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-# ----- シフトキー -----
-
-  # 濁音キー（ベース時）
-  - type: basic
-    from:
-      key_code: l
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: dakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: dakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: dakuon
-          value: 0
-    conditions: *base_state
-
-  # 濁音キー（シフト時）
-  - type: basic
-    from:
-      key_code: l
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: dakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-    conditions: *shifted_state
-
-  # 半濁音キー（ベース時）
-  - type: basic
-    from:
-      key_code: slash
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: handakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: handakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: handakuon
-          value: 0
-    conditions: *base_state
-
-  # 半濁音キー（シフト時）
-  - type: basic
-    from:
-      key_code: slash
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: handakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-    conditions: *shifted_state
-
-  # 中指シフトキー（左・濁音時）
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: left_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: dakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-    conditions: *dakuon_state
-
-  # 中指シフトキー（左・半濁音時）
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: left_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: handakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-    conditions: *handakuon_state
-
-  # 中指シフトキー（左・清音時）
-  - type: basic
-    from:
-      key_code: d
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: left_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: left_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-    conditions: *seion_state
-
-  # 中指シフトキー（右・濁音時）
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: right_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: dakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: dakuon
-          value: 0
-    conditions: *dakuon_state
-
-  # 中指シフトキー（右・半濁音時）
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: right_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    - set_variable:
-        name: handakuon
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      - set_variable:
-          name: handakuon
-          value: 0
-    conditions: *handakuon_state
-
-  # 中指シフトキー（右・清音時）
-  - type: basic
-    from:
-      key_code: k
-      modifiers: *opt_shift_key
-    to:
-    - set_variable:
-        name: right_shift
-        value: 1
-    - set_variable:
-        name: shift
-        value: 1
-    to_delayed_action:
-      to_if_invoked:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-      to_if_canceled:
-      - set_variable:
-          name: right_shift
-          value: 0
-      - set_variable:
-          name: shift
-          value: 0
-    conditions: *seion_state
-
 # ----- 中指シフト（左） -----
 
   # ゃ
@@ -1638,9 +1328,10 @@ rules:
       repeat: false
     conditions: *base_state
 
-# ----- Symbol Mode -----
+# ----- Symbol Mode Keys -----
 
   # Symbol Mode Key（シフト・濁音時）
+  # ぼ
   - type: basic
     from:
       key_code: r
@@ -1661,6 +1352,7 @@ rules:
     conditions: *dakuon_shifted_state
 
   # Symbol Mode Key（シフト・半濁音時）
+  # ぽ
   - type: basic
     from:
       key_code: r
@@ -1681,6 +1373,7 @@ rules:
     conditions: *handakuon_shifted_state
 
   # Symbol Mode Key（シフト・清音時）
+  # ほ
   - type: basic
     from:
       key_code: r
@@ -1701,6 +1394,7 @@ rules:
     conditions: *shifted_state
 
   # Symbol Mode Key（ベース・濁音時）
+  # で
   - type: basic
     from:
       key_code: r
@@ -1721,6 +1415,7 @@ rules:
     conditions: *dakuon_base_state
 
   # Symbol Mode Key（ベース・清音時）
+  # て
   - type: basic
     from:
       key_code: r
@@ -1739,6 +1434,318 @@ rules:
         name: symbol_mode
         value: 0
     conditions: *base_state
+
+# ----- シフトキー -----
+
+  # 濁音キー（ベース時）
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: dakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: dakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: dakuon
+          value: 0
+    conditions: *base_state
+
+  # 濁音キー（シフト時）
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: dakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+    conditions: *shifted_state
+
+  # 半濁音キー（ベース時）
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: handakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: handakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: handakuon
+          value: 0
+    conditions: *base_state
+
+  # 半濁音キー（シフト時）
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: handakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+    conditions: *shifted_state
+
+  # 中指シフトキー（左・濁音時）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: dakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+    conditions: *dakuon_state
+
+  # 中指シフトキー（左・半濁音時）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: handakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+    conditions: *handakuon_state
+
+  # 中指シフトキー（左・清音時）
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: left_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+    conditions: *seion_state
+
+  # 中指シフトキー（右・濁音時）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: dakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: dakuon
+          value: 0
+    conditions: *dakuon_state
+
+  # 中指シフトキー（右・半濁音時）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    - set_variable:
+        name: handakuon
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      - set_variable:
+          name: handakuon
+          value: 0
+    conditions: *handakuon_state
+
+  # 中指シフトキー（右・清音時）
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    - set_variable:
+        name: shift
+        value: 1
+    to_delayed_action:
+      to_if_invoked:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+      to_if_canceled:
+      - set_variable:
+          name: right_shift
+          value: 0
+      - set_variable:
+          name: shift
+          value: 0
+    conditions: *seion_state
+
+# ----- Symbol Mode -----
 
   # Y → 中黒
   - type: basic
