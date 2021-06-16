@@ -2011,7 +2011,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky_shift
-      - key_code: j
+      - key_code: "n"
       modifiers: *opt_shift_key
     to:
     - key_code: x
@@ -2081,7 +2081,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky_shift
-      - key_code: "n"
+      - key_code: h
       modifiers: *opt_shift_key
     to:
     - key_code: x
@@ -2097,7 +2097,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky_shift
-      - key_code: "y"
+      - key_code: j
       modifiers: *opt_shift_key
     to:
     - key_code: x
@@ -2113,7 +2113,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky_shift
-      - key_code: h
+      - key_code: semicolon
       modifiers: *opt_shift_key
     to:
     - key_code: x
@@ -2129,7 +2129,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky_shift
-      - key_code: semicolon
+      - key_code: "y"
       modifiers: *opt_shift_key
     to:
     - key_code: x
