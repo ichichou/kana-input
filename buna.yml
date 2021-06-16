@@ -281,45 +281,138 @@ rules:
 
 # ----- 中指シフト（左） -----
 
-  # づ
+  # さ
   - type: basic
     from:
-      key_code: q
+      key_code: 
       modifiers: *opt_shift_key
     to:
-    - key_code: d
+    - key_code: 
       repeat: false
-    - key_code: u
+    - key_code: 
       repeat: false
     conditions: *left_shifted_state
 
+  # ぬ
+  # ひ
+  # む
+  # め
+  # ゆ
+  # れ
+  # を
+  # ぎ
+  # ぐ
+  # げ
+  # じ
+  # ず
+  # ぜ
+  # ぞ
+  # ぢ
+  # づ
+  # ば
+  # ぶ
+  # ぱ
+  # ぴ
+
+  # ぷ
+  # Symbol mode で定義
+
+  # ぽ
+  # ゔ
+  # ぅ
+  # ゃ
+  # ゅ
+
 # ----- 中指シフト（右） -----
 
-  # べ
   - type: basic
     from:
-      key_code: q
+      key_code: 
       modifiers: *opt_shift_key
     to:
-    - key_code: b
+    - key_code: 
       repeat: false
-    - key_code: e
+    - key_code: 
       repeat: false
     conditions: *right_shifted_state
 
+  # あ
+  # え
+  # お
+  # け
+  # せ
+
+  # そ
+  # Symbol mode で定義
+
+  # ち
+  # つ
+  # ね
+  # ふ
+  # へ
+  # ほ
+  # み
+  # や
+  # よ
+  # ろ
+  # わ
+  # ご
+  # ざ
+  # ど
+  # び
+  # べ
+  # ぼ
+  # ぺ
+  # ぁ
+  # ぃ
+  # ぇ
+  # ぉ
+
 # ----- ベース -----
 
-  # こ
   - type: basic
     from:
-      key_code: q
+      key_code: 
       modifiers: *opt_shift_key
     to:
-    - key_code: k
+    - key_code: 
       repeat: false
-    - key_code: o
+    - key_code: 
       repeat: false
     conditions: *base_state
+
+  # い
+  # う
+  # か
+  # き
+  # く
+  # こ
+  # し
+  # す
+  # た
+
+  # て
+  # Symbol mode で定義
+
+  # と
+  # な
+  # に
+  # の
+  # は
+  # ま
+  # も
+  # ら
+  # り
+  # る
+  # ん
+  # が
+  # だ
+  # で
+  # っ
+  # ょ
+  # 読点
+  # 句点
+  # 長音符
 
 # ----- Symbol Mode -----
 
