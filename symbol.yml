@@ -1,4 +1,4 @@
-title: "10. 記号"
+title: "09. 記号入力"
 
 # ===== Aliases =====
 
@@ -41,7 +41,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] 記号"
+- description: "[Kana Input] 記号入力"
   manipulators:
 
 # ----- 同時打鍵 → 記号 -----
