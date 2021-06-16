@@ -934,6 +934,18 @@ rules:
       repeat: false
     conditions: *dakuon_base_state
 
+  # じ
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *opt_shift_key
+    to:
+    - key_code: z
+      repeat: false
+    - key_code: i
+      repeat: false
+    conditions: *dakuon_base_state
+
   # ず
   - type: basic
     from:
@@ -1098,6 +1110,18 @@ rules:
     - key_code: s
       repeat: false
     - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # し
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *opt_shift_key
+    to:
+    - key_code: s
+      repeat: false
+    - key_code: i
       repeat: false
     conditions: *base_state
 
