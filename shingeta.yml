@@ -2508,8 +2508,10 @@ rules:
     conditions: *base_state
 
 # ----- Symbol Mode -----
+# 入力される記号は仮名テーブルで定義する
 
   # Symbol Mode Key
+  # 読点
   - type: basic
     from:
       key_code: r
@@ -2527,7 +2529,7 @@ rules:
         value: 0
     conditions: *base_state
 
-  # Y → 中黒
+  # Y
   - type: basic
     from:
       key_code: "y"
@@ -2538,7 +2540,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # U → Em ダッシュ
+  # U
   - type: basic
     from:
       key_code: u
@@ -2549,7 +2551,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # I → 三点リーダ
+  # I
   - type: basic
     from:
       key_code: i
@@ -2560,7 +2562,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # O → コロン
+  # O
   - type: basic
     from:
       key_code: o
@@ -2571,7 +2573,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # P → 波ダッシュ
+  # P
   - type: basic
     from:
       key_code: p
@@ -2582,7 +2584,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # H → Left Arrow
+  # H
   - type: basic
     from:
       key_code: h
@@ -2593,7 +2595,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # J → Down Arrow
+  # J
   - type: basic
     from:
       key_code: j
@@ -2604,7 +2606,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # K → Up Arrow
+  # K
   - type: basic
     from:
       key_code: k
@@ -2615,7 +2617,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # L → Right Arrow
+  # L
   - type: basic
     from:
       key_code: l
@@ -2626,7 +2628,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Semicolon → セミコロン
+  # Semicolon
   - type: basic
     from:
       key_code: semicolon
@@ -2637,7 +2639,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Colon → コロン
+  # Colon
   - type: basic
     from:
       key_code: semicolon
@@ -2650,7 +2652,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Single Quote → シングルクォート
+  # Single Quote
   - type: basic
     from:
       key_code: quote
@@ -2661,7 +2663,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Double Quote → ダブルクォート
+  # Double Quote
   - type: basic
     from:
       key_code: quote
@@ -2674,7 +2676,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # N → 乗算記号
+  # N
   - type: basic
     from:
       key_code: "n"
@@ -2685,7 +2687,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # M → 全角スペース
+  # M
   - type: basic
     from:
       key_code: m
@@ -2696,7 +2698,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Comma → コンマ
+  # Comma
   - type: basic
     from:
       key_code: comma
@@ -2707,7 +2709,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Period → ピリオド
+  # Period
   - type: basic
     from:
       key_code: period
@@ -2718,7 +2720,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Less Than → 感嘆符
+  # Less Than
   - type: basic
     from:
       key_code: comma
@@ -2731,7 +2733,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Greater Than → 疑問符
+  # Greater Than
   - type: basic
     from:
       key_code: period
@@ -2744,7 +2746,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Slash → スラッシュ
+  # Slash
   - type: basic
     from:
       key_code: slash
@@ -2755,7 +2757,7 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Question Mark → 疑問符
+  # Question Mark
   - type: basic
     from:
       key_code: slash
@@ -2768,11 +2770,10 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Bracket → 山括弧／隅付き括弧
+  # Bracket
   - type: basic
     from:
       key_code: open_bracket
-      modifiers: *opt_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -2783,7 +2784,6 @@ rules:
   - type: basic
     from:
       key_code: close_bracket
-      modifiers: *opt_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -2791,7 +2791,32 @@ rules:
       repeat: false
     conditions: *symbol_mode
 
-  # Paren → 一重引用符／二重引用符
+  # Brace
+  - type: basic
+    from:
+      key_code: open_bracket
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: open_bracket
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *symbol_mode
+
+  - type: basic
+    from:
+      key_code: close_bracket
+      modifiers: *mand_shift_key
+    to:
+    - key_code: backslash
+      repeat: false
+    - key_code: close_bracket
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *symbol_mode
+
+  # Paren
   - type: basic
     from:
       key_code: "9"
