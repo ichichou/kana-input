@@ -1,0 +1,302 @@
+title: "13. Modified Qwerf"
+
+# ===== Aliases =====
+
+aliases:
+
+- from/modifiers: &opt_any
+    optional:
+    - any
+
+- conditions: &base_state
+  - type: input_source_unless
+    input_sources:
+    - language: ja
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+# ===== Rules =====
+
+rules:
+- description: "[Keyboard Layout] Modified Qwerf"
+  manipulators:
+
+  # Q → Q
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *opt_any
+    to:
+    - key_code: q
+    conditions: *base_state
+
+  # W → W
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *opt_any
+    to:
+    - key_code: w
+    conditions: *base_state
+
+  # E → E
+  - type: basic
+    from:
+      key_code: e
+      modifiers: *opt_any
+    to:
+    - key_code: e
+    conditions: *base_state
+
+  # R → R
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *opt_any
+    to:
+    - key_code: r
+    conditions: *base_state
+
+  # T → F
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *opt_any
+    to:
+    - key_code: f
+    conditions: *base_state
+
+  # Y → J
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *opt_any
+    to:
+    - key_code: j
+    conditions: *base_state
+
+  # U → Y
+  - type: basic
+    from:
+      key_code: u
+      modifiers: *opt_any
+    to:
+    - key_code: "y"
+    conditions: *base_state
+
+  # I → K
+  - type: basic
+    from:
+      key_code: i
+      modifiers: *opt_any
+    to:
+    - key_code: k
+    conditions: *base_state
+
+  # O → L
+  - type: basic
+    from:
+      key_code: o
+      modifiers: *opt_any
+    to:
+    - key_code: l
+    conditions: *base_state
+
+  # P → P
+  - type: basic
+    from:
+      key_code: p
+      modifiers: *opt_any
+    to:
+    - key_code: p
+    conditions: *base_state
+
+  # A → A
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *opt_any
+    to:
+    - key_code: a
+    conditions: *base_state
+
+  # S → S
+  - type: basic
+    from:
+      key_code: s
+      modifiers: *opt_any
+    to:
+    - key_code: s
+    conditions: *base_state
+
+  # D → D
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *opt_any
+    to:
+    - key_code: d
+    conditions: *base_state
+
+  # F → T
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *opt_any
+    to:
+    - key_code: t
+    conditions: *base_state
+
+  # G → G
+  - type: basic
+    from:
+      key_code: g
+      modifiers: *opt_any
+    to:
+    - key_code: g
+    conditions: *base_state
+
+  # H → H
+  - type: basic
+    from:
+      key_code: h
+      modifiers: *opt_any
+    to:
+    - key_code: h
+    conditions: *base_state
+
+  # J → U
+  - type: basic
+    from:
+      key_code: j
+      modifiers: *opt_any
+    to:
+    - key_code: u
+    conditions: *base_state
+
+  # K → I
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *opt_any
+    to:
+    - key_code: i
+    conditions: *base_state
+
+  # L → O
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *opt_any
+    to:
+    - key_code: o
+    conditions: *base_state
+
+  # Semicolon → Semicolon
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *opt_any
+    to:
+    - key_code: semicolon
+    conditions: *base_state
+
+  # Quote → Quote
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *opt_any
+    to:
+    - key_code: quote
+    conditions: *base_state
+
+  # Z → Z
+  - type: basic
+    from:
+      key_code: z
+      modifiers: *opt_any
+    to:
+    - key_code: z
+    conditions: *base_state
+
+  # X → X
+  - type: basic
+    from:
+      key_code: x
+      modifiers: *opt_any
+    to:
+    - key_code: x
+    conditions: *base_state
+
+  # C → C
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *opt_any
+    to:
+    - key_code: c
+    conditions: *base_state
+
+  # V → V
+  - type: basic
+    from:
+      key_code: v
+      modifiers: *opt_any
+    to:
+    - key_code: v
+    conditions: *base_state
+
+  # B → B
+  - type: basic
+    from:
+      key_code: b
+      modifiers: *opt_any
+    to:
+    - key_code: b
+    conditions: *base_state
+
+  # N → N
+  - type: basic
+    from:
+      key_code: "n"
+      modifiers: *opt_any
+    to:
+    - key_code: "n"
+    conditions: *base_state
+
+  # M → M
+  - type: basic
+    from:
+      key_code: m
+      modifiers: *opt_any
+    to:
+    - key_code: m
+    conditions: *base_state
+
+  # Comma → Comma
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *opt_any
+    to:
+    - key_code: comma
+    conditions: *base_state
+
+  # Period → Period
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *opt_any
+    to:
+    - key_code: period
+    conditions: *base_state
+
+  # Slash → Slash
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *opt_any
+    to:
+    - key_code: slash
+    conditions: *base_state
