@@ -1,4 +1,4 @@
-title: "09. 記号入力（同時打鍵・Symbol mode）"
+title: "09. 記号入力"
 
 # ===== Aliases =====
 
@@ -41,10 +41,8 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] 記号入力（同時打鍵・Symbol mode）"
+- description: "[Kana Input] 同時打鍵で記号入力"
   manipulators:
-
-# ----- 同時打鍵 → 記号 -----
 
   # RF → 中黒
   - type: basic
@@ -176,8 +174,8 @@ rules:
   #     repeat: false
   #   conditions: *base_state
 
-# ----- Symbol Mode -----
-# 入力される記号は仮名テーブルで定義する
+- description: "[Kana Input] Symbol Mode"
+  manipulators:
 
   # Symbol Mode Key
   # R
@@ -197,6 +195,8 @@ rules:
         name: symbol_mode
         value: 0
     conditions: *base_state
+
+# 入力される記号は仮名テーブルで定義する
 
   # Y
   - type: basic
