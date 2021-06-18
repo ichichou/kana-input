@@ -9,9 +9,6 @@ aliases:
     - any
 
 - conditions: &base_state
-  - type: input_source_unless
-    input_sources:
-    - language: ja
   - type: frontmost_application_unless
     bundle_identifiers:
     - "^com\\.apple\\.loginwindow$"
