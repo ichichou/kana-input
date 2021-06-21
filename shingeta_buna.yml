@@ -2674,7 +2674,7 @@ rules:
       repeat: false
     conditions: *buna_left_shifted_state
 
-  # れ
+  # ら
   - type: basic
     from:
       key_code: l
@@ -2682,7 +2682,7 @@ rules:
     to:
     - key_code: r
       repeat: false
-    - key_code: e
+    - key_code: a
       repeat: false
     conditions: *buna_left_shifted_state
 
@@ -3522,18 +3522,6 @@ rules:
       repeat: false
     conditions: *buna_base_state
 
-  # ら
-  - type: basic
-    from:
-      key_code: quote
-      modifiers: *opt_shift_key
-    to:
-    - key_code: r
-      repeat: false
-    - key_code: a
-      repeat: false
-    conditions: *buna_base_state
-
   # り
   - type: basic
     from:
@@ -3555,6 +3543,18 @@ rules:
     - key_code: r
       repeat: false
     - key_code: u
+      repeat: false
+    conditions: *buna_base_state
+
+  # れ
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *opt_shift_key
+    to:
+    - key_code: r
+      repeat: false
+    - key_code: e
       repeat: false
     conditions: *buna_base_state
 
@@ -3657,7 +3657,7 @@ rules:
   # 長音符
   - type: basic
     from:
-      key_code: slash
+      key_code: quote
       modifiers: *opt_shift_key
     to:
     - key_code: quote
