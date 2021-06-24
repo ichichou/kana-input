@@ -577,6 +577,17 @@ rules:
         value: 0
     conditions: *left_shifted_state
 
+  # ESC
+  - type: basic
+    from:
+      key_code: escape
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: left_shift
+        value: 0
+    conditions: *left_shifted_state
+
 # ----- 中指シフト（右） -----
 
   # あ
@@ -925,6 +936,17 @@ rules:
   - type: basic
     from:
       key_code: quote
+      modifiers: *opt_shift_key
+    to:
+    - set_variable:
+        name: right_shift
+        value: 0
+    conditions: *right_shifted_state
+
+  # ESC
+  - type: basic
+    from:
+      key_code: escape
       modifiers: *opt_shift_key
     to:
     - set_variable:
