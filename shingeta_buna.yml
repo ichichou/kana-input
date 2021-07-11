@@ -2674,7 +2674,7 @@ rules:
       repeat: false
     conditions: *buna_left_shifted_state
 
-  # れ
+  # ら
   - type: basic
     from:
       key_code: l
@@ -2682,7 +2682,7 @@ rules:
     to:
     - key_code: r
       repeat: false
-    - key_code: e
+    - key_code: a
       repeat: false
     conditions: *buna_left_shifted_state
 
@@ -3568,7 +3568,7 @@ rules:
       repeat: false
     conditions: *buna_base_state
 
-  # ら
+  # れ
   - type: basic
     from:
       key_code: slash
@@ -3576,7 +3576,7 @@ rules:
     to:
     - key_code: r
       repeat: false
-    - key_code: a
+    - key_code: e
       repeat: false
     conditions: *buna_base_state
 
