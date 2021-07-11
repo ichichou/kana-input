@@ -185,7 +185,7 @@ rules:
       modifiers: *opt_shift_key
     to_if_alone:
     - key_code: r
-      repeat: true
+      repeat: false
     to:
     - set_variable:
         name: symbol_mode
