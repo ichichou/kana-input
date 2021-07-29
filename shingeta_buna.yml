@@ -6,11 +6,11 @@ aliases:
 
 # ----- Modifier Keys -----
 
-- from/modifiers: &opt_shift_key
+- from/modifiers: &optional_shift_key
     optional:
     - shift
 
-- from/modifiers: &mand_shift_key
+- from/modifiers: &mandatory_shift_key
     mandatory:
     - shift
 
@@ -19,14 +19,14 @@ aliases:
 
 # ----- Kana Shift Keys -----
 
-- from/key_code: &right_middle_shift k
-- from/key_code: &left_middle_shift d
-- from/key_code: &right_ring_shift l
-- from/key_code: &left_ring_shift s
-- from/key_code: &upper_middle_shift i
-- from/key_code: &upper_ring_shift o
-- from/key_code: &right_upper_pinky_shift p
-- from/key_code: &left_upper_pinky_shift q
+- from/key_code: &right_middle_finger_shift k
+- from/key_code: &left_middle_finger_shift d
+- from/key_code: &right_ring_finger_shift l
+- from/key_code: &left_ring_finger_shift s
+- from/key_code: &upper_middle_finger_shift i
+- from/key_code: &upper_ring_finger_shift o
+- from/key_code: &right_upper_pinky_finger_shift p
+- from/key_code: &left_upper_pinky_finger_shift q
 
 # ----- Conditions -----
 
@@ -219,41 +219,33 @@ rules:
       repeat: false
     conditions: *common_base_state
 
-  # # FG → 鉤括弧
-  # - type: basic
-  #   from:
-  #     simultaneous:
-  #     - key_code: f
-  #     - key_code: g
-  #   to:
-  #   - key_code: open_bracket
-  #     repeat: false
-  #   - key_code: close_bracket
-  #     repeat: false
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   - key_code: left_arrow
-  #     repeat: false
-  #   conditions: *common_base_state
+  # FG → 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: g
+    to:
+    - key_code: open_bracket
+    - key_code: close_bracket
+    - key_code: left_arrow
+      repeat: false
+    conditions: *common_base_state
 
-  # # JH → 丸括弧
-  # - type: basic
-  #   from:
-  #     simultaneous:
-  #     - key_code: j
-  #     - key_code: h
-  #   to:
-  #   - key_code: "9"
-  #     modifiers: *to_shift_key
-  #     repeat: false
-  #   - key_code: "0"
-  #     modifiers: *to_shift_key
-  #     repeat: false
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   - key_code: left_arrow
-  #     repeat: false
-  #   conditions: *common_base_state
+  # HJ → 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: h
+      - key_code: j
+    to:
+    - key_code: "9"
+      modifiers: *to_shift_key
+    - key_code: "0"
+      modifiers: *to_shift_key
+    - key_code: left_arrow
+      repeat: false
+    conditions: *common_base_state
 
 # ========== 新下駄配列 ==========
 
@@ -263,9 +255,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -277,9 +269,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -291,9 +283,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -305,9 +297,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -319,9 +311,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -333,9 +325,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -347,9 +339,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -361,9 +353,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -375,9 +367,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -389,9 +381,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -403,9 +395,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -417,9 +409,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: f
       repeat: false
@@ -431,9 +423,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: f
       repeat: false
@@ -445,9 +437,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: f
       repeat: false
@@ -459,9 +451,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: f
       repeat: false
@@ -473,9 +465,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: "1"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -487,9 +479,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: "2"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -501,9 +493,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: "3"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -515,9 +507,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: "4"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -529,9 +521,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_middle_shift
+      - key_code: *right_middle_finger_shift
       - key_code: "5"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -545,9 +537,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: a
       repeat: false
@@ -557,9 +549,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: e
       repeat: false
@@ -569,9 +561,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -583,9 +575,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -597,9 +589,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -611,9 +603,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -625,9 +617,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -639,9 +631,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -653,9 +645,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -667,9 +659,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -681,9 +673,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: v
       repeat: false
@@ -695,9 +687,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -709,9 +701,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -723,9 +715,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -739,9 +731,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "7"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: comma
       repeat: false
@@ -751,9 +743,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "8"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: semicolon
       repeat: false
@@ -763,9 +755,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "9"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: open_bracket
       repeat: false
@@ -775,9 +767,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_middle_shift
+      - key_code: *left_middle_finger_shift
       - key_code: "0"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: close_bracket
       repeat: false
@@ -789,9 +781,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: o
       repeat: false
@@ -801,9 +793,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -815,9 +807,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -829,9 +821,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -843,9 +835,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -857,9 +849,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -871,9 +863,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -885,9 +877,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -899,9 +891,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -913,9 +905,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -927,9 +919,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -941,9 +933,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -955,9 +947,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -969,9 +961,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -985,9 +977,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1001,9 +993,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: "2"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1017,9 +1009,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: "3"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1033,9 +1025,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: "4"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1049,9 +1041,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: "1"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -1065,9 +1057,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_ring_shift
+      - key_code: *right_ring_finger_shift
       - key_code: "5"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -1083,9 +1075,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -1097,9 +1089,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -1111,9 +1103,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -1125,9 +1117,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -1139,9 +1131,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1153,9 +1145,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1167,9 +1159,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -1181,9 +1173,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1195,9 +1187,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1209,9 +1201,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1223,9 +1215,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -1239,9 +1231,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -1255,9 +1247,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -1271,9 +1263,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "7"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -1285,9 +1277,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "8"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: semicolon
       modifiers: *to_shift_key
@@ -1298,9 +1290,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "9"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "9"
       modifiers: *to_shift_key
@@ -1311,9 +1303,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_ring_shift
+      - key_code: *left_ring_finger_shift
       - key_code: "0"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "0"
       modifiers: *to_shift_key
@@ -1324,9 +1316,9 @@ rules:
   # - type: basic
   #   from:
   #     simultaneous:
-  #     - key_code: *left_ring_shift
+  #     - key_code: *left_ring_finger_shift
   #     - key_code: quote
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code:
   #     repeat: false
@@ -1338,9 +1330,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -1354,9 +1346,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -1370,9 +1362,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -1386,9 +1378,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -1402,9 +1394,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -1418,9 +1410,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -1434,9 +1426,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -1450,9 +1442,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -1466,9 +1458,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -1482,9 +1474,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -1498,9 +1490,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -1514,9 +1506,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -1530,9 +1522,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: "2"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -1546,9 +1538,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: "3"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -1562,9 +1554,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: "4"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -1578,9 +1570,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: "1"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -1594,9 +1586,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_middle_shift
+      - key_code: *upper_middle_finger_shift
       - key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -1612,9 +1604,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -1628,9 +1620,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -1644,9 +1636,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -1660,9 +1652,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -1676,9 +1668,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -1692,9 +1684,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -1708,9 +1700,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -1724,9 +1716,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -1740,9 +1732,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -1756,9 +1748,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -1772,9 +1764,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -1788,9 +1780,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -1804,9 +1796,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: "2"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1820,9 +1812,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: "3"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1836,9 +1828,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: "4"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -1852,9 +1844,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: "1"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -1868,9 +1860,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *upper_ring_shift
+      - key_code: *upper_ring_finger_shift
       - key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1886,9 +1878,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1902,9 +1894,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1918,9 +1910,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -1934,9 +1926,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1950,9 +1942,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1966,9 +1958,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -1982,9 +1974,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -1998,9 +1990,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2014,9 +2006,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2030,9 +2022,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2046,9 +2038,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2062,9 +2054,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *right_upper_pinky_shift
+      - key_code: *right_upper_pinky_finger_shift
       - key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2080,9 +2072,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2094,9 +2086,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2108,9 +2100,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2122,9 +2114,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2136,9 +2128,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2150,9 +2142,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2166,9 +2158,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2182,9 +2174,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2198,9 +2190,9 @@ rules:
   - type: basic
     from:
       simultaneous:
-      - key_code: *left_upper_pinky_shift
+      - key_code: *left_upper_pinky_finger_shift
       - key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2216,7 +2208,7 @@ rules:
   - type: basic
     from:
       key_code: k
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: i
       repeat: false
@@ -2226,7 +2218,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: u
       repeat: false
@@ -2236,7 +2228,7 @@ rules:
   - type: basic
     from:
       key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -2248,7 +2240,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -2260,7 +2252,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -2272,7 +2264,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -2284,7 +2276,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -2296,7 +2288,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -2308,7 +2300,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -2320,7 +2312,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -2332,7 +2324,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -2344,7 +2336,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -2356,7 +2348,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -2368,7 +2360,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -2380,7 +2372,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -2392,7 +2384,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -2404,7 +2396,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -2416,7 +2408,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -2428,7 +2420,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -2440,7 +2432,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -2452,7 +2444,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -2464,7 +2456,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2476,7 +2468,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2488,7 +2480,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2500,7 +2492,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -2512,7 +2504,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2524,7 +2516,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2536,7 +2528,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2551,7 +2543,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: comma
   #     repeat: false
@@ -2561,7 +2553,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: period
       repeat: false
@@ -2571,7 +2563,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: quote
       repeat: false
@@ -2584,7 +2576,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: comma
       repeat: false
@@ -2606,7 +2598,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -2618,7 +2610,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -2630,7 +2622,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -2642,7 +2634,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -2654,7 +2646,7 @@ rules:
   - type: basic
     from:
       key_code: k
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -2666,7 +2658,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -2678,7 +2670,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -2690,7 +2682,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -2702,7 +2694,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2714,7 +2706,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2726,7 +2718,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -2738,7 +2730,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -2750,7 +2742,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -2762,7 +2754,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -2774,7 +2766,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -2786,7 +2778,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -2798,7 +2790,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -2810,7 +2802,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2822,7 +2814,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -2834,7 +2826,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2846,7 +2838,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2859,7 +2851,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: p
   #     repeat: false
@@ -2871,7 +2863,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -2883,7 +2875,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: v
       repeat: false
@@ -2895,7 +2887,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2907,7 +2899,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2921,7 +2913,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -2935,7 +2927,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -2946,7 +2938,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -2957,7 +2949,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -2968,7 +2960,7 @@ rules:
   - type: basic
     from:
       key_code: escape
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -2981,7 +2973,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: a
       repeat: false
@@ -2991,7 +2983,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: e
       repeat: false
@@ -3001,7 +2993,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: o
       repeat: false
@@ -3011,7 +3003,7 @@ rules:
   - type: basic
     from:
       key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -3023,7 +3015,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -3036,7 +3028,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: s
   #     repeat: false
@@ -3048,7 +3040,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -3060,7 +3052,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -3072,7 +3064,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -3084,7 +3076,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -3096,7 +3088,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -3108,7 +3100,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -3120,7 +3112,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -3132,7 +3124,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -3144,7 +3136,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
       repeat: false
@@ -3156,7 +3148,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -3168,7 +3160,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
       repeat: false
@@ -3180,7 +3172,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -3192,7 +3184,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
       repeat: false
@@ -3204,7 +3196,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -3216,7 +3208,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -3228,7 +3220,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -3240,7 +3232,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
       repeat: false
@@ -3252,7 +3244,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
       repeat: false
@@ -3264,7 +3256,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3276,7 +3268,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3288,7 +3280,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3300,7 +3292,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3312,7 +3304,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -3323,7 +3315,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -3334,7 +3326,7 @@ rules:
   - type: basic
     from:
       key_code: escape
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -3347,7 +3339,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: i
       repeat: false
@@ -3357,7 +3349,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: u
       repeat: false
@@ -3367,7 +3359,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -3379,7 +3371,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -3391,7 +3383,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -3403,7 +3395,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
       repeat: false
@@ -3415,7 +3407,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -3427,7 +3419,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
       repeat: false
@@ -3439,7 +3431,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -3452,7 +3444,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: t
   #     repeat: false
@@ -3464,7 +3456,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
       repeat: false
@@ -3476,7 +3468,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -3488,7 +3480,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -3500,7 +3492,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -3512,7 +3504,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
       repeat: false
@@ -3524,7 +3516,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -3536,7 +3528,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
       repeat: false
@@ -3548,7 +3540,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -3560,7 +3552,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -3572,7 +3564,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
       repeat: false
@@ -3584,7 +3576,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
       repeat: false
@@ -3596,7 +3588,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
       repeat: false
@@ -3608,7 +3600,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -3620,7 +3612,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
       repeat: false
@@ -3632,7 +3624,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3646,7 +3638,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
       repeat: false
@@ -3660,7 +3652,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: comma
       repeat: false
@@ -3670,7 +3662,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: period
       repeat: false
@@ -3680,7 +3672,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: quote
       repeat: false
@@ -3693,7 +3685,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: p
       repeat: false
@@ -3714,7 +3706,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: s
       repeat: false
@@ -3735,7 +3727,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: t
       repeat: false
@@ -3757,7 +3749,7 @@ rules:
   - type: basic
     from:
       key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -3794,7 +3786,7 @@ rules:
   - type: basic
     from:
       key_code: k
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -3944,7 +3936,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -3968,7 +3960,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4025,7 +4017,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4038,7 +4030,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4062,7 +4054,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4096,7 +4088,7 @@ rules:
   - type: basic
     from:
       key_code: open_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4108,7 +4100,7 @@ rules:
   - type: basic
     from:
       key_code: close_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4121,7 +4113,7 @@ rules:
   - type: basic
     from:
       key_code: "9"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
@@ -4133,7 +4125,7 @@ rules:
   - type: basic
     from:
       key_code: "0"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
       repeat: false
