@@ -214,7 +214,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: s
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *left_shifted_state
@@ -226,7 +225,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -238,7 +236,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: h
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *left_shifted_state
@@ -250,7 +247,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: m
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -262,7 +258,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: m
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *left_shifted_state
@@ -274,7 +269,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "y"
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -286,7 +280,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: r
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *left_shifted_state
@@ -298,7 +291,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: w
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *left_shifted_state
@@ -310,7 +302,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: g
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *left_shifted_state
@@ -322,7 +313,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: g
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -334,7 +324,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: g
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *left_shifted_state
@@ -346,7 +335,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: z
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *left_shifted_state
@@ -358,7 +346,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: z
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -370,7 +357,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: z
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *left_shifted_state
@@ -382,7 +368,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: z
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *left_shifted_state
@@ -394,7 +379,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: d
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *left_shifted_state
@@ -406,7 +390,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: d
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -418,7 +401,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: b
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *left_shifted_state
@@ -430,7 +412,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: b
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -442,7 +423,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: p
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *left_shifted_state
@@ -454,7 +434,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: p
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *left_shifted_state
@@ -467,7 +446,6 @@ rules:
   #     modifiers: *opt_shift_key
   #   to:
   #   - key_code: p
-  #     repeat: false
   #   - key_code: u
   #     repeat: false
   #   conditions: *left_shifted_state
@@ -479,7 +457,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: p
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *left_shifted_state
@@ -491,7 +468,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: v
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -503,7 +479,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -515,9 +490,7 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: "y"
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *left_shifted_state
@@ -529,9 +502,7 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: "y"
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *left_shifted_state
@@ -619,7 +590,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: k
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -631,7 +601,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: s
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -644,7 +613,6 @@ rules:
   #     modifiers: *opt_shift_key
   #   to:
   #   - key_code: s
-  #     repeat: false
   #   - key_code: o
   #     repeat: false
   #   conditions: *right_shifted_state
@@ -656,7 +624,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: t
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *right_shifted_state
@@ -668,7 +635,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: t
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *right_shifted_state
@@ -680,7 +646,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -692,7 +657,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: h
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *right_shifted_state
@@ -704,7 +668,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: h
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -716,7 +679,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: h
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -728,7 +690,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: m
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *right_shifted_state
@@ -740,7 +701,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "y"
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *right_shifted_state
@@ -752,7 +712,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "y"
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -764,7 +723,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: r
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -776,7 +734,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: w
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *right_shifted_state
@@ -788,7 +745,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: g
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -800,7 +756,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: z
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *right_shifted_state
@@ -812,7 +767,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: d
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -824,7 +778,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: b
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *right_shifted_state
@@ -836,7 +789,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: b
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -848,7 +800,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: b
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -860,7 +811,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: p
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -872,7 +822,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *right_shifted_state
@@ -884,7 +833,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *right_shifted_state
@@ -896,7 +844,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *right_shifted_state
@@ -908,7 +855,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *right_shifted_state
@@ -975,7 +921,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: k
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -987,7 +932,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: k
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *base_state
@@ -999,7 +943,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: k
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *base_state
@@ -1011,7 +954,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: k
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *base_state
@@ -1023,7 +965,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: s
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *base_state
@@ -1035,7 +976,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: s
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *base_state
@@ -1047,7 +987,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: t
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1060,7 +999,6 @@ rules:
   #     modifiers: *opt_shift_key
   #   to:
   #   - key_code: t
-  #     repeat: false
   #   - key_code: e
   #     repeat: false
   #   conditions: *base_state
@@ -1072,7 +1010,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: t
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *base_state
@@ -1084,7 +1021,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1096,7 +1032,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *base_state
@@ -1108,7 +1043,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *base_state
@@ -1120,7 +1054,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: h
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1132,7 +1065,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: m
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1144,7 +1076,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: m
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *base_state
@@ -1156,7 +1087,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: r
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *base_state
@@ -1168,7 +1098,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: r
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *base_state
@@ -1180,7 +1109,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: r
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *base_state
@@ -1192,7 +1120,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: "n"
-      repeat: false
     - key_code: "n"
       repeat: false
     conditions: *base_state
@@ -1204,7 +1131,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: g
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1216,7 +1142,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: d
-      repeat: false
     - key_code: a
       repeat: false
     conditions: *base_state
@@ -1228,7 +1153,6 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: d
-      repeat: false
     - key_code: e
       repeat: false
     conditions: *base_state
@@ -1240,9 +1164,7 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: t
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *base_state
@@ -1254,9 +1176,7 @@ rules:
       modifiers: *opt_shift_key
     to:
     - key_code: x
-      repeat: false
     - key_code: "y"
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *base_state
@@ -1301,7 +1221,6 @@ rules:
       modifiers: *opt_shift_key
     to_if_alone:
     - key_code: p
-      repeat: false
     - key_code: u
       repeat: false
     to:
@@ -1322,7 +1241,6 @@ rules:
       modifiers: *opt_shift_key
     to_if_alone:
     - key_code: s
-      repeat: false
     - key_code: o
       repeat: false
     to:
@@ -1343,7 +1261,6 @@ rules:
       modifiers: *opt_shift_key
     to_if_alone:
     - key_code: t
-      repeat: false
     - key_code: e
       repeat: false
     to:
@@ -1435,7 +1352,6 @@ rules:
       key_code: "y"
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "y"
       repeat: false
     conditions: *symbol_mode
@@ -1446,7 +1362,6 @@ rules:
       key_code: u
     to:
     - key_code: backslash
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *symbol_mode
@@ -1457,7 +1372,6 @@ rules:
       key_code: i
     to:
     - key_code: backslash
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *symbol_mode
@@ -1468,7 +1382,6 @@ rules:
       key_code: o
     to:
     - key_code: backslash
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *symbol_mode
@@ -1479,7 +1392,6 @@ rules:
       key_code: p
     to:
     - key_code: backslash
-      repeat: false
     - key_code: p
       repeat: false
     conditions: *symbol_mode
@@ -1490,7 +1402,6 @@ rules:
       key_code: h
     to:
     - key_code: backslash
-      repeat: false
     - key_code: h
       repeat: false
     conditions: *symbol_mode
@@ -1501,7 +1412,6 @@ rules:
       key_code: j
     to:
     - key_code: backslash
-      repeat: false
     - key_code: j
       repeat: false
     conditions: *symbol_mode
@@ -1512,7 +1422,6 @@ rules:
       key_code: k
     to:
     - key_code: backslash
-      repeat: false
     - key_code: k
       repeat: false
     conditions: *symbol_mode
@@ -1523,7 +1432,6 @@ rules:
       key_code: l
     to:
     - key_code: backslash
-      repeat: false
     - key_code: l
       repeat: false
     conditions: *symbol_mode
@@ -1534,7 +1442,6 @@ rules:
       key_code: semicolon
     to:
     - key_code: backslash
-      repeat: false
     - key_code: semicolon
       repeat: false
     conditions: *symbol_mode
@@ -1546,7 +1453,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: semicolon
       modifiers: *to_shift_key
       repeat: false
@@ -1558,7 +1464,6 @@ rules:
       key_code: quote
     to:
     - key_code: backslash
-      repeat: false
     - key_code: quote
       repeat: false
     conditions: *symbol_mode
@@ -1570,7 +1475,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: quote
       modifiers: *to_shift_key
       repeat: false
@@ -1582,7 +1486,6 @@ rules:
       key_code: "n"
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "n"
       repeat: false
     conditions: *symbol_mode
@@ -1593,7 +1496,6 @@ rules:
       key_code: m
     to:
     - key_code: backslash
-      repeat: false
     - key_code: m
       repeat: false
     conditions: *symbol_mode
@@ -1604,7 +1506,6 @@ rules:
       key_code: comma
     to:
     - key_code: backslash
-      repeat: false
     - key_code: comma
       repeat: false
     conditions: *symbol_mode
@@ -1615,7 +1516,6 @@ rules:
       key_code: period
     to:
     - key_code: backslash
-      repeat: false
     - key_code: period
       repeat: false
     conditions: *symbol_mode
@@ -1627,7 +1527,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: comma
       modifiers: *to_shift_key
       repeat: false
@@ -1640,7 +1539,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: period
       modifiers: *to_shift_key
       repeat: false
@@ -1652,7 +1550,6 @@ rules:
       key_code: slash
     to:
     - key_code: backslash
-      repeat: false
     - key_code: slash
       repeat: false
     conditions: *symbol_mode
@@ -1664,7 +1561,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: slash
       modifiers: *to_shift_key
       repeat: false
@@ -1676,7 +1572,6 @@ rules:
       key_code: open_bracket
     to:
     - key_code: backslash
-      repeat: false
     - key_code: open_bracket
       repeat: false
     conditions: *symbol_mode
@@ -1686,7 +1581,6 @@ rules:
       key_code: close_bracket
     to:
     - key_code: backslash
-      repeat: false
     - key_code: close_bracket
       repeat: false
     conditions: *symbol_mode
@@ -1698,7 +1592,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: open_bracket
       modifiers: *to_shift_key
       repeat: false
@@ -1710,7 +1603,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: close_bracket
       modifiers: *to_shift_key
       repeat: false
@@ -1723,7 +1615,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "9"
       modifiers: *to_shift_key
       repeat: false
@@ -1735,7 +1626,6 @@ rules:
       modifiers: *mand_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "0"
       repeat: false
       modifiers: *to_shift_key
