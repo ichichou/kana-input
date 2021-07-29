@@ -6,11 +6,11 @@ aliases:
 
 # ----- Modifier Keys -----
 
-- from/modifiers: &opt_shift_key
+- from/modifiers: &optional_shift_key
     optional:
     - shift
 
-- from/modifiers: &mand_shift_key
+- from/modifiers: &mandatory_shift_key
     mandatory:
     - shift
 
@@ -211,7 +211,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
     - key_code: a
@@ -222,7 +222,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: u
@@ -233,7 +233,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
     - key_code: i
@@ -244,7 +244,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
     - key_code: u
@@ -255,7 +255,7 @@ rules:
   - type: basic
     from:
       key_code: k
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
     - key_code: e
@@ -266,7 +266,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
     - key_code: u
@@ -277,7 +277,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
     - key_code: a
@@ -288,7 +288,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
     - key_code: o
@@ -299,7 +299,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
     - key_code: i
@@ -310,7 +310,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
     - key_code: u
@@ -321,7 +321,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
     - key_code: e
@@ -332,7 +332,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
     - key_code: i
@@ -343,7 +343,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
     - key_code: u
@@ -354,7 +354,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
     - key_code: e
@@ -365,7 +365,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
     - key_code: o
@@ -376,7 +376,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
     - key_code: i
@@ -387,7 +387,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
     - key_code: u
@@ -398,7 +398,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
     - key_code: a
@@ -409,7 +409,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
     - key_code: u
@@ -420,7 +420,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
     - key_code: a
@@ -431,7 +431,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
     - key_code: i
@@ -443,7 +443,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: p
   #   - key_code: u
@@ -454,7 +454,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
     - key_code: o
@@ -465,7 +465,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: v
     - key_code: u
@@ -476,7 +476,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: u
@@ -487,7 +487,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: "y"
@@ -499,7 +499,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: "y"
@@ -511,7 +511,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -522,7 +522,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -533,7 +533,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -544,7 +544,7 @@ rules:
   - type: basic
     from:
       key_code: escape
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -557,7 +557,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: a
       repeat: false
@@ -567,7 +567,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: e
       repeat: false
@@ -577,7 +577,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: o
       repeat: false
@@ -587,7 +587,7 @@ rules:
   - type: basic
     from:
       key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
     - key_code: e
@@ -598,7 +598,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
     - key_code: e
@@ -610,7 +610,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: s
   #   - key_code: o
@@ -621,7 +621,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
     - key_code: i
@@ -632,7 +632,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
     - key_code: u
@@ -643,7 +643,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: e
@@ -654,7 +654,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
     - key_code: u
@@ -665,7 +665,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
     - key_code: e
@@ -676,7 +676,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
     - key_code: o
@@ -687,7 +687,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
     - key_code: i
@@ -698,7 +698,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
     - key_code: a
@@ -709,7 +709,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "y"
     - key_code: o
@@ -720,7 +720,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
     - key_code: o
@@ -731,7 +731,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: w
     - key_code: a
@@ -742,7 +742,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
     - key_code: o
@@ -753,7 +753,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: z
     - key_code: a
@@ -764,7 +764,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
     - key_code: o
@@ -775,7 +775,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
     - key_code: i
@@ -786,7 +786,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
     - key_code: e
@@ -797,7 +797,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: b
     - key_code: o
@@ -808,7 +808,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: p
     - key_code: e
@@ -819,7 +819,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: a
@@ -830,7 +830,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: i
@@ -841,7 +841,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: e
@@ -852,7 +852,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: o
@@ -863,7 +863,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -874,7 +874,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -885,7 +885,7 @@ rules:
   - type: basic
     from:
       key_code: escape
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -898,7 +898,7 @@ rules:
   - type: basic
     from:
       key_code: l
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: i
       repeat: false
@@ -908,7 +908,7 @@ rules:
   - type: basic
     from:
       key_code: m
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: u
       repeat: false
@@ -918,7 +918,7 @@ rules:
   - type: basic
     from:
       key_code: s
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
     - key_code: a
@@ -929,7 +929,7 @@ rules:
   - type: basic
     from:
       key_code: p
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
     - key_code: i
@@ -940,7 +940,7 @@ rules:
   - type: basic
     from:
       key_code: h
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
     - key_code: u
@@ -951,7 +951,7 @@ rules:
   - type: basic
     from:
       key_code: q
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: k
     - key_code: o
@@ -962,7 +962,7 @@ rules:
   - type: basic
     from:
       key_code: i
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
     - key_code: i
@@ -973,7 +973,7 @@ rules:
   - type: basic
     from:
       key_code: v
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: s
     - key_code: u
@@ -984,7 +984,7 @@ rules:
   - type: basic
     from:
       key_code: g
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
     - key_code: a
@@ -996,7 +996,7 @@ rules:
   # - type: basic
   #   from:
   #     key_code: r
-  #     modifiers: *opt_shift_key
+  #     modifiers: *optional_shift_key
   #   to:
   #   - key_code: t
   #   - key_code: e
@@ -1007,7 +1007,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: t
     - key_code: o
@@ -1018,7 +1018,7 @@ rules:
   - type: basic
     from:
       key_code: f
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: a
@@ -1029,7 +1029,7 @@ rules:
   - type: basic
     from:
       key_code: w
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: i
@@ -1040,7 +1040,7 @@ rules:
   - type: basic
     from:
       key_code: o
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: o
@@ -1051,7 +1051,7 @@ rules:
   - type: basic
     from:
       key_code: e
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: h
     - key_code: a
@@ -1062,7 +1062,7 @@ rules:
   - type: basic
     from:
       key_code: c
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
     - key_code: a
@@ -1073,7 +1073,7 @@ rules:
   - type: basic
     from:
       key_code: t
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: m
     - key_code: o
@@ -1084,7 +1084,7 @@ rules:
   - type: basic
     from:
       key_code: "y"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
     - key_code: i
@@ -1095,7 +1095,7 @@ rules:
   - type: basic
     from:
       key_code: "n"
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
     - key_code: u
@@ -1106,7 +1106,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: r
     - key_code: e
@@ -1117,7 +1117,7 @@ rules:
   - type: basic
     from:
       key_code: j
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: "n"
     - key_code: "n"
@@ -1128,7 +1128,7 @@ rules:
   - type: basic
     from:
       key_code: x
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: g
     - key_code: a
@@ -1139,7 +1139,7 @@ rules:
   - type: basic
     from:
       key_code: z
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
     - key_code: a
@@ -1150,7 +1150,7 @@ rules:
   - type: basic
     from:
       key_code: a
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: d
     - key_code: e
@@ -1161,7 +1161,7 @@ rules:
   - type: basic
     from:
       key_code: u
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: t
@@ -1173,7 +1173,7 @@ rules:
   - type: basic
     from:
       key_code: b
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: x
     - key_code: "y"
@@ -1185,7 +1185,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: comma
       repeat: false
@@ -1195,7 +1195,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: period
       repeat: false
@@ -1205,7 +1205,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - key_code: quote
       repeat: false
@@ -1218,7 +1218,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: p
     - key_code: u
@@ -1238,7 +1238,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: s
     - key_code: o
@@ -1258,7 +1258,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: t
     - key_code: e
@@ -1279,7 +1279,7 @@ rules:
   - type: basic
     from:
       key_code: d
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: left_shift
@@ -1313,7 +1313,7 @@ rules:
   - type: basic
     from:
       key_code: k
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to:
     - set_variable:
         name: right_shift
@@ -1450,7 +1450,7 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: semicolon
@@ -1472,7 +1472,7 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: quote
@@ -1524,7 +1524,7 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: comma
@@ -1536,7 +1536,7 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: period
@@ -1558,7 +1558,7 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: slash
@@ -1589,7 +1589,7 @@ rules:
   - type: basic
     from:
       key_code: open_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: open_bracket
@@ -1600,7 +1600,7 @@ rules:
   - type: basic
     from:
       key_code: close_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: close_bracket
@@ -1612,7 +1612,7 @@ rules:
   - type: basic
     from:
       key_code: "9"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: "9"
@@ -1623,7 +1623,7 @@ rules:
   - type: basic
     from:
       key_code: "0"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
     - key_code: "0"
