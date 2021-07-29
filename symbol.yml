@@ -138,41 +138,33 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # FG → 鉤括弧
-  # - type: basic
-  #   from:
-  #     simultaneous:
-  #     - key_code: f
-  #     - key_code: g
-  #   to:
-  #   - key_code: open_bracket
-  #     repeat: false
-  #   - key_code: close_bracket
-  #     repeat: false
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   - key_code: left_arrow
-  #     repeat: false
-  #   conditions: *base_state
+  # FG → 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: g
+    to:
+    - key_code: open_bracket
+    - key_code: close_bracket
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
 
-  # # JH → 丸括弧
-  # - type: basic
-  #   from:
-  #     simultaneous:
-  #     - key_code: j
-  #     - key_code: h
-  #   to:
-  #   - key_code: "9"
-  #     modifiers: *to_shift_key
-  #     repeat: false
-  #   - key_code: "0"
-  #     modifiers: *to_shift_key
-  #     repeat: false
-  #   - key_code: return_or_enter
-  #     repeat: false
-  #   - key_code: left_arrow
-  #     repeat: false
-  #   conditions: *base_state
+  # HJ → 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: h
+      - key_code: j
+    to:
+    - key_code: "9"
+      modifiers: *to_shift_key
+    - key_code: "0"
+      modifiers: *to_shift_key
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
 
 - description: "[Kana Input] Symbol Mode"
   manipulators:
@@ -182,7 +174,7 @@ rules:
   - type: basic
     from:
       key_code: r
-      modifiers: *opt_shift_key
+      modifiers: *optional_shift_key
     to_if_alone:
     - key_code: r
       repeat: false
@@ -204,7 +196,6 @@ rules:
       key_code: "y"
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "y"
       repeat: false
     conditions: *symbol_mode
@@ -215,7 +206,6 @@ rules:
       key_code: u
     to:
     - key_code: backslash
-      repeat: false
     - key_code: u
       repeat: false
     conditions: *symbol_mode
@@ -226,7 +216,6 @@ rules:
       key_code: i
     to:
     - key_code: backslash
-      repeat: false
     - key_code: i
       repeat: false
     conditions: *symbol_mode
@@ -237,7 +226,6 @@ rules:
       key_code: o
     to:
     - key_code: backslash
-      repeat: false
     - key_code: o
       repeat: false
     conditions: *symbol_mode
@@ -248,7 +236,6 @@ rules:
       key_code: p
     to:
     - key_code: backslash
-      repeat: false
     - key_code: p
       repeat: false
     conditions: *symbol_mode
@@ -259,7 +246,6 @@ rules:
       key_code: h
     to:
     - key_code: backslash
-      repeat: false
     - key_code: h
       repeat: false
     conditions: *symbol_mode
@@ -270,7 +256,6 @@ rules:
       key_code: j
     to:
     - key_code: backslash
-      repeat: false
     - key_code: j
       repeat: false
     conditions: *symbol_mode
@@ -281,7 +266,6 @@ rules:
       key_code: k
     to:
     - key_code: backslash
-      repeat: false
     - key_code: k
       repeat: false
     conditions: *symbol_mode
@@ -292,7 +276,6 @@ rules:
       key_code: l
     to:
     - key_code: backslash
-      repeat: false
     - key_code: l
       repeat: false
     conditions: *symbol_mode
@@ -303,7 +286,6 @@ rules:
       key_code: semicolon
     to:
     - key_code: backslash
-      repeat: false
     - key_code: semicolon
       repeat: false
     conditions: *symbol_mode
@@ -312,10 +294,9 @@ rules:
   - type: basic
     from:
       key_code: semicolon
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: semicolon
       modifiers: *to_shift_key
       repeat: false
@@ -327,7 +308,6 @@ rules:
       key_code: quote
     to:
     - key_code: backslash
-      repeat: false
     - key_code: quote
       repeat: false
     conditions: *symbol_mode
@@ -336,10 +316,9 @@ rules:
   - type: basic
     from:
       key_code: quote
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: quote
       modifiers: *to_shift_key
       repeat: false
@@ -351,7 +330,6 @@ rules:
       key_code: "n"
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "n"
       repeat: false
     conditions: *symbol_mode
@@ -362,7 +340,6 @@ rules:
       key_code: m
     to:
     - key_code: backslash
-      repeat: false
     - key_code: m
       repeat: false
     conditions: *symbol_mode
@@ -373,7 +350,6 @@ rules:
       key_code: comma
     to:
     - key_code: backslash
-      repeat: false
     - key_code: comma
       repeat: false
     conditions: *symbol_mode
@@ -384,7 +360,6 @@ rules:
       key_code: period
     to:
     - key_code: backslash
-      repeat: false
     - key_code: period
       repeat: false
     conditions: *symbol_mode
@@ -393,10 +368,9 @@ rules:
   - type: basic
     from:
       key_code: comma
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: comma
       modifiers: *to_shift_key
       repeat: false
@@ -406,10 +380,9 @@ rules:
   - type: basic
     from:
       key_code: period
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: period
       modifiers: *to_shift_key
       repeat: false
@@ -421,7 +394,6 @@ rules:
       key_code: slash
     to:
     - key_code: backslash
-      repeat: false
     - key_code: slash
       repeat: false
     conditions: *symbol_mode
@@ -430,10 +402,9 @@ rules:
   - type: basic
     from:
       key_code: slash
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: slash
       modifiers: *to_shift_key
       repeat: false
@@ -445,7 +416,6 @@ rules:
       key_code: open_bracket
     to:
     - key_code: backslash
-      repeat: false
     - key_code: open_bracket
       repeat: false
     conditions: *symbol_mode
@@ -455,7 +425,6 @@ rules:
       key_code: close_bracket
     to:
     - key_code: backslash
-      repeat: false
     - key_code: close_bracket
       repeat: false
     conditions: *symbol_mode
@@ -464,10 +433,9 @@ rules:
   - type: basic
     from:
       key_code: open_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: open_bracket
       modifiers: *to_shift_key
       repeat: false
@@ -476,10 +444,9 @@ rules:
   - type: basic
     from:
       key_code: close_bracket
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: close_bracket
       modifiers: *to_shift_key
       repeat: false
@@ -489,10 +456,9 @@ rules:
   - type: basic
     from:
       key_code: "9"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "9"
       modifiers: *to_shift_key
       repeat: false
@@ -501,10 +467,9 @@ rules:
   - type: basic
     from:
       key_code: "0"
-      modifiers: *mand_shift_key
+      modifiers: *mandatory_shift_key
     to:
     - key_code: backslash
-      repeat: false
     - key_code: "0"
       repeat: false
       modifiers: *to_shift_key
