@@ -6,11 +6,11 @@ aliases:
 
 # ----- Modifier Keys -----
 
-- from/modifiers: &opt_shift_key
+- from/modifiers: &optional_shift_key
     optional:
     - shift
 
-- from/modifiers: &mand_shift_key
+- from/modifiers: &mandatory_shift_key
     mandatory:
     - shift
 
