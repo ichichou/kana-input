@@ -43,6 +43,9 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
+    name: kanchoku_mode
+    value: 1
+  - type: variable_unless
     name: symbol_mode
     value: 1
   - type: frontmost_application_unless
@@ -53,6 +56,9 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: kanchoku_mode
+    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -67,6 +73,9 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: kanchoku_mode
+    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -85,6 +94,9 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
+    name: kanchoku_mode
+    value: 1
+  - type: variable_unless
     name: symbol_mode
     value: 1
   - type: variable_if
@@ -101,6 +113,9 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: kanchoku_mode
+    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
