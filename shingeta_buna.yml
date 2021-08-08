@@ -135,7 +135,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] 新下駄配列／ぶな配列"
+- description: "[Japanese Input] 新下駄配列／ぶな配列"
   manipulators:
 
 # ========== 記号の同時打鍵 ==========

@@ -1,6 +1,6 @@
 title: "新下駄配列 連続シフト構造"
 rules:
-- description: "[Kana Input] 新下駄配列 連続シフト構造"
+- description: "[Japanese Input] 新下駄配列 連続シフト構造"
   manipulators:
 
 # ----- 同時打鍵 -----

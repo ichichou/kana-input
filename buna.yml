@@ -35,6 +35,9 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
+    name: kanchoku_mode
+    value: 1
+  - type: variable_unless
     name: symbol_mode
     value: 1
   - type: variable_if
@@ -49,6 +52,9 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
+    name: kanchoku_mode
+    value: 1
+  - type: variable_unless
     name: symbol_mode
     value: 1
   - type: variable_if
@@ -62,6 +68,9 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: kanchoku_mode
+    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -78,7 +87,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] ぶな配列"
+- description: "[Japanese Input] ぶな配列"
   manipulators:
 
 # ----- 同時打鍵 → 記号 -----

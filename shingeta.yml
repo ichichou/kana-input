@@ -43,6 +43,9 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
+    name: kanchoku_mode
+    value: 1
+  - type: variable_unless
     name: symbol_mode
     value: 1
   - type: frontmost_application_unless
@@ -52,7 +55,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Kana Input] 新下駄配列"
+- description: "[Japanese Input] 新下駄配列"
   manipulators:
 
 # ----- 同時打鍵 → 記号 -----
