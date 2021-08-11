@@ -1,0 +1,337 @@
+title: "Workman"
+
+# ===== Aliases =====
+
+aliases:
+
+# ----- Modifier Keys -----
+
+- from/modifiers: &optional_shift_key
+    optional:
+    - shift
+
+# ----- Conditions -----
+
+- conditions: &base_state
+  - type: input_source_unless
+    input_sources:
+    - language: ja
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+# ===== Rules =====
+
+rules:
+- description: "[Keyboard Layout] Workman"
+  manipulators:
+
+  # Q
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: q
+      repeat: false
+    conditions: *base_state
+
+  # W
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+      repeat: false
+    conditions: *base_state
+
+  # E
+  - type: basic
+    from:
+      key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+      repeat: false
+    conditions: *base_state
+
+  # R
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+      repeat: false
+    conditions: *base_state
+
+  # T
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+      repeat: false
+    conditions: *base_state
+
+  # Y
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: j
+      repeat: false
+    conditions: *base_state
+
+  # U
+  - type: basic
+    from:
+      key_code: u
+      modifiers: *optional_shift_key
+    to:
+    - key_code: f
+      repeat: false
+    conditions: *base_state
+
+  # I
+  - type: basic
+    from:
+      key_code: i
+      modifiers: *optional_shift_key
+    to:
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # O
+  - type: basic
+    from:
+      key_code: o
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+      repeat: false
+    conditions: *base_state
+
+  # P
+  - type: basic
+    from:
+      key_code: p
+      modifiers: *optional_shift_key
+    to:
+    - key_code: semicolon
+      repeat: false
+    conditions: *base_state
+
+  # A
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # S
+  - type: basic
+    from:
+      key_code: s
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+      repeat: false
+    conditions: *base_state
+
+  # D
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+      repeat: false
+    conditions: *base_state
+
+  # F
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+      repeat: false
+    conditions: *base_state
+
+  # G
+  - type: basic
+    from:
+      key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+      repeat: false
+    conditions: *base_state
+
+  # H
+  - type: basic
+    from:
+      key_code: h
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "y"
+      repeat: false
+    conditions: *base_state
+
+  # J
+  - type: basic
+    from:
+      key_code: j
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+      repeat: false
+    conditions: *base_state
+
+  # K
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *optional_shift_key
+    to:
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # L
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *optional_shift_key
+    to:
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Semicolon
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *optional_shift_key
+    to:
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # Z
+  - type: basic
+    from:
+      key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+      repeat: false
+    conditions: *base_state
+
+  # X
+  - type: basic
+    from:
+      key_code: x
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+      repeat: false
+    conditions: *base_state
+
+  # C
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+      repeat: false
+    conditions: *base_state
+
+  # V
+  - type: basic
+    from:
+      key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: c
+      repeat: false
+    conditions: *base_state
+
+  # B
+  - type: basic
+    from:
+      key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: v
+      repeat: false
+    conditions: *base_state
+
+  # N
+  - type: basic
+    from:
+      key_code: "n"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+      repeat: false
+    conditions: *base_state
+
+  # M
+  - type: basic
+    from:
+      key_code: m
+      modifiers: *optional_shift_key
+    to:
+    - key_code: l
+      repeat: false
+    conditions: *base_state
+
+  # Comma
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *optional_shift_key
+    to:
+    - key_code: comma
+      repeat: false
+    conditions: *base_state
+
+  # Period
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *optional_shift_key
+    to:
+    - key_code: period
+      repeat: false
+    conditions: *base_state
+
+  # Slash
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *optional_shift_key
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # Quote
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *optional_shift_key
+    to:
+    - key_code: quote
+      repeat: false
+    conditions: *base_state
