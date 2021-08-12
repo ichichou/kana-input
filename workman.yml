@@ -16,6 +16,12 @@ aliases:
   - type: input_source_unless
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: switch_layout_mode
+    value: 1
+  - type: variable_if
+    name: workman
+    value: 1
   - type: frontmost_application_unless
     bundle_identifiers:
     - "^com\\.apple\\.loginwindow$"
@@ -56,15 +62,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # R
-  - type: basic
-    from:
-      key_code: r
-      modifiers: *optional_shift_key
-    to:
-    - key_code: w
-      repeat: false
-    conditions: *base_state
+  # # R
+  # - type: basic
+  #   from:
+  #     key_code: r
+  #     modifiers: *optional_shift_key
+  #   to:
+  #   - key_code: w
+  #     repeat: false
+  #   conditions: *base_state
 
   # T
   - type: basic
@@ -335,3 +341,95 @@ rules:
     - key_code: quote
       repeat: false
     conditions: *base_state
+
+  # Switch Mode (in Qwerty)
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *optional_shift_key
+    to_if_alone:
+    - key_code: r
+      repeat: false
+    to:
+    - set_variable:
+        name: switch_layout_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: switch_layout_mode
+        value: 0
+    conditions:
+    - type: input_source_unless
+      input_sources:
+      - language: ja
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+  # Switch Mode (in Workman)
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *optional_shift_key
+    to_if_alone:
+    - key_code: w
+      repeat: false
+    to:
+    - set_variable:
+        name: switch_layout_mode
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: switch_layout_mode
+        value: 0
+    conditions:
+    - type: input_source_unless
+      input_sources:
+      - language: ja
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+  # Qwerty to Workman
+  - type: basic
+    from:
+      key_code: b
+    to:
+    - set_variable:
+        name: workman
+        value: 1
+    conditions:
+    - type: input_source_unless
+      input_sources:
+      - language: ja
+    - type: variable_if
+      name: switch_layout_mode
+      value: 1
+    - type: variable_unless
+      name: workman
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
+
+  # Workman to Qwerty
+  - type: basic
+    from:
+      key_code: b
+    to:
+    - set_variable:
+        name: workman
+        value: 0
+    conditions:
+    - type: input_source_unless
+      input_sources:
+      - language: ja
+    - type: variable_if
+      name: switch_layout_mode
+      value: 1
+    - type: variable_if
+      name: workman
+      value: 1
+    - type: frontmost_application_unless
+      bundle_identifiers:
+      - "^com\\.apple\\.loginwindow$"
