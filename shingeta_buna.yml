@@ -3831,21 +3831,21 @@ rules:
       modifiers: *to_shift_key
     conditions: *symbol_mode
 
+# ========== Layout Switching ==========
+
   # 新下駄配列 → ぶな配列
   - type: basic
     from:
-      key_code: t
+      key_code: quote
+      modifiers:
+        mandatory:
+        - left_shift
+        - right_control
     to:
     - set_variable:
         name: buna_layout
         value: 1
     conditions:
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_if
-      name: symbol_mode
-      value: 1
     - type: variable_unless
       name: buna_layout
       value: 1
@@ -3856,18 +3856,16 @@ rules:
   # ぶな配列 → 新下駄配列
   - type: basic
     from:
-      key_code: t
+      key_code: quote
+      modifiers:
+        mandatory:
+        - left_shift
+        - right_control
     to:
     - set_variable:
         name: buna_layout
         value: 0
     conditions:
-    - type: input_source_if
-      input_sources:
-      - language: ja
-    - type: variable_if
-      name: symbol_mode
-      value: 1
     - type: variable_if
       name: buna_layout
       value: 1
