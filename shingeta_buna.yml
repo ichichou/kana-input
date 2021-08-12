@@ -3834,7 +3834,7 @@ rules:
   # 新下駄配列 → ぶな配列
   - type: basic
     from:
-      key_code: "0"
+      key_code: t
     to:
     - set_variable:
         name: buna_layout
@@ -3856,7 +3856,7 @@ rules:
   # ぶな配列 → 新下駄配列
   - type: basic
     from:
-      key_code: "0"
+      key_code: t
     to:
     - set_variable:
         name: buna_layout
