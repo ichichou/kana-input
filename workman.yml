@@ -64,15 +64,15 @@ rules:
       repeat: false
     conditions: *base_state
 
-  # # R
-  # - type: basic
-  #   from:
-  #     key_code: r
-  #     modifiers: *optional_shift_key
-  #   to:
-  #   - key_code: w
-  #     repeat: false
-  #   conditions: *base_state
+  # R
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+      repeat: false
+    conditions: *base_state
 
   # T
   - type: basic
