@@ -31,6 +31,9 @@ aliases:
 # ----- Conditions -----
 
 - conditions: &symbol_mode
+  - type: variable_unless
+    name: is_buna_layout
+    value: 1
   - type: variable_if
     name: symbol_mode
     value: 1
@@ -42,6 +45,9 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
+  - type: variable_unless
+    name: is_buna_layout
+    value: 1
   - type: variable_unless
     name: kanchoku_mode
     value: 1
@@ -2599,3 +2605,19 @@ rules:
       repeat: false
       modifiers: *to_shift_key
     conditions: *symbol_mode
+
+# ----- Layout Switching -----
+
+  # 新下駄配列 → ぶな配列
+  - type: basic
+    from:
+      key_code: quote
+      modifiers:
+        mandatory:
+        - left_shift
+        - right_control
+    to:
+    - set_variable:
+        name: is_buna_layout
+        value: 1
+    conditions: *base_state
