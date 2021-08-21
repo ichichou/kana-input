@@ -32,7 +32,7 @@ aliases:
 
 - conditions: &symbol_mode
   - type: variable_unless
-    name: is_buna_layout
+    name: buna_layout
     value: 1
   - type: variable_if
     name: symbol_mode
@@ -46,7 +46,7 @@ aliases:
     input_sources:
     - language: ja
   - type: variable_unless
-    name: is_buna_layout
+    name: buna_layout
     value: 1
   - type: variable_unless
     name: kanchoku_mode
@@ -2618,6 +2618,6 @@ rules:
         - right_control
     to:
     - set_variable:
-        name: is_buna_layout
+        name: buna_layout
         value: 1
     conditions: *base_state
