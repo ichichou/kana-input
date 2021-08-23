@@ -1,0 +1,146 @@
+title: "新下駄配列 連続シフト構造"
+rules:
+- description: "[Japanese Input] 新下駄配列 連続シフト構造"
+  manipulators:
+
+# ----- 同時打鍵 -----
+
+  # れ（左中指シフト・右中指シフト）
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: k
+      - key_code: d
+      modifiers:
+        optional:
+        - shift
+      simultaneous_options:
+        key_up_when: all
+    to:
+    - key_code: r
+    - key_code: e
+      repeat: false
+    - set_variable:
+        name: left_shift
+        value: 1
+    - set_variable:
+        name: right_shift
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: left_shift
+        value: 0
+    - set_variable:
+        name: right_shift
+        value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: left_shift
+      value: 1
+    - type: variable_unless
+      name: right_shift
+      value: 1
+
+# ----- 連続シフト（左中指シフト） -----
+
+  # れ
+  - type: basic
+    from:
+      key_code: k
+      modifiers:
+        optional:
+        - shift
+    to:
+    - key_code: r
+    - key_code: e
+      repeat: false
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_if
+      name: left_shift
+      value: 1
+
+# ----- 連続シフト（右中指シフト） -----
+
+  # れ
+  - type: basic
+    from:
+      key_code: d
+      modifiers:
+        optional:
+        - shift
+    to:
+    - key_code: r
+    - key_code: e
+      repeat: false
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_if
+      name: right_shift
+      value: 1
+
+# ----- ベース -----
+
+  # い（右中指シフト）
+  - type: basic
+    from:
+      key_code: k
+      modifiers:
+        optional:
+        - shift
+    to:
+    - set_variable:
+        name: right_shift
+        value: 1
+    - key_code: i
+      repeat: false
+    to_after_key_up:
+    - set_variable:
+        name: right_shift
+        value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: left_shift
+      value: 1
+    - type: variable_unless
+      name: right_shift
+      value: 1
+
+  # か（左中指シフト）
+  - type: basic
+    from:
+      key_code: d
+      modifiers:
+        optional:
+        - shift
+    to:
+    - set_variable:
+        name: left_shift
+        value: 1
+    - key_code: k
+    - key_code: a
+      repeat: false
+    to_after_key_up:
+    - set_variable:
+        name: left_shift
+        value: 0
+    conditions:
+    - type: input_source_if
+      input_sources:
+      - language: ja
+    - type: variable_unless
+      name: left_shift
+      value: 1
+    - type: variable_unless
+      name: right_shift
+      value: 1
