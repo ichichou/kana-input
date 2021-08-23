@@ -3431,6 +3431,16 @@ rules:
       repeat: false
     conditions: *left_middle_finger_shifted_state
 
+  # お
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *optional_shift_key
+    to:
+    - key_code: o
+      repeat: false
+    conditions: *left_middle_finger_shifted_state
+
   # せ
   - type: basic
     from:
@@ -3483,6 +3493,17 @@ rules:
     to:
     - key_code: "y"
     - key_code: o
+      repeat: false
+    conditions: *left_middle_finger_shifted_state
+
+  # れ
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: e
       repeat: false
     conditions: *left_middle_finger_shifted_state
 
@@ -3834,6 +3855,17 @@ rules:
 
 # ----- 連続シフト：薬指シフト（左） -----
 
+  # さ
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: a
+      repeat: false
+    conditions: *left_ring_finger_shifted_state
+
   # そ
   - type: basic
     from:
@@ -3875,6 +3907,17 @@ rules:
     to:
     - key_code: w
     - key_code: a
+      repeat: false
+    conditions: *left_ring_finger_shifted_state
+
+  # じ
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: i
       repeat: false
     conditions: *left_ring_finger_shifted_state
 
