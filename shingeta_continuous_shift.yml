@@ -221,7 +221,7 @@ aliases:
 # ===== Rules =====
 
 rules:
-- description: "[Japanese Input] 新下駄配列"
+- description: "[Japanese Input] 新下駄配列（連続シフト）"
   manipulators:
 
 # ----- 同時打鍵：中指シフト（右） -----
