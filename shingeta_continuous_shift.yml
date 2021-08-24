@@ -224,6 +224,129 @@ rules:
 - description: "[Japanese Input] 新下駄配列（連続シフト）"
   manipulators:
 
+# ----- 同時打鍵 → 記号 -----
+
+  # RF → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: f
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # RG → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: g
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # FV → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: v
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # FB → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: b
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # UJ → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: j
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # UH → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: h
+    to:
+    - key_code: slash
+      repeat: false
+    conditions: *base_state
+
+  # JM → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: m
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # JN → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: "n"
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # FG → 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: g
+    to:
+    - key_code: open_bracket
+    - key_code: close_bracket
+    - key_code: left_arrow
+    conditions: *base_state
+
+  # HJ → 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: h
+      - key_code: j
+    to:
+    - key_code: "9"
+      modifiers: *to_shift_key
+    - key_code: "0"
+      modifiers: *to_shift_key
+    - key_code: left_arrow
+      repeat: false
+    conditions: *base_state
+
 # ----- 同時打鍵：中指シフト（右） -----
 
   # ふ
