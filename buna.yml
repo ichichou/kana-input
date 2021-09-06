@@ -17,6 +17,12 @@ aliases:
 - to/modifiers: &to_shift_key
   - shift
 
+- parameters: &threshold_time_for_same_hand_simultaneous
+    basic.simultaneous_threshold_milliseconds: 100
+
+- parameters: &delay_time_to_cancel_shifted_state
+    basic.to_delayed_action_delay_milliseconds: 5000
+
 # ----- Conditions -----
 
 - conditions: &symbol_mode
@@ -111,6 +117,7 @@ rules:
     - key_code: quote
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # RG → 中黒
@@ -123,6 +130,7 @@ rules:
     - key_code: quote
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # FV → 感嘆符
@@ -135,6 +143,7 @@ rules:
     - key_code: "1"
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # FB → 感嘆符
@@ -147,6 +156,7 @@ rules:
     - key_code: "1"
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # UJ → スラッシュ
@@ -158,6 +168,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # UH → スラッシュ
@@ -169,6 +180,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # JM → 疑問符
@@ -181,6 +193,7 @@ rules:
     - key_code: slash
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # JN → 疑問符
@@ -193,6 +206,7 @@ rules:
     - key_code: slash
       modifiers: *to_shift_key
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # FG → 鉤括弧
@@ -206,6 +220,7 @@ rules:
     - key_code: close_bracket
     - key_code: left_arrow
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
   # HJ → 丸括弧
@@ -221,6 +236,7 @@ rules:
       modifiers: *to_shift_key
     - key_code: left_arrow
       repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
 # ----- 中指シフト（左） -----
@@ -1311,8 +1327,7 @@ rules:
       - set_variable:
           name: left_shift
           value: 0
-    parameters:
-      basic.to_delayed_action_delay_milliseconds: 5000
+    parameters: *delay_time_to_cancel_shifted_state
     conditions:
     - type: input_source_if
       input_sources:
@@ -1351,8 +1366,7 @@ rules:
       - set_variable:
           name: right_shift
           value: 0
-    parameters:
-      basic.to_delayed_action_delay_milliseconds: 5000
+    parameters: *delay_time_to_cancel_shifted_state
     conditions:
     - type: input_source_if
       input_sources:
