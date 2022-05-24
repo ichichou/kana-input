@@ -307,14 +307,14 @@ rules:
       repeat: false
     conditions: *left_shifted_state
 
-  # ら
+  # れ
   - type: basic
     from:
       key_code: l
       modifiers: *optional_shift_key
     to:
     - key_code: r
-    - key_code: a
+    - key_code: e
       repeat: false
     conditions: *left_shifted_state
 
@@ -1114,6 +1114,17 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # ら
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
   # り
   - type: basic
     from:
@@ -1133,17 +1144,6 @@ rules:
     to:
     - key_code: r
     - key_code: u
-      repeat: false
-    conditions: *base_state
-
-  # れ
-  - type: basic
-    from:
-      key_code: slash
-      modifiers: *optional_shift_key
-    to:
-    - key_code: r
-    - key_code: e
       repeat: false
     conditions: *base_state
 
@@ -1238,7 +1238,7 @@ rules:
   # 長音符
   - type: basic
     from:
-      key_code: quote
+      key_code: slash
       modifiers: *optional_shift_key
     to:
     - key_code: quote
