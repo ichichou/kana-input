@@ -1,0 +1,1957 @@
+title: "09. 新下駄配列（strict）"
+
+# ===== Aliases =====
+
+aliases:
+
+# ----- Modifier Keys -----
+
+- from/modifiers: &optional_shift_key
+    optional:
+    - shift
+
+- from/modifiers: &mandatory_shift_key
+    mandatory:
+    - shift
+
+- to/modifiers: &to_shift_key
+  - shift
+
+- parameters: &threshold_time_for_same_hand_simultaneous
+    basic.simultaneous_threshold_milliseconds: 100
+
+# ----- Kana Shift Keys -----
+
+- from/key_code: &right_middle_finger_shift_key k
+- from/key_code: &left_middle_finger_shift_key d
+- from/key_code: &right_ring_finger_shift_key l
+- from/key_code: &left_ring_finger_shift_key s
+- from/key_code: &upper_middle_finger_shift_key i
+- from/key_code: &upper_ring_finger_shift_key o
+
+# ----- Conditions -----
+
+- conditions: &base_state
+  - type: input_source_if
+    input_sources:
+    - language: ja
+  - type: frontmost_application_unless
+    bundle_identifiers:
+    - "^com\\.apple\\.loginwindow$"
+
+# ===== Rules =====
+
+rules:
+- description: "[Japanese Input] 新下駄配列（strict）"
+  manipulators:
+
+# ----- 同時打鍵 → 記号 -----
+
+  # RF → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: f
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # RG → 中黒
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: r
+      - key_code: g
+    to:
+    - key_code: quote
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # FV → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: v
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # FB → 感嘆符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: b
+    to:
+    - key_code: "1"
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # UJ → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: j
+    to:
+    - key_code: slash
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # UH → スラッシュ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: u
+      - key_code: h
+    to:
+    - key_code: slash
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # JM → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: m
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # JN → 疑問符
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: j
+      - key_code: "n"
+    to:
+    - key_code: slash
+      modifiers: *to_shift_key
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # FG → 鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: f
+      - key_code: g
+    to:
+    - key_code: open_bracket
+    - key_code: close_bracket
+    - key_code: left_arrow
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+  # HJ → 丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: h
+      - key_code: j
+    to:
+    - key_code: "9"
+      modifiers: *to_shift_key
+    - key_code: "0"
+      modifiers: *to_shift_key
+    - key_code: left_arrow
+      repeat: false
+    parameters: *threshold_time_for_same_hand_simultaneous
+    conditions: *base_state
+
+# ----- 中指シフト（右） -----
+
+  # E：ふ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # A：ほ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # V：む
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # F：も
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # G：ゆ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # D：れ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: d
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # W：ご
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # S：じ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: s
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # X：ぞ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: x
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Z：づ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # C：ぼ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Q：ふぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: f
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # R：ふぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: f
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # T：ふぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: f
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # B：ふぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: f
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 1：ぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: "1"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # 2：ぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: "2"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # 3：ぅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: "3"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # 4：ぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: "4"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # 5：ぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_middle_finger_shift_key
+      - key_code: "5"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+# ----- 中指シフト（左） -----
+
+  # J：あ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: j
+      modifiers: *optional_shift_key
+    to:
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Semicolon：え
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: semicolon
+      modifiers: *optional_shift_key
+    to:
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # N：せ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "n"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # M：ね
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: m
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # H：へ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: h
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # O：み
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: o
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # I：よ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: i
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Comma：べ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: comma
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # U：ぱ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: u
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Period：ぷ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: period
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # Slash：ヴ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: slash
+      modifiers: *optional_shift_key
+    to:
+    - key_code: v
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # Y：うぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "y"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # P：うぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: p
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # At Sign (Open Bracket)：うぉ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: quote
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+    - key_code: h
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 7：コンマ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "7"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: comma
+      repeat: false
+    conditions: *base_state
+
+  # 0：セミコロン
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "8"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: semicolon
+      repeat: false
+    conditions: *base_state
+
+  # 8：開き鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "9"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: open_bracket
+      repeat: false
+    conditions: *base_state
+
+  # 9：閉じ鉤括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_middle_finger_shift_key
+      - key_code: "0"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: close_bracket
+      repeat: false
+    conditions: *base_state
+
+# ----- 薬指シフト（右） -----
+
+  # D：お
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: d
+      modifiers: *optional_shift_key
+    to:
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # E：け
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # S：さ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: s
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # B：ぬ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # W：め
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # F：り
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # V：ろ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # A：を
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # C：ぎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # X：ざ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: x
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # G：ず
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # Z：ぜ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # Q：ぢ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # R：てぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: h
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # T：でぃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: h
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # 2：みゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: "2"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # 3：みゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: "3"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # 4：みょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: "4"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 1：ゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: "1"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # 5：ゎ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *right_ring_finger_shift_key
+      - key_code: "5"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: w
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+# ----- 薬指シフト（左） -----
+
+  # Semicolon：そ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: semicolon
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # O：や
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: o
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # J：ら
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: j
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # N：わ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "n"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: w
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # M：だ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: m
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # I：ど
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: i
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # H：び
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: h
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # Comma：ぴ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: comma
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # U：ぺ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: u
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # Period：ぽ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: period
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Y：しぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "y"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: "y"
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # Slash：ちぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: slash
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: "y"
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # P：じぇ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: p
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: "y"
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # 7：ピリオド
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "7"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: backslash
+    - key_code: period
+      repeat: false
+    conditions: *base_state
+
+  # 0：コロン
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "8"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: semicolon
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # 8：開き丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "9"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "9"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+  # 9：閉じ丸括弧
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_ring_finger_shift_key
+      - key_code: "0"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "0"
+      modifiers: *to_shift_key
+      repeat: false
+    conditions: *base_state
+
+# ----- 中指上段シフト -----
+
+  # V：きゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # R：きゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # F：きょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # C：しゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # W：しゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # E：しょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # B：ちゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # T：ちゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # G：ちょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Z：ひゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Q：ひゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # A：ひょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 2：びゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: "2"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # 3：びゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: "3"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # 4：びょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: "4"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 1：ゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_middle_finger_shift_key
+      - key_code: "1"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+# ----- 薬指上段シフト -----
+
+  # B：にゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # T：にゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # G：にょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Z：りゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Q：りゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # A：りょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # V：ぎゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # R：ぎゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # F：ぎょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # C：じゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # W：じゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # E：じょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: z
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 2：ぴゃ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: "2"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: "y"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # 3：ぴゅ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: "3"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: "y"
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # 4：ぴょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: "4"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: p
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # 1：ょ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *upper_ring_finger_shift_key
+      - key_code: "1"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: "y"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+# ----- ベース -----
+
+  # K：い
+  - type: basic
+    from:
+      key_code: k
+      modifiers: *optional_shift_key
+    to:
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # J：う
+  - type: basic
+    from:
+      key_code: j
+      modifiers: *optional_shift_key
+    to:
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # D：か
+  - type: basic
+    from:
+      key_code: d
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # C：き
+  - type: basic
+    from:
+      key_code: c
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # H：く
+  - type: basic
+    from:
+      key_code: h
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # I：こ
+  - type: basic
+    from:
+      key_code: i
+      modifiers: *optional_shift_key
+    to:
+    - key_code: k
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # L：し
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # Z：す
+  - type: basic
+    from:
+      key_code: z
+      modifiers: *optional_shift_key
+    to:
+    - key_code: s
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # M：た
+  - type: basic
+    from:
+      key_code: m
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # T：ち
+  - type: basic
+    from:
+      key_code: t
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # B：つ
+  - type: basic
+    from:
+      key_code: b
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # N：て
+  - type: basic
+    from:
+      key_code: "n"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # S：と
+  - type: basic
+    from:
+      key_code: s
+      modifiers: *optional_shift_key
+    to:
+    - key_code: t
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # Semicolon：な
+  - type: basic
+    from:
+      key_code: semicolon
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # W：に
+  - type: basic
+    from:
+      key_code: w
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # A：の
+  - type: basic
+    from:
+      key_code: a
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: o
+      repeat: false
+    conditions: *base_state
+
+  # E：は
+  - type: basic
+    from:
+      key_code: e
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # P：ひ
+  - type: basic
+    from:
+      key_code: p
+      modifiers: *optional_shift_key
+    to:
+    - key_code: h
+    - key_code: i
+      repeat: false
+    conditions: *base_state
+
+  # X：ま
+  - type: basic
+    from:
+      key_code: x
+      modifiers: *optional_shift_key
+    to:
+    - key_code: m
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # V：る
+  - type: basic
+    from:
+      key_code: v
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # F：ん
+  - type: basic
+    from:
+      key_code: f
+      modifiers: *optional_shift_key
+    to:
+    - key_code: "n"
+    - key_code: "n"
+      repeat: false
+    conditions: *base_state
+
+  # O：が
+  - type: basic
+    from:
+      key_code: o
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Y：ぐ
+  - type: basic
+    from:
+      key_code: "y"
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # At Sign (Open Bracket)：げ
+  - type: basic
+    from:
+      key_code: quote
+      modifiers: *optional_shift_key
+    to:
+    - key_code: g
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # Comma：で
+  - type: basic
+    from:
+      key_code: comma
+      modifiers: *optional_shift_key
+    to:
+    - key_code: d
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
+  # U：ば
+  - type: basic
+    from:
+      key_code: u
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: a
+      repeat: false
+    conditions: *base_state
+
+  # Slash：ぶ
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *optional_shift_key
+    to:
+    - key_code: b
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # G：っ
+  - type: basic
+    from:
+      key_code: g
+      modifiers: *optional_shift_key
+    to:
+    - key_code: x
+    - key_code: t
+    - key_code: u
+      repeat: false
+    conditions: *base_state
+
+  # R：読点
+  - type: basic
+    from:
+      key_code: r
+      modifiers: *optional_shift_key
+    to:
+    - key_code: comma
+      repeat: false
+    conditions: *base_state
+
+  # Period：句点
+  - type: basic
+    from:
+      key_code: period
+      modifiers: *optional_shift_key
+    to:
+    - key_code: period
+      repeat: false
+    conditions: *base_state
+
+  # Q：長音符
+  - type: basic
+    from:
+      key_code: q
+      modifiers: *optional_shift_key
+    to:
+    - key_code: quote
+      repeat: false
+    conditions: *base_state
