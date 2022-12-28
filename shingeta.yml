@@ -1774,7 +1774,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: z
+      - key_code: v
       modifiers: *optional_shift_key
     to:
     - key_code: b
@@ -1788,7 +1788,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: q
+      - key_code: r
       modifiers: *optional_shift_key
     to:
     - key_code: b
@@ -1802,7 +1802,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: a
+      - key_code: f
       modifiers: *optional_shift_key
     to:
     - key_code: b
@@ -1816,7 +1816,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: v
+      - key_code: z
       modifiers: *optional_shift_key
     to:
     - key_code: p
@@ -1830,7 +1830,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: r
+      - key_code: q
       modifiers: *optional_shift_key
     to:
     - key_code: p
@@ -1844,7 +1844,7 @@ rules:
     from:
       simultaneous:
       - key_code: *right_upper_pinky_finger_shift_key
-      - key_code: f
+      - key_code: a
       modifiers: *optional_shift_key
     to:
     - key_code: p
