@@ -108,7 +108,7 @@ rules:
     parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
-  # FB → 感嘆符・全角空白
+  # FB → 感嘆符
   - type: basic
     from:
       simultaneous:
@@ -117,8 +117,6 @@ rules:
     to:
     - key_code: "1"
       modifiers: *to_shift_key
-    - key_code: backslash
-    - key_code: m
       repeat: false
     parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
@@ -160,7 +158,7 @@ rules:
     parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
 
-  # JN → 疑問符・全角空白
+  # JN → 疑問符
   - type: basic
     from:
       simultaneous:
@@ -169,8 +167,6 @@ rules:
     to:
     - key_code: slash
       modifiers: *to_shift_key
-    - key_code: backslash
-    - key_code: m
       repeat: false
     parameters: *threshold_time_for_same_hand_simultaneous
     conditions: *base_state
