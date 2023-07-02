@@ -307,17 +307,6 @@ rules:
       repeat: false
     conditions: *left_shifted_state
 
-  # れ
-  - type: basic
-    from:
-      key_code: l
-      modifiers: *optional_shift_key
-    to:
-    - key_code: r
-    - key_code: e
-      repeat: false
-    conditions: *left_shifted_state
-
   # を
   - type: basic
     from:
@@ -538,6 +527,16 @@ rules:
     - key_code: x
     - key_code: "y"
     - key_code: u
+      repeat: false
+    conditions: *left_shifted_state
+
+  # 長音符
+  - type: basic
+    from:
+      key_code: l
+      modifiers: *optional_shift_key
+    to:
+    - key_code: quote
       repeat: false
     conditions: *left_shifted_state
 
@@ -1147,6 +1146,17 @@ rules:
       repeat: false
     conditions: *base_state
 
+  # れ
+  - type: basic
+    from:
+      key_code: slash
+      modifiers: *optional_shift_key
+    to:
+    - key_code: r
+    - key_code: e
+      repeat: false
+    conditions: *base_state
+
   # ん
   - type: basic
     from:
@@ -1232,16 +1242,6 @@ rules:
       modifiers: *optional_shift_key
     to:
     - key_code: period
-      repeat: false
-    conditions: *base_state
-
-  # 長音符
-  - type: basic
-    from:
-      key_code: slash
-      modifiers: *optional_shift_key
-    to:
-    - key_code: quote
       repeat: false
     conditions: *base_state
 
