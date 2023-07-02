@@ -27,9 +27,6 @@ aliases:
 
 - conditions: &symbol_mode
   - type: variable_if
-    name: buna_layout
-    value: 1
-  - type: variable_if
     name: symbol_mode
     value: 1
   - type: frontmost_application_unless
@@ -40,12 +37,6 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
-  - type: variable_if
-    name: buna_layout
-    value: 1
-  - type: variable_unless
-    name: kanchoku_mode
-    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -60,12 +51,6 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
-  - type: variable_if
-    name: buna_layout
-    value: 1
-  - type: variable_unless
-    name: kanchoku_mode
-    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -80,12 +65,6 @@ aliases:
   - type: input_source_if
     input_sources:
     - language: ja
-  - type: variable_if
-    name: buna_layout
-    value: 1
-  - type: variable_unless
-    name: kanchoku_mode
-    value: 1
   - type: variable_unless
     name: symbol_mode
     value: 1
@@ -1332,12 +1311,6 @@ rules:
     - type: input_source_if
       input_sources:
       - language: ja
-    - type: variable_if
-      name: buna_layout
-      value: 1
-    - type: variable_unless
-      name: kanchoku_mode
-      value: 1
     - type: variable_unless
       name: symbol_mode
       value: 1
@@ -1371,12 +1344,6 @@ rules:
     - type: input_source_if
       input_sources:
       - language: ja
-    - type: variable_if
-      name: buna_layout
-      value: 1
-    - type: variable_unless
-      name: kanchoku_mode
-      value: 1
     - type: variable_unless
       name: symbol_mode
       value: 1
@@ -1674,19 +1641,3 @@ rules:
       repeat: false
       modifiers: *to_shift_key
     conditions: *symbol_mode
-
-# ----- Layout Switching -----
-
-  # ぶな配列 → 新下駄配列
-  - type: basic
-    from:
-      key_code: quote
-      modifiers:
-        mandatory:
-        - left_shift
-        - right_control
-    to:
-    - set_variable:
-        name: buna_layout
-        value: 0
-    conditions: *base_state
