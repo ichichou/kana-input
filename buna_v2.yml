@@ -81,7 +81,7 @@ aliases:
 # RULES ==========================================
 
 rules:
-- description: "[Japanese Layout] ぶな配列"
+- description: "[Japanese Layout] ぶな配列 v2.0"
   manipulators:
 
 # 同手の同時打鍵 --------------------------
