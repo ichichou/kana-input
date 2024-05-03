@@ -4,6 +4,17 @@ title: "10. 新下駄配列"
 
 aliases:
 
+# Kana Shift Keys --------------------------------
+
+- from/key_code: &right_middle k
+- from/key_code: &left_middle d
+- from/key_code: &right_ring l
+- from/key_code: &left_ring s
+- from/key_code: &upper_middle i
+- from/key_code: &upper_ring o
+- from/key_code: &right_upper_pinky p
+- from/key_code: &left_upper_pinky q
+
 # Modifier Keys ----------------------------------
 
 - from/modifiers: &optional_shift
@@ -17,19 +28,8 @@ aliases:
 - to/modifiers: &to_shift
   - shift
 
-- parameters: &thresh_for_same_hand_simul
+- parameters: &thresh_ms
     basic.simultaneous_threshold_milliseconds: 100
-
-# Kana Shift Keys --------------------------------
-
-- from/key_code: &right_middle k
-- from/key_code: &left_middle d
-- from/key_code: &right_ring l
-- from/key_code: &left_ring s
-- from/key_code: &upper_middle i
-- from/key_code: &upper_ring o
-- from/key_code: &right_upper_pinky p
-- from/key_code: &left_upper_pinky q
 
 # Conditions -------------------------------------
 
@@ -70,7 +70,7 @@ rules:
     - key_code: quote
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # RG -> 中黒
@@ -83,7 +83,7 @@ rules:
     - key_code: quote
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # FV -> 感嘆符
@@ -96,7 +96,7 @@ rules:
     - key_code: "1"
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # FB -> 感嘆符
@@ -109,7 +109,7 @@ rules:
     - key_code: "1"
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # UJ -> スラッシュ
@@ -121,7 +121,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # UH -> スラッシュ
@@ -133,7 +133,7 @@ rules:
     to:
     - key_code: slash
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # JM -> 疑問符
@@ -146,7 +146,7 @@ rules:
     - key_code: slash
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # JN -> 疑問符
@@ -159,7 +159,7 @@ rules:
     - key_code: slash
       modifiers: *to_shift
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # FG -> 鉤括弧
@@ -172,7 +172,7 @@ rules:
     - key_code: open_bracket
     - key_code: close_bracket
     - key_code: left_arrow
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
   # HJ -> 丸括弧
@@ -188,7 +188,7 @@ rules:
       modifiers: *to_shift
     - key_code: left_arrow
       repeat: false
-    parameters: *thresh_for_same_hand_simul
+    parameters: *thresh_ms
     conditions: *base
 
 # 中指シフト・右 ---------------------------------
@@ -1178,7 +1178,7 @@ rules:
       repeat: false
     conditions: *base
 
-  # # （未定義）（改変）
+  # #  (未定義) (改変)
   # - type: basic
   #   from:
   #     simultaneous:
@@ -1416,7 +1416,7 @@ rules:
       repeat: false
     conditions: *base
 
-  # とぅ（改変）
+  # とぅ (改変)
   - type: basic
     from:
       simultaneous:
@@ -1656,7 +1656,7 @@ rules:
       repeat: false
     conditions: *base
 
-  # どぅ（改変）
+  # どぅ (改変)
   - type: basic
     from:
       simultaneous:
@@ -1670,7 +1670,7 @@ rules:
       repeat: false
     conditions: *base
 
-# 小指上段シフト・右 -----------------------------
+# 小指上段シフト・右 (改変) -----------------------------
 
   # みゃ
   - type: basic
@@ -1840,14 +1840,26 @@ rules:
       repeat: false
     conditions: *base
 
-# 小指上段シフト・左 -----------------------------
+  # #  (未定義)
+  # - type: basic
+  #   from:
+  #     simultaneous:
+  #     - key_code: *right_upper_pinky
+  #     - key_code: x
+  #     modifiers: *optional_shift
+  #   to:
+  #   - key_code:
+  #     repeat: false
+  #   conditions: *base
+
+# 小指上段シフト・左 (改変) -----------------------------
 
   # ぁ
   - type: basic
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: "n"
+      - key_code: u
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1860,7 +1872,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: m
+      - key_code: j
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1873,7 +1885,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: comma
+      - key_code: m
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1886,7 +1898,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: period
+      - key_code: comma
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1899,7 +1911,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: slash
+      - key_code: period
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1912,7 +1924,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: h
+      - key_code: "y"
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1926,7 +1938,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: j
+      - key_code: h
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1940,7 +1952,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: semicolon
+      - key_code: "n"
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1954,7 +1966,7 @@ rules:
     from:
       simultaneous:
       - key_code: *left_upper_pinky
-      - key_code: "y"
+      - key_code: semicolon
       modifiers: *optional_shift
     to:
     - key_code: x
@@ -1962,6 +1974,31 @@ rules:
     - key_code: a
       repeat: false
     conditions: *base
+
+  # ヴぁ
+  - type: basic
+    from:
+      simultaneous:
+      - key_code: *left_upper_pinky
+      - key_code: slash
+      modifiers: *optional_shift
+    to:
+    - key_code: v
+    - key_code: a
+      repeat: false
+    conditions: *base
+
+  # #  (未定義)
+  # - type: basic
+  #   from:
+  #     simultaneous:
+  #     - key_code: *left_upper_pinky
+  #     - key_code: quote
+  #     modifiers: *optional_shift
+  #   to:
+  #   - key_code:
+  #     repeat: false
+  #   conditions: *base
 
 # ベース -----------------------------------------
 
@@ -2273,7 +2310,7 @@ rules:
     conditions: *base
 
   # # 読点
-  # # Symbol Mode で定義する
+  # # Symbol Mode で定義
   # - type: basic
   #   from:
   #     key_code: r
@@ -2305,7 +2342,6 @@ rules:
 
 # Symbol Mode ------------------------------------
 
-# 入力される記号は仮名テーブルで定義する
 
   # Symbol Mode Key ------------------------------
 
@@ -2328,6 +2364,8 @@ rules:
     conditions: *base
 
   # Symbol Mode Mapping --------------------------
+
+  # 入力される記号は仮名テーブルで定義する
 
   # Y
   - type: basic
